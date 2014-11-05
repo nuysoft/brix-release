@@ -1,0 +1,33 @@
+{
+  "name": "brix-loader",
+  "homepage": "https://github.com/thx/brix-loader",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "test",
+    "doc",
+    "package.json",
+    "gulpfile.js",
+    "AUTHORS.txt",
+    "CONTRIBUTING.md",
+    "HISTORY.md"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "requirejs": "*",
+    "mocha": "*",
+    "chai": "*"
+  },
+  "_release": "48ec9485b9",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "48ec9485b9c35738db996186384dd61ad9b10073"
+  },
+  "_source": "git://github.com/thx/brix-loader.git",
+  "_target": "*",
+  "_originalSource": "brix-loader"
+}

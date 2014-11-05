@@ -1,0 +1,6 @@
+该仓库只做发布之用。
+
+```shell
+bower install --save-dev brix-loader brix-base brix-components
+gulp
+```
