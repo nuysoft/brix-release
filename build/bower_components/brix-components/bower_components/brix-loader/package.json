@@ -1,0 +1,30 @@
+{
+  "name": "brix-loader",
+  "version": "0.0.1",
+  "description": "brix-loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp mocha",
+    "coveralls": "gulp coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thx/brix-loader"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thx/brix-loader/issues"
+  },
+  "homepage": "https://github.com/thx/brix-loader",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-connect": "*",
+    "gulp-jshint": "*",
+    "gulp-mocha-phantomjs": "*",
+    "gulp-requirejs": "*",
+    "gulp-uglify": "*",
+    "jshint-stylish": "*"
+  },
+  "dependencies": {}
+}

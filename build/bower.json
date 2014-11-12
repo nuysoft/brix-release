@@ -13,6 +13,8 @@
     "tests"
   ],
   "dependencies": {
+    "brix-loader": "*",
+    "brix-base": "*",
     "brix-components": "*"
   }
 }

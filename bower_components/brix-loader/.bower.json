@@ -1,5 +1,6 @@
 {
   "name": "brix-loader",
+  "version": "0.0.1",
   "homepage": "https://github.com/thx/brix-loader",
   "license": "MIT",
   "ignore": [
@@ -21,11 +22,11 @@
     "mocha": "*",
     "chai": "*"
   },
-  "_release": "48ec9485b9",
+  "_release": "0.0.1",
   "_resolution": {
-    "type": "branch",
-    "branch": "master",
-    "commit": "48ec9485b9c35738db996186384dd61ad9b10073"
+    "type": "version",
+    "tag": "0.0.1",
+    "commit": "d1001547161199835f842e04ad1fc67a23fa63ee"
   },
   "_source": "git://github.com/thx/brix-loader.git",
   "_target": "*",

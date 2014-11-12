@@ -11,7 +11,7 @@
                 <tr>
                     <th><input type="checkbox"></th>
                     <th>Id</th>
-                    <th>Feature</th>
+                    <th>Feature<span bx-name="components/popover" data-content="123" data-placement="bottom" class="glyphicon glyphicon-question-sign"></span></th>
                     <th>More</th>
                     <th>Operations</th>
                 </tr>

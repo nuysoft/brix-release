@@ -3,7 +3,7 @@ define(
     [
         'jquery', 'underscore', 'marked', 'marked-extra', 'highlightjs',
         'loader', 'base/brix',
-        'text!./readme.tpl',
+        './readme.tpl.js',
         'css!./readme.css'
     ],
     function(
@@ -54,6 +54,8 @@ define(
                     )
                     that.trimHTML(that.element)
                     that.trimPredefined(that.element)
+                    
+                    // 为 table 增加类样式 table table-bordered
                     var tables = $(that.element).find('table')
                     if (!tables.hasClass('table')) tables.addClass('table table-bordered')
 

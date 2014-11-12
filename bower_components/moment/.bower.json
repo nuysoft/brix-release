@@ -26,5 +26,6 @@
   },
   "_source": "git://github.com/moment/moment.git",
   "_target": "~2.8.3",
-  "_originalSource": "moment"
+  "_originalSource": "moment",
+  "_direct": true
 }
