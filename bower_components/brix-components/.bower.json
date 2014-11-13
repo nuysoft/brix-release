@@ -29,11 +29,11 @@
   },
   "devDependencies": {},
   "homepage": "https://github.com/nuysoft/brix-components",
-  "_release": "4fc1428c46",
+  "_release": "80078f3aa3",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "4fc1428c4657b024536d69db1fa1a7587132cb25"
+    "commit": "80078f3aa3f0ed4dcbfb964c275d4d9d8d623b1e"
   },
   "_source": "git://github.com/nuysoft/brix-components.git",
   "_target": "*",

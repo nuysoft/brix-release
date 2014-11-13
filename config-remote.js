@@ -140,7 +140,8 @@
             parsley: baseUrl + 'bower_components/parsleyjs/dist/parsley',
             log: baseUrl + 'bower_components/log/log',
             'css-tool': baseUrl + 'bower_components/brix-components/css-tool/',
-            colors: baseUrl + 'bower_components/colors/'
+            colors: baseUrl + 'bower_components/colors/',
+            printf: baseUrl + 'bower_components/brix-components/printf/printf'
         },
         shim: {
             Chart: {
