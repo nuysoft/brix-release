@@ -139,7 +139,9 @@
             nprogress: baseUrl + 'bower_components/nprogress/nprogress',
             parsley: baseUrl + 'bower_components/parsleyjs/dist/parsley',
             log: baseUrl + 'bower_components/log/log',
-            colors: baseUrl + 'bower_components/colors/'
+            'css-tool': baseUrl + 'bower_components/brix-components/css-tool/',
+            colors: baseUrl + 'bower_components/colors/',
+            printf: baseUrl + 'bower_components/brix-components/printf/printf'
         },
         shim: {
             Chart: {
@@ -157,4 +159,5 @@
         }
     })
     require(['css!colors/css/colors.css'])
+    require(['css!css-tool/tool.css'])
 })()

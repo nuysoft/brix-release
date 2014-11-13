@@ -172,7 +172,7 @@ instances[0].val(current)
 
 Event Type | Description
 :--------- | :----------
-change.datepicker | 当日期组件变化时被触发。事件监听函数接受 3 个参数：event、date、type。参数 date 是一个 [moment 对象](http://momentjs.com/docs/)；参数 type 指示了变化的属性，可选值有 `'year'`、`'month'`、`'date'`、`'hour'`、`'minute'`、`'second'`、`undefined`。
+change.datepicker | 当日期组件变化时被触发。事件监听函数接受 3 个参数：`event`、`date`、`type`。参数 `date` 是一个 [moment 对象](http://momentjs.com/docs/)；参数 `type` 指示了变化的属性，可选值有 `'year'`、`'month'`、`'date'`、`'hour'`、`'minute'`、`'second'`、`undefined`。
 
 ```js
 var Loader = require('loader')
