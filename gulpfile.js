@@ -13,8 +13,11 @@ gulp.task('connect', function() {
 
 gulp.task('build', function() {
 	var globs = [
-		'**/*',
-		'!build/**/*'
+		'**/*.js',
+		'**/*.css',
+		'!build/**/*',
+		'!node_modules/**/*',
+		'!gulpfile.js'
 	]
 	gulp.src(globs)
 		.pipe(gulp.dest('./build'))
