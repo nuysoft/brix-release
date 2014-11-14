@@ -22,19 +22,19 @@ bower install
 bower update
 gulp
 git add . -A
-git commit -m "save tag log 0.0.4"
+git commit -m "save tag log 0.0.5"
 git push gitlab master
-git checkout -b daily/0.0.4
-git push gitlab daily/0.0.4
-git tag publish/0.0.4
-git push gitlab publish/0.0.4
+git checkout -b daily/0.0.5
+git push gitlab daily/0.0.5
+git tag publish/0.0.5
+git push gitlab publish/0.0.5
 git remote prune gitlab
 git checkout master
 git pull
-git branch -d daily/0.0.4
+git branch -d daily/0.0.5
 
 git push origin master
-git push origin publish/0.0.4
+git push origin publish/0.0.5
 git remote prune origin
 ```
 
