@@ -15,6 +15,7 @@
   "dependencies": {
     "brix-loader": "*",
     "brix-base": "*",
-    "brix-components": "*"
+    "brix-components": "*",
+    "brix-spa": "*"
   }
 }
