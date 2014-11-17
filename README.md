@@ -22,20 +22,21 @@ bower install
 bower update
 gulp
 git add . -A
-git commit -m "save tag log 0.0.5"
+git commit -m "save tag log 0.0.6"
 git push gitlab master
-git checkout -b daily/0.0.5
-git push gitlab daily/0.0.5
-git tag publish/0.0.5
-git push gitlab publish/0.0.5
+git checkout -b daily/0.0.6
+git push gitlab daily/0.0.6
+git tag publish/0.0.6
+git push gitlab publish/0.0.6
 git remote prune gitlab
 git checkout master
 git pull
-git branch -d daily/0.0.5
+git branch -d daily/0.0.6
 
-git push origin master
-git push origin publish/0.0.5
-git remote prune origin
+git checkout gh-pages
+git merge master
+git push origin gh-pages
+git checkout master
 ```
 
 > [自动发布](http://thx.tbsite.net/vegas/services/aone-server-side-build/) @逸才

@@ -91,6 +91,7 @@
                 'components/pure.tpl-pagination': baseUrl + 'bower_components/brix-components/pagination/pure-pagination.tpl.js',
                 'components/colorpicker': baseUrl + 'bower_components/brix-components/colorpicker/colorpicker.js',
                 'components/modal': baseUrl + 'bower_components/brix-components/modal/modal.js',
+                'components/dialog': baseUrl + 'bower_components/brix-components/dialog/dialog.js',
                 'components/table': baseUrl + 'bower_components/brix-components/table/table.js',
                 'components/datepicker': baseUrl + 'bower_components/brix-components/datepicker/datepicker.js',
                 'components/datepickerwrapper': baseUrl + 'bower_components/brix-components/datepickerwrapper/datepickerwrapper.js',

@@ -1,14 +1,28 @@
 {
-  "name": "spinkit",
+  "name": "SpinKit",
   "homepage": "https://github.com/tobiasahlin/SpinKit",
-  "_release": "150131e9a5",
+  "authors": [
+    "Tobias Ahlin"
+  ],
+  "description": "A collection of loading indicators animated with CSS",
+  "main": "css/spinkit.css",
+  "keywords": [
+    "css",
+    "scss",
+    "web"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ],
+  "_release": "e6547636df",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "150131e9a50c7716711a7eaafd062edfc198cbea"
+    "commit": "e6547636df9318be4aa1088478b34201e534d4a0"
   },
   "_source": "git://github.com/tobiasahlin/SpinKit.git",
   "_target": "*",
-  "_originalSource": "spinkit",
-  "_direct": true
+  "_originalSource": "spinkit"
 }
