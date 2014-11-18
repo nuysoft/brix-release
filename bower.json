@@ -15,7 +15,12 @@
   "dependencies": {
     "brix-loader": "*",
     "brix-base": "*",
+    "brix-event": "*",
     "brix-components": "*",
-    "brix-spa": "*"
+    "brix-spa": "*",
+    "page": "visionmedia/page.js#~1.4.1"
+  },
+  "devDependencies": {
+    "bishengjs": "*"
   }
 }

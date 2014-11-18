@@ -1,2 +1,0 @@
-Brix Components
-=========

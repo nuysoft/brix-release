@@ -72,77 +72,84 @@
         var scripts = document.getElementsByTagName('script')
         var current = scripts[scripts.length - 1]
         var src = current.getAttribute('src')
-        return /(.+\/)(.+)/.exec(src)[1]
+        var baseUrl = /(.+\/)(.+)/.exec(src)[1]
+        // baseUrl += 'bower_components/'
+        return baseUrl
     }()
     require.config({
         map: {
             '*': {
                 // RequireJS 插件
-                css: baseUrl + 'bower_components/require-css/css.js',
-                less: baseUrl + 'bower_components/require-less/less.js',
-                text: baseUrl + 'bower_components/requirejs-text/text.js',
+                css: baseUrl + 'require-css/css.js',
+                less: baseUrl + 'require-less/less.js',
+                text: baseUrl + 'requirejs-text/text.js',
 
                 // Brix 组件
-                'components/hello': baseUrl + 'bower_components/brix-components/hello/hello.js',
-                'components/hello-extra': baseUrl + 'bower_components/brix-components/hello-extra/hello-extra.js',
-                'components/dropdown': baseUrl + 'bower_components/brix-components/dropdown/dropdown.js',
-                'components/pagination': baseUrl + 'bower_components/brix-components/pagination/pagination.js',
-                'components/pure-pagination': baseUrl + 'bower_components/brix-components/pagination/pure-pagination.js',
-                'components/pure.tpl-pagination': baseUrl + 'bower_components/brix-components/pagination/pure-pagination.tpl.js',
-                'components/colorpicker': baseUrl + 'bower_components/brix-components/colorpicker/colorpicker.js',
-                'components/modal': baseUrl + 'bower_components/brix-components/modal/modal.js',
-                'components/dialog': baseUrl + 'bower_components/brix-components/dialog/dialog.js',
-                'components/table': baseUrl + 'bower_components/brix-components/table/table.js',
-                'components/datepicker': baseUrl + 'bower_components/brix-components/datepicker/datepicker.js',
-                'components/datepickerwrapper': baseUrl + 'bower_components/brix-components/datepickerwrapper/datepickerwrapper.js',
-                'components/popover': baseUrl + 'bower_components/brix-components/popover/popover.js',
-                'components/uploader': baseUrl + 'bower_components/brix-components/uploader/uploader.js',
-                'components/editor': baseUrl + 'bower_components/brix-components/editor/editor.js',
-                'components/editable': baseUrl + 'bower_components/brix-components/editable/editable.js',
-                'components/spin': baseUrl + 'bower_components/brix-components/spin/spin.js',
-                'components/countdown': baseUrl + 'bower_components/brix-components/countdown/countdown.js',
-                'components/sidebar': baseUrl + 'bower_components/brix-components/sidebar/sidebar.js',
-                'components/chart': baseUrl + 'bower_components/brix-components/chart/chart.js',
-                'components/imager': baseUrl + 'bower_components/brix-components/imager/imager.js',
-                'components/nprogress': baseUrl + 'bower_components/brix-components/nprogress/nprogress.js',
-                'components/validation': baseUrl + 'bower_components/brix-components/validation/validation.js',
-                'components/validation/i18n': baseUrl + 'bower_components/brix-components/bower_components/parsleyjs/src/i18n',
+                'components/hello': baseUrl + 'brix-components/hello/hello.js',
+                'components/hello-extra': baseUrl + 'brix-components/hello-extra/hello-extra.js',
+                'components/dropdown': baseUrl + 'brix-components/dropdown/dropdown.js',
+                'components/pagination': baseUrl + 'brix-components/pagination/pagination.js',
+                'components/pure-pagination': baseUrl + 'brix-components/pagination/pure-pagination.js',
+                'components/pure.tpl-pagination': baseUrl + 'brix-components/pagination/pure-pagination.tpl.js',
+                'components/colorpicker': baseUrl + 'brix-components/colorpicker/colorpicker.js',
+                'components/modal': baseUrl + 'brix-components/modal/modal.js',
+                'components/dialog': baseUrl + 'brix-components/dialog/dialog.js',
+                'components/table': baseUrl + 'brix-components/table/table.js',
+                'components/datepicker': baseUrl + 'brix-components/datepicker/datepicker.js',
+                'components/datepickerwrapper': baseUrl + 'brix-components/datepickerwrapper/datepickerwrapper.js',
+                'components/popover': baseUrl + 'brix-components/popover/popover.js',
+                'components/uploader': baseUrl + 'brix-components/uploader/uploader.js',
+                'components/editor': baseUrl + 'brix-components/editor/editor.js',
+                'components/editable': baseUrl + 'brix-components/editable/editable.js',
+                'components/spin': baseUrl + 'brix-components/spin/spin.js',
+                'components/countdown': baseUrl + 'brix-components/countdown/countdown.js',
+                'components/sidebar': baseUrl + 'brix-components/sidebar/sidebar.js',
+                'components/chart': baseUrl + 'brix-components/chart/chart.js',
+                'components/imager': baseUrl + 'brix-components/imager/imager.js',
+                'components/nprogress': baseUrl + 'brix-components/nprogress/nprogress.js',
+                'components/validation': baseUrl + 'brix-components/validation/validation.js',
+                'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
 
-                'components/tree': baseUrl + 'bower_components/brix-components/tree/tree.js',
-                'components/header': baseUrl + 'bower_components/brix-components/header/header.js',
-                'components/footer': baseUrl + 'bower_components/brix-components/footer/footer.js',
-                'components/sticky': baseUrl + 'bower_components/brix-components/sticky/sticky.js',
-                'components/nav': baseUrl + 'bower_components/brix-components/nav/nav.js',
-                'components/readme': baseUrl + 'bower_components/brix-components/readme/readme.js',
-                'marked-extra': baseUrl + 'bower_components/brix-components/marked-extra/marked-extra.js',
-                'components/css-layout-debugger': baseUrl + 'bower_components/brix-components/css-layout-debugger/css-layout-debugger.js',
-                'components/boilerplate': baseUrl + 'bower_components/brix-components/boilerplate/boilerplate.js'
-
+                'components/tree': baseUrl + 'brix-components/tree/tree.js',
+                'components/header': baseUrl + 'brix-components/header/header.js',
+                'components/footer': baseUrl + 'brix-components/footer/footer.js',
+                'components/sticky': baseUrl + 'brix-components/sticky/sticky.js',
+                'components/nav': baseUrl + 'brix-components/nav/nav.js',
+                'components/readme': baseUrl + 'brix-components/readme/readme.js',
+                'marked-extra': baseUrl + 'brix-components/marked-extra/marked-extra.js',
+                'components/css-layout-debugger': baseUrl + 'brix-components/css-layout-debugger/css-layout-debugger.js',
+                'components/boilerplate': baseUrl + 'brix-components/boilerplate/boilerplate.js'
             }
         },
         paths: {
             // Brix
-            'loader': baseUrl + 'bower_components/brix-loader/dist/loader',
-            'base': baseUrl + 'bower_components/brix-base/src/',
+            'brix/loader': baseUrl + 'brix-loader/dist/loader',
+            'brix/base': baseUrl + 'brix-base/dist/base',
+            'brix/event': baseUrl + 'brix-event/dist/event',
+            'brix/spa': baseUrl + 'brix-spa/src/spa',
 
             // 运行依赖库
-            dependencies: baseUrl + 'bower_components/',
-            jquery: baseUrl + 'bower_components/jquery/dist/jquery',
-            underscore: baseUrl + 'bower_components/underscore/underscore',
-            moment: baseUrl + 'bower_components/moment/moment',
-            mousetrap: baseUrl + 'bower_components/mousetrap/mousetrap',
-            mock: baseUrl + 'bower_components/mockjs/dist/mock',
-            marked: baseUrl + 'bower_components/marked/lib/marked',
-            d3: baseUrl + 'bower_components/d3/d3',
-            Chart: baseUrl + 'bower_components/chartjs/Chart',
-            director: baseUrl + 'bower_components/director/build/director',
-            highlightjs: baseUrl + 'bower_components/highlightjs/highlight.pack',
-            nprogress: baseUrl + 'bower_components/nprogress/nprogress',
-            parsley: baseUrl + 'bower_components/parsleyjs/dist/parsley',
-            log: baseUrl + 'bower_components/log/log',
-            'css-tool': baseUrl + 'bower_components/brix-components/css-tool/',
-            colors: baseUrl + 'bower_components/colors/',
-            printf: baseUrl + 'bower_components/brix-components/printf/printf'
+            dependencies: baseUrl + '',
+            jquery: baseUrl + 'jquery/dist/jquery',
+            underscore: baseUrl + 'underscore/underscore',
+            moment: baseUrl + 'moment/moment',
+            handlebars: baseUrl + 'handlebars/handlebars',
+            mousetrap: baseUrl + 'mousetrap/mousetrap',
+            mock: baseUrl + 'mockjs/dist/mock',
+            bisheng: baseUrl + 'bishengjs/dist/bisheng',
+            marked: baseUrl + 'marked/lib/marked',
+            d3: baseUrl + 'd3/d3',
+            Chart: baseUrl + 'chartjs/Chart',
+            director: baseUrl + 'director/build/director',
+            URIjs: baseUrl + 'uri.js/src/',
+            page: baseUrl + 'page/page',
+            highlightjs: baseUrl + 'highlightjs/highlight.pack',
+            nprogress: baseUrl + 'nprogress/nprogress',
+            parsley: baseUrl + 'parsleyjs/dist/parsley',
+            log: baseUrl + 'log/log',
+            'css-tool': baseUrl + 'brix-components/css-tool/',
+            colors: baseUrl + 'colors/',
+            printf: baseUrl + 'brix-components/printf/printf'
         },
         shim: {
             Chart: {

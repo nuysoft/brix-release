@@ -1,8 +1,0 @@
-{
-  "name": "brix-spa",
-  "version": "0.0.0",
-  "devDependencies": {
-    "gulp": "*",
-    "gulp-connect": "*"
-  }
-}

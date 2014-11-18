@@ -3,7 +3,7 @@
 ## 安装
 
 ```shell
-bower install --save-dev brix-loader brix-base brix-components
+bower install --save-dev brix-loader brix-base brix-components brix-spa
 gulp
 ```
 
@@ -67,8 +67,12 @@ rm -fr bower_components/brix-components
 bower link brix-components
 rm -fr bower_components/brix-base
 bower link brix-base
+rm -fr bower_components/brix-event
+bower link brix-event
 rm -fr bower_components/brix-loader
 bower link brix-loader
+rm -fr bower_components/brix-spa
+bower link brix-spa
 ```
 
 **准备发布**
@@ -77,6 +81,7 @@ bower link brix-loader
 rm -fr bower_components/brix-components
 rm -fr bower_components/brix-base
 rm -fr bower_components/brix-loader
+rm -fr bower_components/brix-spa
 bower install
 ```
 
