@@ -6,7 +6,7 @@
 define(
     [
         'jquery', 'underscore', 'moment',
-        'brix/base',
+        'base/brix',
         './countdown.tpl.js',
         'css!./countdown.css'
     ],

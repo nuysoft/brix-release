@@ -5,7 +5,7 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
+        'base/brix',
         './modal.tpl.js',
         'css!./modal.css'
     ],

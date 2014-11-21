@@ -126,7 +126,8 @@
             'brix/loader': baseUrl + 'brix-loader/dist/loader',
             'brix/base': baseUrl + 'brix-base/dist/base',
             'brix/event': baseUrl + 'brix-event/dist/event',
-            'brix/spa': baseUrl + 'brix-spa/src/spa',
+            'brix/bisheng': baseUrl + 'brix-bisheng/dist/bisheng',
+            'brix/spa': baseUrl + 'brix-spa/dist/spa',
 
             // 运行依赖库
             dependencies: baseUrl + '',
@@ -136,7 +137,6 @@
             handlebars: baseUrl + 'handlebars/handlebars',
             mousetrap: baseUrl + 'mousetrap/mousetrap',
             mock: baseUrl + 'mockjs/dist/mock',
-            bisheng: baseUrl + 'bishengjs/dist/bisheng',
             marked: baseUrl + 'marked/lib/marked',
             d3: baseUrl + 'd3/d3',
             Chart: baseUrl + 'chartjs/Chart',

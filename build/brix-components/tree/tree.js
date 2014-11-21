@@ -1,13 +1,13 @@
 /* global define */
 /*
-    var Loader = require('brix/loader')
+    var Loader = require('loader')
     var tree = Loader.query('components/tree')
     tree[0]._renderTree()
  */
 define(
     [
         'jquery', 'underscore',
-        'brix/loader', 'brix/base',
+        'loader', 'base/brix',
         './tree.tpl.js',
         'css!./tree.css'
     ],

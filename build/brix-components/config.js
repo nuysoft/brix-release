@@ -10,7 +10,7 @@ require.config({
     },
     paths: {
         // brix
-        'brix/loader': 'bower_components/brix-loader/dist/loader',
+        'loader': 'bower_components/brix-loader/dist/loader',
         'base': 'bower_components/brix-base/src/',
 
         // 组件

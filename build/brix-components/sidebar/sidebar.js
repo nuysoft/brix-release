@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore', 'mock',
-        'brix/base',
+        'base/brix',
         './sidebar.tpl.js',
         'css!./sidebar.css'
     ],

@@ -7,7 +7,7 @@
 define(
     [
         'parsley',
-        'brix/base',
+        'base/brix',
         'css!dependencies/parsleyjs/src/parsley.css',
         'css!./validation.css'
     ],

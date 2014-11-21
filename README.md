@@ -63,26 +63,25 @@ fi
 ## 开发
 
 ```shell
-rm -fr bower_components/brix-components
-bower link brix-components
-rm -fr bower_components/brix-base
-bower link brix-base
-rm -fr bower_components/brix-event
-bower link brix-event
-rm -fr bower_components/brix-loader
-bower link brix-loader
-rm -fr bower_components/brix-spa
-bower link brix-spa
+rm -fr bower_components/brix-components; bower link brix-components
+rm -fr bower_components/brix-base;       bower link brix-base
+rm -fr bower_components/brix-event;      bower link brix-event
+rm -fr bower_components/brix-loader;     bower link brix-loader
+rm -fr bower_components/brix-spa;        bower link brix-spa
+rm -fr bower_components/brix-bisheng;    bower link brix-bisheng
 ```
 
 **准备发布**
 
 ```shell
-rm -fr bower_components/brix-components
-rm -fr bower_components/brix-base
 rm -fr bower_components/brix-loader
+rm -fr bower_components/brix-base
+rm -fr bower_components/brix-event
+rm -fr bower_components/brix-components
+rm -fr bower_components/brix-bisheng
 rm -fr bower_components/brix-spa
 bower install
+bower update
 ```
 
 <http://localhost:4242/config-remote.js>

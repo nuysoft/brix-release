@@ -17,10 +17,8 @@
     "brix-base": "*",
     "brix-event": "*",
     "brix-components": "*",
-    "brix-spa": "*",
-    "page": "visionmedia/page.js#~1.4.1"
+    "brix-bisheng": "*",
+    "brix-spa": "*"
   },
-  "devDependencies": {
-    "bishengjs": "*"
-  }
+  "devDependencies": {}
 }

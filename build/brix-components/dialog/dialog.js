@@ -1,8 +1,8 @@
-/* global define, require, document */
+/* global define, document, setTimeout */
 define(
     [
         'jquery', 'underscore',
-        'brix/base',
+        'base/brix',
         './position.js',
         './dialog.tpl.js',
         'css!./dialog.css'

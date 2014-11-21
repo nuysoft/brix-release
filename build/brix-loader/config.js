@@ -1,5 +1,5 @@
 require.config({
     paths: {
-        'brix/loader': './dist/loader'
+        'loader': './dist/loader'
     }
 })

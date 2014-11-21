@@ -2,7 +2,7 @@
 define(
     [
         'jquery', 'underscore', 'marked', 'marked-extra', 'highlightjs',
-        'brix/loader', 'brix/base',
+        'loader', 'base/brix',
         './readme.tpl.js',
         'css!./readme.css'
     ],
