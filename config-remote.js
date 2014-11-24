@@ -73,7 +73,8 @@
         var current = scripts[scripts.length - 1]
         var src = current.getAttribute('src')
         var baseUrl = /(.+\/)(.+)/.exec(src)[1]
-        baseUrl += 'bower_components/'
+        var LOCAL = ~location.search.indexOf('local')
+        if (LOCAL) baseUrl += 'bower_components/'
         return baseUrl
     }()
     require.config({
