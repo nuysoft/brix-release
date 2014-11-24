@@ -22,12 +22,6 @@ gulp.task('connect', function() {
 })
 
 gulp.task('build', function() {
-    var globs = ['config-remote.js']
-    gulp.src(globs)
-        .pipe(gulp.dest('./bower_components'))
-})
-
-gulp.task('build_all', function() {
     var path = require('path')
     var through = require('through2')
     var Buffer = require('buffer').Buffer
