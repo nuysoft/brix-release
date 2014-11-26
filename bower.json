@@ -18,7 +18,8 @@
     "brix-event": "*",
     "brix-components": "*",
     "brix-bisheng": "*",
-    "brix-spa": "*"
+    "brix-spa": "*",
+    "magix": "*"
   },
   "devDependencies": {}
 }
