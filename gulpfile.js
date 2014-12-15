@@ -28,6 +28,7 @@ gulp.task('build', function() {
     var globs = [
         '**/*.js',
         '**/*.css',
+        '**/*.map',
         '!build/**/*',
         '!node_modules/**/*',
         '!gulpfile.js'
