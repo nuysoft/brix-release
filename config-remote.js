@@ -1,12 +1,15 @@
-/* global require, document */
+/* global require, document, location */
 (function() {
-    var baseUrl = function() {
+    var local = ~location.search.indexOf('local')
+        // local = true // local test
+    var script = function() {
         var scripts = document.getElementsByTagName('script')
-        var current = scripts[scripts.length - 1]
-        var src = current.getAttribute('src')
+        return scripts[scripts.length - 1]
+    }()
+    var baseUrl = function() {
+        var src = script.getAttribute('src')
         var baseUrl = /(.+\/)(.+)/.exec(src)[1]
-        var LOCAL = ~location.search.indexOf('local')
-        if (LOCAL) baseUrl += 'bower_components/'
+        if (local) baseUrl += 'bower_components/'
         return baseUrl
     }()
     require.config({
@@ -42,6 +45,7 @@
                 'components/nprogress': baseUrl + 'brix-components/nprogress/nprogress.js',
                 'components/validation': baseUrl + 'brix-components/validation/validation.js',
                 'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
+                'components/ellipsis': baseUrl + 'brix-components/ellipsis/ellipsis.js',
 
                 'components/tree': baseUrl + 'brix-components/tree/tree.js',
                 'components/header': baseUrl + 'brix-components/header/header.js',
