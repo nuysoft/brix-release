@@ -1,7 +1,7 @@
 /* global require, document, location */
 (function() {
     var local = ~location.search.indexOf('local')
-        // local = true // local test
+    // local = true // local test
     var script = function() {
         var scripts = document.getElementsByTagName('script')
         return scripts[scripts.length - 1]
