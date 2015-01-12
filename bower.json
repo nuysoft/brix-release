@@ -13,11 +13,11 @@
     "tests"
   ],
   "dependencies": {
-    "brix-loader": "*",
-    "brix-base": "*",
-    "brix-event": "*",
-    "brix-components": "*",
-    "brix-bisheng": "*",
+    "brix-loader": "master",
+    "brix-base": "master",
+    "brix-event": "master",
+    "brix-components": "master",
+    "brix-bisheng": "master",
     "brix-spa": "*",
     "magix": "*"
   },
