@@ -18,7 +18,7 @@
     "brix-event": "master",
     "brix-components": "master",
     "brix-bisheng": "master",
-    "brix-spa": "*",
+    "brix-spa": "master",
     "magix": "*"
   },
   "devDependencies": {}
