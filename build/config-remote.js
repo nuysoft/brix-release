@@ -38,6 +38,7 @@
                 'components/hourpicker': baseUrl + 'brix-components/hourpicker/hourpicker.js',
                 'components/areapicker': baseUrl + 'brix-components/areapicker/areapicker.js',
                 'components/tree': baseUrl + 'brix-components/tree/tree.js',
+                'components/chartxwrapper': baseUrl + 'brix-components/chartxwrapper/chartxwrapper.js',
 
                 'components/hello': baseUrl + 'brix-components/hello/hello.js',
                 'components/hello-extra': baseUrl + 'brix-components/hello-extra/hello-extra.js',
@@ -71,6 +72,7 @@
             'brix/bisheng': baseUrl + 'brix-bisheng/dist/bisheng',
             'brix/spa': baseUrl + 'brix-spa/dist/spa',
             'magix': 'http://g.tbcdn.cn/thx/magix/2.0/requirejs-magix',
+            'chartx': 'http://g.tbcdn.cn/thx/charts/1.3.6/chartx/',
 
             // 运行依赖库
             dependencies: baseUrl + '',
