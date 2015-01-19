@@ -26,6 +26,7 @@
                 'components/pagination': baseUrl + 'brix-components/pagination/pagination.js',
                 'components/pure-pagination': baseUrl + 'brix-components/pagination/pure-pagination.js',
                 'components/dialog': baseUrl + 'brix-components/dialog/dialog.js',
+                'components/dialog/position': baseUrl + 'brix-components/dialog/position.js',
                 'components/dialogview': baseUrl + 'brix-components/dialogview/dialogview.js',
                 'components/table': baseUrl + 'brix-components/table/table.js',
                 'components/datepicker': baseUrl + 'brix-components/datepicker/datepicker.js',
@@ -35,6 +36,8 @@
                 'components/nprogress': baseUrl + 'brix-components/nprogress/nprogress.js',
 
                 'components/hourpicker': baseUrl + 'brix-components/hourpicker/hourpicker.js',
+                'components/areapicker': baseUrl + 'brix-components/areapicker/areapicker.js',
+                'components/tree': baseUrl + 'brix-components/tree/tree.js',
 
                 'components/hello': baseUrl + 'brix-components/hello/hello.js',
                 'components/hello-extra': baseUrl + 'brix-components/hello-extra/hello-extra.js',
@@ -51,7 +54,7 @@
                 'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
                 'components/ellipsis': baseUrl + 'brix-components/ellipsis/ellipsis.js',
 
-                'components/tree': baseUrl + 'brix-components/tree/tree.js',
+                'components/ctree': baseUrl + 'brix-components/ctree/ctree.js',
                 'components/sticky': baseUrl + 'brix-components/sticky/sticky.js',
                 'components/nav': baseUrl + 'brix-components/nav/nav.js',
                 'components/readme': baseUrl + 'brix-components/readme/readme.js',

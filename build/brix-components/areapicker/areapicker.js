@@ -1,58 +1,42 @@
-/* global define */
+/* global define, console */
 define(
     [
         'jquery', 'underscore',
-        'base/brix',
-        'text!./areapicker.tpl',
-        'less!./areapicker.less'
+        'brix/base', '../table/linkage.js',
+        './area.js',
+        './areapicker.tpl.js',
+        'css!./areapicker.css'
     ],
     function(
         $, _,
-        Brix,
+        Brix, linkage,
+        Area,
         template
     ) {
-        /*
-            ### 数据
-                {}
-            ### 选项
-                TODO
-            ### 属性
-                TODO
-            ### 方法
-                TODO
-            ### 事件
-                TODO
-            ===
 
-            ### 公共选项
-                data template css
-            ### 公共属性
-                element relatedElement 
-                moduleId clientId parentClientId childClientIds 
-                data template css
-            ### 公共方法
-                .render()
-            ### 公共事件
-                ready destroyed
+        function AreaPicker() {}
 
-        */
-        function Areapicker () {}
-
-        _.extend( Areapicker .prototype, Brix.prototype, {
-            options: {},
+        _.extend(AreaPicker.prototype, Brix.prototype, {
+            options: {
+                data: []
+            },
             init: function() {
-                // 支持自定义 HTML 模板 template
-                template = this.options.template || template
-                // 支持自定义 CSS 样式
-                if (this.options.css) require('css!' + this.options.css)
+                this.options.data = {
+                    id: 'root',
+                    name: '全选',
+                    children: Area.tree(Area.REGION)
+                }
             },
             render: function() {
-                this.data = this.data || _.extend({}, this.options)
-                var html = _.template(template)(this.data)
+                var html = _.template(template)(this.options.data)
                 $(this.element).append(html)
+
+                linkage(this.element, function() {
+                    console.log(arguments)
+                })
             }
         })
 
-        return Areapicker
+        return AreaPicker
     }
 )
