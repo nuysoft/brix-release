@@ -197,10 +197,10 @@ define(
                         value = value[path[index]]
                     }
                     // 如果 checked 的初始值是 false 或 "false"，则初始化为未选中。
-                    if (value === undefined || value.valueOf() === false || value.valueOf() === 'false') {
+                    if (value === undefined || value === null || value.valueOf() === false || value.valueOf() === 'false') {
                         $(target).prop('checked', false)
                     }
-                    if (value !== undefined &&
+                    if (value !== undefined && value !== null &&
                         (value.valueOf() === true || value.valueOf() === 'true' || value.valueOf() === 'checked')) {
                         $(target).prop('checked', true)
                     }
@@ -285,7 +285,7 @@ define(
             }
             var hook = updateCheckedHooks[target.type] || updateCheckedHooks[target.nodeName.toLowerCase()] || updateCheckedHooks._default
             var value = hook($(target), data)
-            if (value !== undefined) data[path[path.length - 1]] = value
+            if (value !== undefined && value !== null) data[path[path.length - 1]] = value
         }
 
         return {

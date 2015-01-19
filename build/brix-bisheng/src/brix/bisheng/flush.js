@@ -203,7 +203,7 @@ define(
                 oldValue = function() {
                     var oldValue
                     var context = Loop.clone(change.context, true, change.path.slice(0, -1)) // TODO
-                    context[change.path[change.path.length - 1]] = change.oldValue !== undefined ? change.oldValue.valueOf() : change.oldValue
+                    context[change.path[change.path.length - 1]] = (change.oldValue !== undefined && change.oldValue !== null) ? change.oldValue.valueOf() : change.oldValue
                     oldValue = Handlebars.compile(defined.$helpers[guid])(context)
                     return oldValue
                 }()
@@ -214,7 +214,7 @@ define(
                 oldValue = function() {
                     var oldValue
                     var context = Loop.clone(change.context, true, change.path.slice(0, -1)) // TODO
-                    context[change.path[change.path.length - 1]] = change.oldValue !== undefined ? change.oldValue.valueOf() : change.oldValue
+                    context[change.path[change.path.length - 1]] = (change.oldValue !== undefined && change.oldValue !== null) ? change.oldValue.valueOf() : change.oldValue
                     oldValue = ast ? Handlebars.compile(ast)(context) : change.oldValue
                     return oldValue
                 }()
