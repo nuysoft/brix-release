@@ -13,8 +13,11 @@
         if (local) baseUrl += 'bower_components/'
         return baseUrl
     }()
+
+    // http://requirejs.org/docs/api.html
     require.config({
-        map: {
+        waitSeconds: 15, // http://requirejs.org/docs/api.html#config-waitSeconds
+        map: { // http://requirejs.org/docs/api.html#config-map
             '*': {
                 // RequireJS 插件
                 css: baseUrl + 'require-css/css.js',
@@ -29,6 +32,7 @@
                 'components/dialog/position': baseUrl + 'brix-components/dialog/position.js',
                 'components/dialogview': baseUrl + 'brix-components/dialogview/dialogview.js',
                 'components/table': baseUrl + 'brix-components/table/table.js',
+                'components/table/linkage': baseUrl + 'brix-components/table/linkage.js',
                 'components/datepicker': baseUrl + 'brix-components/datepicker/datepicker.js',
                 'components/datepickerwrapper': baseUrl + 'brix-components/datepickerwrapper/datepickerwrapper.js',
                 'components/popover': baseUrl + 'brix-components/popover/popover.js',
@@ -38,6 +42,8 @@
                 'components/hourpicker': baseUrl + 'brix-components/hourpicker/hourpicker.js',
                 'components/areapicker': baseUrl + 'brix-components/areapicker/areapicker.js',
                 'components/tree': baseUrl + 'brix-components/tree/tree.js',
+                'components/taginput': baseUrl + 'brix-components/taginput/taginput.js',
+                'components/suggest': baseUrl + 'brix-components/suggest/suggest.js',
                 'components/chartxwrapper': baseUrl + 'brix-components/chartxwrapper/chartxwrapper.js',
 
                 'components/hello': baseUrl + 'brix-components/hello/hello.js',
@@ -64,7 +70,7 @@
                 'components/boilerplate': baseUrl + 'brix-components/boilerplate/boilerplate.js'
             }
         },
-        paths: {
+        paths: { // http://requirejs.org/docs/api.html#config-paths
             // Brix
             'brix/loader': baseUrl + 'brix-loader/dist/loader',
             'brix/base': baseUrl + 'brix-base/dist/base',
@@ -92,11 +98,12 @@
             nprogress: baseUrl + 'nprogress/nprogress',
             parsley: baseUrl + 'parsleyjs/dist/parsley',
             log: baseUrl + 'log/log',
+            accounting: baseUrl + 'accountingjs/accounting',
             'css-tool': baseUrl + 'brix-components/css-tool/',
             colors: baseUrl + 'colors/',
             printf: baseUrl + 'brix-components/printf/printf'
         },
-        shim: {
+        shim: { // http://requirejs.org/docs/api.html#config-shim
             Chart: {
                 exports: 'Chart'
             },
