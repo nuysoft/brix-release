@@ -1,4 +1,4 @@
-/* global define */
+/* global define, console, location */
 /*
     # Scanner
 
@@ -14,6 +14,15 @@ define(
         $, _,
         Loop, Locator
     ) {
+
+        var DEBUG = ~location.search.indexOf('bisheng.debug') && {
+            fix: function(arg, len) {
+                len = len || 32
+                var fix = parseInt(len, 10) - ('' + arg).length
+                for (var i = 0; i < fix; i++) arg += ' '
+                return arg
+            }
+        }
 
         // 入口方法
         function scan(node, data) {
@@ -43,14 +52,17 @@ define(
             扫描文本节点
         */
         function scanTexNode(node) {
+            var reph = Locator.getLocatorRegExp()
             var text = node.textContent || node.innerText || node.nodeValue
-            var contents = $('<div>' + text + '</div>').contents()
-            _.each(contents, function(elem /*, index*/ ) {
-                Locator.update(elem, {
-                    type: 'text'
+            if (text.length && $.trim(text).length && reph.test(text)) {
+                var contents = $('<div>' + text + '</div>').contents()
+                _.each(contents, function(elem /*, index*/ ) {
+                    Locator.update(elem, {
+                        type: 'text'
+                    })
                 })
-            })
-            contents.replaceAll(node)
+                contents.replaceAll(node)
+            }
         }
 
         /*
@@ -76,7 +88,10 @@ define(
                 name: 'checked',
                 setup: function() {},
                 teardown: function(node, value) {
-                    if (value === 'true') $(node).attr('checked', 'checked')
+                    if (value === 'true' || value === 'checked') {
+                        $(node).attr('checked', 'checked')
+                            .prop('checked', true)
+                    }
                 }
             }
         };
@@ -85,33 +100,35 @@ define(
             var reph = Locator.getLocatorRegExp()
             var restyle = /([^;]*?): ([^;]*)/ig
 
-            var attributes = []
-            _.each(
+            var all = function() {
                 // “Array.prototype.slice: 'this' is not a JavaScript object” error in IE8
                 // slice.call(node.attributes || [], 0)
-                function() {
-                    var re = []
-                    var all = node.attributes
-                    for (var i = 0; i < all.length; i++) {
-                        /*
-                            Fixes bug:
-                            在 IE6 中，input.attributeNode('value').specified 为 false，导致取不到 value 属性。
-                            所以，增加了对 nodeValue 的判断。
-                        */
-                        if (all[i].specified || all[i].nodeValue) re.push(all[i])
-                    }
-                    return re
-                }(),
-                function(attributeNode /*, index*/ ) {
 
-                    var nodeName = attributeNode.nodeName,
-                        nodeValue = attributeNode.nodeValue,
-                        ma, stylema, hook;
+                var re = []
+                var all = node.attributes
+                for (var i = 0; i < all.length; i++) {
+                    /*
+                        Fixes bug:
+                        在 IE6 中，input.attributeNode('value').specified 为 false，导致取不到 value 属性。
+                        所以，增加了对 nodeValue 的判断。
+                    */
+                    if (all[i].specified || all[i].nodeValue) re.push(all[i])
+                }
+                return re
+            }()
+
+            if (all.length) {
+                _.each(all, function(attributeNode /*, index*/ ) {
+                    var nodeName = attributeNode.nodeName
+                    var nodeValue = attributeNode.value // 'Attr.nodeValue' is deprecated. Please use 'value' instead.
+                    var ma, stylema, hook
+                    var attributes = []
 
                     nodeName = nodeName.toLowerCase()
                     hook = AttributeHooks[nodeName]
                     nodeName = hook ? hook.name : nodeName
 
+                    // if (reph.test(nodeValue)) {
                     if (nodeName === 'style') {
                         restyle.exec('')
                         while ((stylema = restyle.exec(nodeValue))) {
@@ -145,17 +162,19 @@ define(
 
                     if (attributes.length) {
                         nodeValue = nodeValue.replace(reph, '')
-                        attributeNode.nodeValue = nodeValue
+                            // attributeNode.nodeValue = nodeValue // 'Attr.nodeValue' is deprecated. Please use 'value' instead.
+                        attributeNode.value = nodeValue
                         _.each(attributes, function(elem /*, index*/ ) {
                             var slot = Locator.parse(elem, 'slot')
                             if (slot === 'start') $(node).before(elem)
                             if (slot === 'end') $(node).after(elem)
                         })
                     }
+                    // }
 
                     if (hook) hook.teardown(node, nodeValue)
-                }
-            )
+                })
+            }
         }
 
         // 扫描子节点
@@ -197,10 +216,10 @@ define(
                         value = value[path[index]]
                     }
                     // 如果 checked 的初始值是 false 或 "false"，则初始化为未选中。
-                    if (value === undefined || value === null || value.valueOf() === false || value.valueOf() === 'false') {
+                    if (value === undefined || value.valueOf() === false || value.valueOf() === 'false') {
                         $(target).prop('checked', false)
                     }
-                    if (value !== undefined && value !== null &&
+                    if (value !== undefined &&
                         (value.valueOf() === true || value.valueOf() === 'true' || value.valueOf() === 'checked')) {
                         $(target).prop('checked', true)
                     }
@@ -285,7 +304,7 @@ define(
             }
             var hook = updateCheckedHooks[target.type] || updateCheckedHooks[target.nodeName.toLowerCase()] || updateCheckedHooks._default
             var value = hook($(target), data)
-            if (value !== undefined && value !== null) data[path[path.length - 1]] = value
+            if (value !== undefined) data[path[path.length - 1]] = value
         }
 
         return {
