@@ -2,125 +2,161 @@
 define(
     [
         'jquery', 'underscore',
-        'brix/loader', 'brix/base',
+        'brix/loader', 'brix/base', 'brix/event',
         './taginput.tpl.js',
-        'less!./taginput.less'
+        './taginput.item.tpl.js',
+        'css!./taginput.css'
     ],
     function(
         $, _,
-        Loader, Brix,
-        template
+        Loader, Brix, EventManager,
+        template,
+        itemTemplate
     ) {
-        /*
-            ### 数据
-                {}
-            ### 选项
-                TODO
-            ### 属性
-                TODO
-            ### 方法
-                TODO
-            ### 事件
-                TODO
-            ===
-
-            ### 公共选项
-                data template css
-            ### 公共属性
-                element relatedElement 
-                moduleId clientId parentClientId childClientIds 
-                data template css
-            ### 公共方法
-                .render()
-            ### 公共事件
-                ready destroyed
-
-        */
-
         var NAMESPACE = '.taginput'
+        var CLASS_ITEM = '.taginput-item'
+        var CLASS_ITEM_NAME = '.taginput-item-name'
+        var INPUT_MIN_WIDTH = 20
 
         function TagInput() {}
 
         _.extend(TagInput.prototype, Brix.prototype, {
             options: {
-                placeholder: 'placeholder',
-                data: '一二三四五六七八九十'.split('')
+                placeholder: '',
+                data: []
             },
             init: function() {
-                this._focus = 'input'
-                this._selection = []
+                // this._focus = 'input'
             },
             render: function() {
                 var that = this
-                this.$element = $(this.element)
+                var manager = new EventManager()
+                this.$element = $(this.element) // .hide()
 
                 var html = _.template(template)(this.options)
-                this.$relatedElement = $(html)
-                    .addClass(this.$element.attr('class'))
-                    .css({
-                        'line-height': this.$element.css('line-height'),
-                        'min-height': this.$element.css('height'),
-                        width: this.$element.width,
-                        height: 'auto'
-                    })
+                this.$relatedElement = $(html).insertAfter(this.$element)
                 this.$input = this.$relatedElement.find('input')
-                $(this.element).after(this.$relatedElement)
+                if (this.options.placeholder) this.$input.attr('placeholder', this.options.placeholder)
+
+                this.val(this.options.data)
+
+                this._beautify(this.$element, this.$relatedElement)
+
+                manager.delegate(this.$element, this)
+                manager.delegate(this.$relatedElement, this)
+
                 Loader.boot(this.$relatedElement, function() {
-                    var suggest = Loader.query('components/suggest')
-                    suggest.on('change.suggest', function(event, value) {
-                        console.log(event)
-                        suggest.data([value, value, value])
+                    that.suggest = Loader.query('components/suggest', that.$relatedElement)[0]
+                    that.suggest.on('change.suggest.done', function(event, value) {
+                        that.add(value)
+                        that.$input.focus()
                     })
                 })
+            },
+            add: function(value) {
+                if (!('' + value)) return
 
-                this.$relatedElement
-                    .on('click' + NAMESPACE, function(event) {
-                        if (event.target === that.$relatedElement[0]) that.$input.focus()
-                        that._focus = 'input'
-                    })
-                    .on('click' + NAMESPACE, '.taginput-item', function(event) {
-                        $(event.currentTarget).addClass('active')
-                        that._focus = 'item'
-                    })
-                    .on('click' + NAMESPACE, '.taginput-item-close', function(event) {
-                        $(event.target).closest('.taginput-item').remove()
-                    })
-                    .on('keyup' + NAMESPACE, function(event) {
-                        console.log(event.which)
-                        console.log(event.target.selectionStart, event.target.selectionEnd, event.target.selectionDirection)
+                this.options.data.push(value)
+                this.$element.val(this.options.data.join(','))
 
-                        // enter
-                        if (event.which === 13) {
-                            if (!event.target.value.length) return
-                                
-                            /*jshint multistr:true */
-                            var itemTpl = ' <div class="taginput-item">\
-                                                <span><%= name %></span>\
-                                                <span class="taginput-item-close">x</span>\
-                                            </div>'
-                            var itemHTML = _.template(itemTpl)({
-                                name: event.target.value
-                            })
-                            $(itemHTML).insertBefore(event.target)
+                var itemHTML = _.template(itemTemplate)({
+                    data: value
+                })
+                $(itemHTML).insertBefore(this.$input)
 
-                            event.target.value = ''
+                this.$input.val('')
+                this._fixInput()
 
-                            $(event.target).width(20)
-                            var width = that.$relatedElement.width() - $(event.target).offset().left
-                            console.log(width)
-                            $(event.target).width(
-                                width >= 20 ? width : 20
-                            )
-                            return
-                        }
-                        // delete
-                        if (event.which === 8) {
-                            if (event.target.selectionStart === 0) {
-                                // $(event.target).blur().prev().addClass('active')
+                return this
+            },
+            delete: function(event) {
+                var that = this
+
+                // delete()
+                if (event === undefined) {
+                    this.options.data = []
+                    this.$element.val(this.options.data.join(','))
+                    this.$relatedElement.find(CLASS_ITEM).remove()
+
+                } else {
+                    // delete(event)
+                    if (event.type) {
+                        var item = $(event.target).closest(CLASS_ITEM)
+                        this.options.data = _.without(this.options.data, $(item).find(CLASS_ITEM_NAME).text())
+                        this.$element.val(this.options.data.join(','))
+                        $(event.target).closest(CLASS_ITEM).remove()
+                        this.$input.focus()
+
+                    } else {
+                        // delete( value )
+                        event += ''
+                        var items = this.$relatedElement.find(CLASS_ITEM)
+                        var matched = _.filter(items, function(item, index) {
+                            var text = $(item).find(CLASS_ITEM_NAME).text()
+                            if (text === event) {
+                                that.options.data = _.without(that.options.data, text)
+                                that.$element.val(that.options.data.join(','))
+                                return true
                             }
-                            event.preventDefault()
-                        }
+                            return false
+                        })
+                        $(matched).remove()
+                    }
+                }
+
+                this._fixInput()
+
+                return this
+            },
+            val: function(value) {
+                // .val()
+                if (value === undefined) return this.options.data
+
+                // .val( value )
+                var that = this
+                this.delete()
+                    // this.options.data = []
+                    // this.$relatedElement.find(CLASS_ITEM).remove()
+                _.each(value, function(item, index) {
+                    that.add(item)
+                })
+                return this
+            },
+            _focus: function(evnet) {
+                if (event.target === this.$relatedElement[0]) this.$input.focus()
+                evnet.preventDefault()
+                this._fixInput()
+            },
+            active: function(event) {
+                $(event.currentTarget).toggleClass('active')
+            },
+            _selection: function(event) {
+                var label = 'handler ' + event.which + ' ' + event.target.value
+                console.group(label)
+                console.log('selectionStart    ', event.target.selectionStart)
+                console.log('selectionEnd      ', event.target.selectionEnd)
+                console.log('selectionDirection', event.target.selectionDirection)
+                console.groupEnd(label)
+                return this
+            },
+            _beautify: function($element, $relatedElement) {
+                $relatedElement
+                    .addClass($element.attr('class'))
+                    .css({
+                        'line-height': $element.css('line-height'),
+                        'min-height': $element.css('height'),
+                        height: 'auto'
                     })
+                this._fixInput()
+                return this
+            },
+            _fixInput: function() {
+                this.$input.width(INPUT_MIN_WIDTH) // 
+                var width = this.$relatedElement.width() - this.$input.position().left
+                this.$input.width(
+                    width >= INPUT_MIN_WIDTH ? width : INPUT_MIN_WIDTH
+                )
+                return this
             }
         })
 

@@ -1,14 +1,8 @@
 /* global define */
 define(function() {
     return (function(){/*
-<div class="taginput">
-	<div class="taginput-placeholder <%= data.length ? 'hide' : '' %>"><%= placeholder %></div>
-	<% for ( var i = 0; i < data.length; i++ ) { %>
-	<div class="taginput-item">
-		<span><%= data[i] %></span>
-		<span class="taginput-item-close">&times;</span>
-	</div>
-	<% } %>
+<div class="taginput" bx-click="_focus">
+	<div class="taginput-placeholder hide <%= data.length ? 'hide' : '' %>"><%= placeholder %></div>
 	<input bx-name="components/suggest" class="taginput-input">
 </div>
     */}).toString().split('\n').slice(1,-1).join('\n') + '\n'

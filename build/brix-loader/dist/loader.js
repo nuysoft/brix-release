@@ -522,6 +522,7 @@ define(
             } catch (exception) {
                 options = {}
             }
+            
             options.element = element
             options.moduleId = moduleId
             options.clientId = clientId
@@ -964,7 +965,7 @@ define(
 
                         // 同步 clientId
                         function syncClientId() {
-                            var relatedElement = instance.relatedElement
+                            var relatedElement = instance.relatedElement || instance.$relatedElement
                             if (relatedElement) {
                                 // element
                                 if (relatedElement.nodeType && (relatedElement.clientId === undefined)) {
@@ -1260,20 +1261,11 @@ define(
             // 调用自定义销毁行为
             if (instance._destroy) {
                 try {
-                    /*if (instance.delegateBxTypeEvents) {
-                        if (instance.element) {
-                            instance.undelegateBxTypeEvents(instance.element)
-                        }
-                        if (instance.relatedElement) {
-                            instance.undelegateBxTypeEvents(instance.relatedElement)
-                        }
-                    }*/
                     instance._destroy()
                 } catch (error) {
                     if (complete) complete(error)
                     else console.error(error)
                 }
-
             }
 
             // 从缓存中移除
@@ -1374,14 +1366,17 @@ define(
                         // 是否在 context 内
                         if (context === undefined || parents(instance, context).length) {
                             results.push(instance)
-                                // 收集组件方法
-                            Util.each(instance.constructor.prototype, function(value, name) {
-                                if (Util.isFunction(value) && (name[0] !== '_')) methods.push(name)
-                            })
                         }
                     }
                 })
             }
+
+            // 收集组件方法
+            Util.each(results, function(instance, index) {
+                Util.each(instance.constructor.prototype, function(value, name) {
+                    if (Util.isFunction(value) && (name[0] !== '_')) methods.push(name)
+                })
+            })
 
             // 2. 绑定组件方法至 query() 返回的对象上
             Util.each(Util.unique(methods), function(name /*, index*/ ) {
@@ -1389,11 +1384,17 @@ define(
                     var that = this
                     var args = [].slice.call(arguments)
                     var result
+                    var hasNewResults = false
+                    var tmpNewResults = []
                     Util.each(this, function(instance, index) {
                         if (!instance[name]) return
                         result = instance[name].apply(instance, args)
-                        if (result !== undefined) that[index] = result
+                        if (result !== undefined && result !== instance) {
+                            hasNewResults = true
+                            tmpNewResults.push(result)
+                        }
                     })
+                    if (hasNewResults) return tmpNewResults
                     return this
                 }
             })
