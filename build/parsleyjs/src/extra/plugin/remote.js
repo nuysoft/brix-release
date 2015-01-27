@@ -9,7 +9,7 @@ window.ParsleyExtend = $.extend(window.ParsleyExtend, {
   asyncSupport: true,
 
   asyncValidators: $.extend({
-    default: {
+    'default': {
       fn: function (xhr) {
         return 'resolved' === xhr.state();
       },
@@ -104,6 +104,12 @@ window.ParsleyExtend = $.extend(window.ParsleyExtend, {
     }
 
     return $.when.apply($, promises)
+      .done(function () {
+        $.emit('parsley:form:success', that);
+      })
+      .fail(function () {
+        $.emit('parsley:form:error', that);
+      })
       .always(function () {
         $.emit('parsley:form:validated', that);
       });
@@ -170,7 +176,7 @@ window.ParsleyExtend = $.extend(window.ParsleyExtend, {
       data = {},
       ajaxOptions,
       csr,
-      validator = this.options.remoteValidator || (true === this.options.remoteReverse ? 'reverse' : 'default');
+      validator = this.options.remoteValidator || (true === this.options.remoteReverse ? 'reverse' : 'default');
 
     validator = validator.toLowerCase();
 
