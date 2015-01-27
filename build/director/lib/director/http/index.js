@@ -1,7 +1,7 @@
 var events = require('events'),
     qs = require('querystring'),
     util = require('util'),
-    BaseRouter = require('../router').Router,
+    director = require('../../director'),
     responses = require('./responses');
 
 //
@@ -36,9 +36,9 @@ var Router = exports.Router = function (routes) {
 };
 
 //
-// Inherit from `BaseRouter`.
+// Inherit from `director.Router`.
 //
-util.inherits(Router, BaseRouter);
+util.inherits(Router, director.Router);
 
 //
 // ### function configure (options)
@@ -51,7 +51,7 @@ Router.prototype.configure = function (options) {
   // useful when using connect's bodyParser
   this.stream = options.stream || false;
 
-  return BaseRouter.prototype.configure.call(this, options);
+  return director.Router.prototype.configure.call(this, options);
 };
 
 //
@@ -86,7 +86,7 @@ Router.prototype.on = function (method, path) {
     path = '';
   }
 
-  BaseRouter.prototype.on.call(this, method, path, route);
+  director.Router.prototype.on.call(this, method, path, route);
 };
 
 //
@@ -238,15 +238,13 @@ Router.prototype.parse = function (req) {
       });
     }
 
-    if ('string' === typeof req.body) {
-      try {
-        req.body = req.body && req.body.length
-          ? parser(req.body)
-          : {};
-      }
-      catch (err) {
-        return new exports.BadRequest('Malformed data');
-      }
+    try {
+      req.body = req.body && req.body.length
+        ? parser(req.body)
+        : {};
+    }
+    catch (err) {
+      return new exports.BadRequest('Malformed data');
     }
   }
 };

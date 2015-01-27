@@ -1,12 +1,10 @@
 /*
  * router.js: Base functionality for the router.
  *
- * (C) 2011, Charlie Robbins, Paolo Fragomeni, & the Contributors.
+ * (C) 2011, Nodejitsu Inc.
  * MIT LICENSE
  *
  */
-
-var QUERY_SEPARATOR = /\?.*/;
 
 //
 // Helper function to turn flatten an array.
@@ -204,7 +202,6 @@ Router.prototype.configure = function (options) {
   // Client only, but browser.js does not include a super implementation
   this.history     = (options.html5history && this.historySupport) || false;
   this.run_in_init = (this.history === true && options.run_handler_in_init !== false);
-  this.convert_hash_in_init = (this.history === true && options.convert_hash_in_init !== false);
 
   //
   // TODO: Global once
@@ -236,7 +233,6 @@ Router.prototype.param = function (token, matcher) {
   this.params[token] = function (str) {
     return str.replace(compiled, matcher.source || matcher);
   };
-  return this;
 };
 
 //
@@ -329,7 +325,7 @@ Router.prototype.path = function (path, routesFn) {
 //
 Router.prototype.dispatch = function (method, path, callback) {
   var self = this,
-      fns = this.traverse(method, path.replace(QUERY_SEPARATOR, ''), this.routes, ''),
+      fns = this.traverse(method, path, this.routes, ''),
       invoked = this._invoked,
       after;
 
@@ -425,7 +421,7 @@ Router.prototype.invoke = function (fns, thisArg, callback) {
         return _asyncEverySeries(fn, apply, next);
       }
       else if (typeof fn == 'function') {
-        fn.apply(thisArg, (fns.captures || []).concat(next));
+        fn.apply(thisArg, fns.captures.concat(next));
       }
     };
     _asyncEverySeries(fns, apply, function () {

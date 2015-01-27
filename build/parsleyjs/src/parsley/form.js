@@ -36,10 +36,10 @@ define('parsley/form', [
 
       var fieldValidationResult = [];
 
-      $.emit('parsley:form:validate', this);
-
       // Refresh form DOM options and form's fields that could have changed
       this._refreshFields();
+
+      $.emit('parsley:form:validate', this);
 
       // loop through fields to validate them one by one
       for (var i = 0; i < this.fields.length; i++) {
@@ -54,7 +54,6 @@ define('parsley/form', [
           this.validationResult = false;
       }
 
-      $.emit('parsley:form:' + (this.validationResult ? 'success' : 'error'), this);
       $.emit('parsley:form:validated', this);
 
       return this.validationResult;
@@ -79,7 +78,7 @@ define('parsley/form', [
 
     _isFieldInGroup: function (field, group) {
       if(ParsleyUtils.isArray(field.options.group))
-        return -1 !== $.inArray(group, field.options.group);
+        return -1 !== $.inArray(field.options.group, group);
       return field.options.group === group;
     },
 

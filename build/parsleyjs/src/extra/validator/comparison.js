@@ -1,44 +1,27 @@
-(function () {
-var parseRequirement = function (requirement) {
-  if (isNaN(+requirement))
-    return parseFloat($(requirement).val());
-  else
-    return +requirement;
-};
-
-// gt, gte, lt, lte extra validators
-window.ParsleyConfig = window.ParsleyConfig || {};
-window.ParsleyConfig.validators = window.ParsleyConfig.validators || {};
-
 // Greater than validator
-window.ParsleyConfig.validators.gt = {
-  fn: function (value, requirement) {
-    return parseFloat(value) > parseRequirement(requirement);
-  },
-  priority: 32
-};
+window.ParsleyValidator.addValidator('gt', 
+    function (value, requirement) {
+        return parseFloat(value) > parseFloat($(requirement).val());
+    }, 32)
+    .addMessage('en', 'gt', 'This value should be greater');
 
 // Greater than or equal to validator
-window.ParsleyConfig.validators.gte = {
-  fn: function (value, requirement) {
-    return parseFloat(value) >= parseRequirement(requirement);
-  },
-  priority: 32
-};
+window.ParsleyValidator.addValidator('gte', 
+    function (value, requirement) {
+        return parseFloat(value) >= parseFloat($(requirement).val());
+    }, 32)
+    .addMessage('en', 'gte', 'This value should be greater or equal');
 
 // Less than validator
-window.ParsleyConfig.validators.lt = {
-  fn: function (value, requirement) {
-    return parseFloat(value) < parseRequirement(requirement);
-  },
-  priority: 32
-};
+window.ParsleyValidator.addValidator('lt', 
+    function (value, requirement) {
+        return parseFloat(value) < parseFloat($(requirement).val());
+    }, 32)
+    .addMessage('en', 'lt', 'This value should be less');
 
 // Less than or equal to validator
-window.ParsleyConfig.validators.lte = {
-  fn: function (value, requirement) {
-    return parseFloat(value) <= parseRequirement(requirement);
-  },
-  priority: 32
-};
-})();
+window.ParsleyValidator.addValidator('lte', 
+    function (value, requirement) {
+        return parseFloat(value) <= parseFloat($(requirement).val());
+    }, 32)
+    .addMessage('en', 'lte', 'This value should be less or equal');

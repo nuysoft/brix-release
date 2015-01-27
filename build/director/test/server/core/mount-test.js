@@ -1,7 +1,7 @@
 /*
  * mount-test.js: Tests for mounting and normalizing routes into a Router instance.
  *
- * (C) 2011, Charlie Robbins, Paolo Fragomeni, & the Contributors.
+ * (C) 2011, Nodejitsu Inc.
  * MIT LICENSE
  *
  */
