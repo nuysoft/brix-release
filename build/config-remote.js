@@ -27,7 +27,7 @@
                 // Brix 组件
                 'components/dropdown': baseUrl + 'brix-components/dropdown/dropdown.js',
                 'components/pagination': baseUrl + 'brix-components/pagination/pagination.js',
-                'components/pure-pagination': baseUrl + 'brix-components/pagination/pure-pagination.js',
+                'components/pagination/state': baseUrl + 'brix-components/pagination/state.js',
                 'components/dialog': baseUrl + 'brix-components/dialog/dialog.js',
                 'components/dialog/position': baseUrl + 'brix-components/dialog/position.js',
                 'components/dialogview': baseUrl + 'brix-components/dialogview/dialogview.js',
