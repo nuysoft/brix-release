@@ -42,6 +42,7 @@
                 'components/hourpicker': baseUrl + 'brix-components/hourpicker/hourpicker.js',
                 'components/areapicker': baseUrl + 'brix-components/areapicker/areapicker.js',
                 'components/tree': baseUrl + 'brix-components/tree/tree.js',
+                'components/tree/tree.node.json.tpl': baseUrl + 'brix-components/tree/tree.node.json.tpl.js',
                 'components/taginput': baseUrl + 'brix-components/taginput/taginput.js',
                 'components/suggest': baseUrl + 'brix-components/suggest/suggest.js',
                 'components/chartxwrapper': baseUrl + 'brix-components/chartxwrapper/chartxwrapper.js',
