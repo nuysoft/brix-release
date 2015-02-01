@@ -698,7 +698,7 @@ define(
     ) {
 
         var CACHE = {}
-        var DEBUG = ~location.search.indexOf('debug')
+        var DEBUG = ~location.search.indexOf('brix.loader.debug')
 
         /*
             #### Loader.boot( [ context ] [, complete( records ) ] [, notify( error, instance, index, count ) ] )
@@ -938,7 +938,9 @@ define(
                             })
                         }
                         // 调用组件的 .render()
-                        var result = instance._render.apply(instance, arguments)
+                        var result
+                        if (instance._render) result = instance._render.apply(instance, arguments)
+                        else console.warn(instance.clientId, instance.moduleId, '找不到方法 render() ')
 
                         // 如果返回了 Promise，则依赖 Promise 的状态
                         if (result && result.then) {
@@ -1635,11 +1637,28 @@ define(
                     context = context ? context.element || context : document.body
                 }
 
+                if (DEBUG) console.log('call boot', context)
+
                 tasks.queue(function(next) {
+                    var label = 'queue boot'
+                    if (DEBUG) {
+                        console.group(label)
+                        console.time(label)
+                        console.log('context:', context)
+                        console.log('takks.list:', tasks.list.length)
+                    }
+
                     booting = true
                     boot(context, function(records) {
-                        booting = false
                         if (callback) callback(records)
+                        booting = false
+
+                        if (DEBUG) {
+                            console.log(records.length, records)
+                            console.timeEnd(label)
+                            console.groupEnd(label)
+                        }
+
                         next()
                     }, null, progress)
                 })
