@@ -61,6 +61,7 @@
                 'components/validation': baseUrl + 'brix-components/validation/validation.js',
                 'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
                 'components/ellipsis': baseUrl + 'brix-components/ellipsis/ellipsis.js',
+                'components/progressbarwrapper': baseUrl + 'brix-components/progressbarwrapper/progressbarwrapper.js',
 
                 'components/ctree': baseUrl + 'brix-components/ctree/ctree.js',
                 'components/sticky': baseUrl + 'brix-components/sticky/sticky.js',
@@ -100,6 +101,7 @@
             parsley: baseUrl + 'parsleyjs/dist/parsley',
             log: baseUrl + 'log/log',
             accounting: baseUrl + 'accountingjs/accounting',
+            progressbar: baseUrl + 'progressbar.js/dist/progressbar',
             'css-tool': baseUrl + 'brix-components/css-tool/',
             colors: baseUrl + 'colors/',
             printf: baseUrl + 'brix-components/printf/printf'
