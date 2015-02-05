@@ -1,5 +1,7 @@
 /* global require */
 
+var version = '0.0.21'
+
 var gulp = require('gulp')
 var connect = require('gulp-connect')
 var shell = require('gulp-shell')
@@ -42,7 +44,7 @@ gulp.task('build', function() {
             )
             callback(null, file)
         }))
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest('./build/' + version))
 })
 
 gulp.task('brix-loader', shell.task([
