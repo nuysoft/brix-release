@@ -2,6 +2,7 @@
 
 var gulp = require('gulp')
 var connect = require('gulp-connect')
+var shell = require('gulp-shell')
 
 
 // https://github.com/AveVlad/gulp-connect
@@ -43,6 +44,42 @@ gulp.task('build', function() {
         }))
         .pipe(gulp.dest('./build'))
 })
+
+gulp.task('brix-loader', shell.task([
+    'ls -al bower_components',
+    'rm -fr bower_components/brix-loader',
+    'bower update brix-loader',
+    'rm -fr bower_components/brix-components',
+    'bower update brix-components',
+
+    'gulp',
+    'git status',
+    'git add .',
+    'git commit -m "bower update brix-loader"',
+    'git push origin daily/0.0.21',
+    'git push gitlab daily/0.0.21',
+
+    'rm -fr bower_components/brix-loader',
+    'bower link brix-loader'
+]))
+
+gulp.task('shorthand', shell.task([
+    'ls -al bower_components',
+    'rm -fr bower_components/brix-loader',
+    'bower update brix-loader',
+    'rm -fr bower_components/brix-components',
+    'bower update brix-components',
+
+    'gulp',
+    'git status',
+    'git add .',
+    'git commit -m "bower update brix-components"',
+    'git push origin daily/0.0.21',
+    'git push gitlab daily/0.0.21',
+
+    'rm -fr bower_components/brix-components',
+    'bower link brix-components'
+]))
 
 console.log(__dirname)
 

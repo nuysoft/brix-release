@@ -15,6 +15,7 @@
   "devDependencies": {
     "gulp": "*",
     "gulp-connect": "*",
+    "gulp-shell": "^0.2.11",
     "through2": "*"
   }
 }
