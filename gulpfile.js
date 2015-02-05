@@ -63,7 +63,7 @@ gulp.task('brix-loader', shell.task([
     'bower link brix-loader'
 ]))
 
-gulp.task('shorthand', shell.task([
+gulp.task('brix-components', shell.task([
     'ls -al bower_components',
     'rm -fr bower_components/brix-loader',
     'bower update brix-loader',
