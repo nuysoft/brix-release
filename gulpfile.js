@@ -47,6 +47,40 @@ gulp.task('build', function() {
         .pipe(gulp.dest('./build/' + version))
 })
 
+// 
+var bower_components = 'bower_components/'
+var linked = function() {
+    var fs = require('fs')
+    var linked = []
+    fs.readdirSync(bower_components).forEach(function(file) {
+        if (fs.lstatSync(bower_components + file).isSymbolicLink()) linked.push(file)
+    })
+    return linked
+}()
+var cmds = function() {
+    var cmds = [
+        'ls -al ' + bower_components,
+    ]
+    linked.forEach(function(file) {
+        cmds.push('rm -fr ' + bower_components + file)
+        cmds.push('bower update ' + file)
+    })
+    cmds = cmds.concat([
+        'gulp',
+        'git status',
+        'git add -A .',
+        'git commit -m "bower update"',
+        'git push origin daily/0.0.21',
+        'git push gitlab daily/0.0.21'
+    ])
+    linked.forEach(function(file) {
+        cmds.push('rm -fr ' + bower_components + file)
+        cmds.push('bower link ' + file)
+    })
+    return cmds
+}()
+gulp.task('brix', shell.task(cmds))
+
 gulp.task('brix-loader', shell.task([
     'ls -al bower_components',
     'rm -fr bower_components/brix-loader',
