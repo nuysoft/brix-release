@@ -70,8 +70,8 @@ var cmds = function() {
         'git status',
         'git add -A .',
         'git commit -m "bower update"',
-        'git push origin daily/0.0.21',
-        'git push gitlab daily/0.0.21'
+        'git push origin daily/' + version,
+        'git push gitlab daily/' + version
     ])
     linked.forEach(function(file) {
         cmds.push('rm -fr ' + bower_components + file)
