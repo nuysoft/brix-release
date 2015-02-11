@@ -1,6 +1,6 @@
 /* global require, document, location */
 (function() {
-    var local = ~location.search.indexOf('local')
+    var local = ~location.href.indexOf('local')
     var debug = ~location.search.indexOf('debug')
         // local = true // local test
     var script = function() {
