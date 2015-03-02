@@ -21,5 +21,12 @@
     "brix-spa": "master",
     "magix": "*"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "jquery": "1.x.x",
+    "brix-loader": "master",
+    "brix-base": "master",
+    "brix-event": "master",
+    "brix-bisheng": "master"
+  }
 }
