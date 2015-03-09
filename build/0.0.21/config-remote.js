@@ -81,7 +81,7 @@
             'brix/bisheng': baseUrl + 'brix-bisheng/dist/bisheng',
             'brix/spa': baseUrl + 'brix-spa/dist/spa',
             'magix': 'http://g.tbcdn.cn/thx/magix/2.0/requirejs-magix',
-            'chartx': 'http://g.tbcdn.cn/thx/charts/1.3.6/chartx/',
+            'chartx': 'http://g.tbcdn.cn/thx/charts/1.4.5/chartx/',
 
             // 运行依赖库
             dependencies: baseUrl + '',
