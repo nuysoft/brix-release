@@ -165,7 +165,7 @@ define(
                     pickerComponent.on('change.datepicker', function(event, date, type) {
                         if (type !== undefined && type !== 'date') return
 
-                        that.$relatedElement.hide()
+                        that.hide()
 
                         var validate = $.Event('change' + NAMESPACE)
                         that.trigger(validate, [
@@ -249,22 +249,40 @@ define(
                     top: inputWrapperOffset.top + inputWrapper.outerHeight() + parseInt(pickerWrapper.css('margin-top'), 10)
                 })
 
+                var $picker = pickers.eq(index)
                 var $target = $(event.target)
                 var targetOffset = $target.offset()
-                pickers.eq(index)[type ? type : 'toggle']()
+                var pickerLeft
+                switch (this.options.align) {
+                    case 'left':
+                        pickerLeft = targetOffset.left
+                        break
+                    case 'right':
+                        pickerLeft = targetOffset.left - ($picker.outerWidth() - $target.outerWidth())
+                }
+                $picker[type ? type : 'toggle']()
                     .offset({ // 修正单个日期组件的位置
-                        left: targetOffset.left
+                        left: pickerLeft
                     })
                     .siblings().hide()
             },
+            _hideDatePicker: function( /*event*/ ) {
+                var pickerWrapper = $('.datepickerwrapper-pickers', this.$relatedElement)
+                var pickers = $('.picker', pickerWrapper)
+                pickers.hide()
+            },
             show: function( /*event*/ ) {
+                this.$element.addClass('datepickerwrapper-open')
                 this.$relatedElement.show()
                     .offset(this._offset())
             },
             hide: function( /*event*/ ) {
+                this.$element.removeClass('datepickerwrapper-open')
+                this._hideDatePicker()
                 this.$relatedElement.hide()
             },
             toggle: function( /*event*/ ) {
+                this.$element.toggleClass('datepickerwrapper-open')
                 this.$relatedElement.toggle()
                     .offset(this._offset())
             },
@@ -295,7 +313,7 @@ define(
                     return item.val()
                 })
 
-                this.toggle()
+                this.hide()
 
                 var validate = $.Event('change' + NAMESPACE)
                 this.trigger(validate, [dates])
@@ -403,6 +421,22 @@ define(
                         if (inactiveEvent.isDefaultPrevented()) return
 
                         that.hide()
+                    })
+                    .on(type, function(event) {
+                        var inputWrapper = $('.datepickerwrapper-inputs-body', that.$relatedElement)
+                        var pickerWrapper = $('.datepickerwrapper-pickers', that.$relatedElement)
+                        if (
+                            ( // 点击关联节点，点击组件关联子节点
+                                event.target === that.$relatedElement[0] ||
+                                $.contains(that.$relatedElement[0], event.target)
+                            ) &&
+                            ( // 但不在 inputs 和 pickers 之内
+                                !$.contains(inputWrapper[0], event.target) &&
+                                !$.contains(pickerWrapper[0], event.target)
+                            )
+                        ) {
+                            that._hideDatePicker()
+                        }
                     })
             }
         })
