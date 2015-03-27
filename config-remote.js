@@ -80,7 +80,7 @@
             'brix/event': baseUrl + 'brix-event/dist/event',
             'brix/bisheng': baseUrl + 'brix-bisheng/dist/bisheng',
             'brix/spa': baseUrl + 'brix-spa/dist/spa',
-            'magix': 'http://g.tbcdn.cn/thx/magix/2.0/requirejs-magix',
+            'magix': 'http://g.tbcdn.cn/thx/magix/2.0/requirejs-magix-min',
             'chartx': 'http://g.tbcdn.cn/thx/charts/1.6.1/chartx/',
 
             // 运行依赖库
