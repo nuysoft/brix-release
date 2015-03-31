@@ -108,9 +108,9 @@ var publishCmds = function() {
         'git merge daily/' + version
     ])
     cmds = cmds.concat([
-        'git status',
-        'git add -A .',
-        'git commit -m "save tag log ' + tag + '"',
+        // 'git status',
+        // 'git add -A .',
+        // 'git commit -m "save tag log ' + tag + '"',
         'git push gitlab master',
         'git push origin master'
     ])
