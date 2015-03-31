@@ -4,6 +4,7 @@ var tag = require('moment')().format('YYYYMMDD.HHmmss.SSS') // 年月日.时分�
 var version = '0.0.21'
 
 var gulp = require('gulp')
+var uglify = require('gulp-uglify')
 var connect = require('gulp-connect')
 var shell = require('gulp-shell')
 
@@ -45,6 +46,13 @@ gulp.task('build', function() {
             )
             callback(null, file)
         }))
+        .pipe(gulp.dest('./build/' + version))
+})
+
+// https://github.com/terinjokes/gulp-uglify
+gulp.task('compress', function() {
+    return gulp.src('./build/' + version + '/config-remote.js')
+        .pipe(uglify())
         .pipe(gulp.dest('./build/' + version))
 })
 
