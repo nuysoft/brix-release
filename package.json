@@ -4,7 +4,10 @@
   "description": "该仓库只做发布之用。",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build",
+    "daily": "gulp daily",
+    "publish": "gulp publish"
   },
   "repository": {
     "type": "git",
@@ -17,5 +20,8 @@
     "gulp-connect": "*",
     "gulp-shell": "^0.2.11",
     "through2": "*"
+  },
+  "dependencies": {
+    "moment": "^2.9.0"
   }
 }

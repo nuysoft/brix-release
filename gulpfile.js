@@ -1,5 +1,6 @@
 /* global require */
 
+var tag = require('moment')().format('YYYYMMDD.HHmmss.SSS') // 年月日.时分秒.毫秒
 var version = '0.0.21'
 
 var gulp = require('gulp')
@@ -57,65 +58,73 @@ var linked = function() {
     })
     return linked
 }()
-var cmds = function() {
-    var cmds = [
-        'ls -al ' + bower_components,
-    ]
+var rmLinkCmds = function() {
+    var cmds = []
     linked.forEach(function(file) {
         cmds.push('rm -fr ' + bower_components + file)
         cmds.push('bower update ' + file)
     })
-    cmds = cmds.concat([
-        'gulp',
-        'git status',
-        'git add -A .',
-        'git commit -m "bower update"',
-        'git push origin daily/' + version,
-        'git push gitlab daily/' + version
-    ])
+    return cmds
+}()
+var reLinkCmds = function() {
+    var cmds = []
     linked.forEach(function(file) {
         cmds.push('rm -fr ' + bower_components + file)
         cmds.push('bower link ' + file)
     })
     return cmds
 }()
-gulp.task('brix', shell.task(cmds))
+var dailyCmds = function() {
+    var cmds = [
+        'ls -al ' + bower_components,
+    ]
+    cmds = cmds.concat(rmLinkCmds)
+    cmds.push('gulp build')
+    cmds = cmds.concat([
+        'git status',
+        'git add -A .',
+        'git commit -m "bower update"',
+        'git push origin daily/' + version,
+        'git push gitlab daily/' + version
+    ])
+    cmds = cmds.concat(reLinkCmds)
+    return cmds
+}()
+gulp.task('daily', shell.task(dailyCmds))
 
-gulp.task('brix-loader', shell.task([
-    'ls -al bower_components',
-    'rm -fr bower_components/brix-loader',
-    'bower update brix-loader',
-    'rm -fr bower_components/brix-components',
-    'bower update brix-components',
-
-    'gulp',
-    'git status',
-    'git add .',
-    'git commit -m "bower update brix-loader"',
-    'git push origin daily/0.0.21',
-    'git push gitlab daily/0.0.21',
-
-    'rm -fr bower_components/brix-loader',
-    'bower link brix-loader'
-]))
-
-gulp.task('brix-components', shell.task([
-    'ls -al bower_components',
-    'rm -fr bower_components/brix-loader',
-    'bower update brix-loader',
-    'rm -fr bower_components/brix-components',
-    'bower update brix-components',
-
-    'gulp',
-    'git status',
-    'git add .',
-    'git commit -m "bower update brix-components"',
-    'git push origin daily/0.0.21',
-    'git push gitlab daily/0.0.21',
-
-    'rm -fr bower_components/brix-components',
-    'bower link brix-components'
-]))
+var publishCmds = function() {
+    var cmds = dailyCmds.slice(0)
+    cmds = cmds.concat([
+        'git checkout master',
+        'git merge daily/' + version
+    ])
+    cmds = cmds.concat([
+        'git status',
+        'git add -A .',
+        'git commit -m "save tag log ' + tag + '"',
+        'git push gitlab master'
+    ])
+    cmds = cmds.concat([
+        'git checkout -b daily/' + tag,
+        'git branch',
+        'git push gitlab daily/' + tag
+    ])
+    cmds = cmds.concat([
+        'git tag publish/' + tag,
+        'git push gitlab publish/' + tag,
+        'git checkout master',
+        'git pull',
+        'git remote prune gitlab', // 清理远程已发布的分枝
+        'git branch -d daily/' + tag, // 删除本地已发布的分枝
+        'git checkout daily/' + version,
+        'echo done'
+    ])
+    return cmds
+}()
+gulp.task('publish', shell.task(publishCmds))
+gulp.task('cmds', function() {
+    console.log(dailyCmds)
+})
 
 console.log(__dirname)
 
