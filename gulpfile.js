@@ -1,4 +1,4 @@
-/* global require */ 
+/* global require */
 
 var tag = require('moment')().format('YYYYMMDD.HHmmss.SSS') // 年月日.时分秒.毫秒
 var version = '0.0.21'
