@@ -88,6 +88,7 @@ var dailyCmds = function() {
     ]
     cmds = cmds.concat(rmLinkCmds)
     cmds.push('gulp build')
+    cmds.push('gulp compress')
     cmds = cmds.concat([
         'git status',
         'git add -A .',
