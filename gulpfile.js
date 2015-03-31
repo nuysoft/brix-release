@@ -124,6 +124,7 @@ var publishCmds = function() {
 gulp.task('publish', shell.task(publishCmds))
 gulp.task('cmds', function() {
     console.log(dailyCmds)
+    console.log(publishCmds)
 })
 
 console.log(__dirname)
