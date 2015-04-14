@@ -102,7 +102,7 @@ var dailyCmds = function() {
 gulp.task('daily', shell.task(dailyCmds))
 
 var publishCmds = function() {
-    var cmds = dailyCmds.slice(0)
+    var cmds = [] // dailyCmds.slice(0)
     cmds = cmds.concat([
         'git checkout master',
         'git merge daily/' + version
