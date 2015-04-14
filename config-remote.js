@@ -10,6 +10,7 @@
     var baseUrl = function() {
         var src = script.getAttribute('src')
         var baseUrl = /(.+\/)(.+)/.exec(src)[1]
+        if (~baseUrl.indexOf('g.tbcdn.cn') || ~baseUrl.indexOf('g-assets.daily.taobao.net')) local = false
         if (local) baseUrl += 'bower_components/'
         return baseUrl
     }()
