@@ -4,6 +4,7 @@ var tag = require('moment')().format('YYYYMMDD.HHmmss.SSS') // 年月日.时分�
 var version = '0.0.21'
 
 var gulp = require('gulp')
+var concat = require('gulp-concat')
 var uglify = require('gulp-uglify')
 var connect = require('gulp-connect')
 var shell = require('gulp-shell')
@@ -24,6 +25,13 @@ gulp.task('connect', function() {
             ]
         }
     })
+})
+
+// https://github.com/wearefractal/gulp-concat
+gulp.task('concat', function() {
+    gulp.src(['bower_components/requirejs/require.js', 'config-remote.js'])
+        .pipe(concat('require+config.js'))
+        .pipe(gulp.dest('./'))
 })
 
 gulp.task('build', function() {
