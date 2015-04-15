@@ -59,7 +59,10 @@ gulp.task('build', function() {
 
 // https://github.com/terinjokes/gulp-uglify
 gulp.task('compress', function() {
-    return gulp.src('./build/' + version + '/config-remote.js')
+    gulp.src('./build/' + version + '/config-remote.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('./build/' + version))
+    gulp.src('./build/' + version + '/require+config.js')
         .pipe(uglify())
         .pipe(gulp.dest('./build/' + version))
 })
@@ -95,6 +98,7 @@ var dailyCmds = function() {
         'ls -al ' + bower_components,
     ]
     cmds = cmds.concat(rmLinkCmds)
+    cmds.push('gulp concat')
     cmds.push('gulp build')
     cmds.push('gulp compress')
     cmds = cmds.concat([
