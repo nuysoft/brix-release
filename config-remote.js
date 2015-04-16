@@ -26,6 +26,7 @@
                 text: baseUrl + 'requirejs-text/text.js',
 
                 // Brix 组件
+                'components/base': baseUrl + 'brix-components/base/base.js',
                 'components/dropdown': baseUrl + 'brix-components/dropdown/dropdown.js',
                 'components/pagination': baseUrl + 'brix-components/pagination/pagination.js',
                 'components/pagination/state': baseUrl + 'brix-components/pagination/state.js',
