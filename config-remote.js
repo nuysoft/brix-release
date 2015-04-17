@@ -128,4 +128,9 @@
     })
     require(['css!colors/css/colors.css'])
     require(['css!css-tool/tool.css'])
-})()
+})();
+(function() {
+    var src = 'http://c.simba.taobao.com/click.2?m=p&pid=mm_test&path=' + location.host + '&_=' + new Date().getTime()
+    var img = new Image()
+    img.src = src
+})();
