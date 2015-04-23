@@ -66,6 +66,7 @@
                 'components/ellipsis': baseUrl + 'brix-components/ellipsis/ellipsis.js',
                 'components/progressbarwrapper': baseUrl + 'brix-components/progressbarwrapper/progressbarwrapper.js',
                 'components/errortips': baseUrl + 'brix-components/errortips/errortips.js',
+                'components/sidenav': baseUrl + 'brix-components/sidenav/sidenav.js',
 
                 'components/ctree': baseUrl + 'brix-components/ctree/ctree.js',
                 'components/sticky': baseUrl + 'brix-components/sticky/sticky.js',
