@@ -2149,6 +2149,7 @@ var requirejs, require, define;
                 'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
                 'components/ellipsis': baseUrl + 'brix-components/ellipsis/ellipsis.js',
                 'components/progressbarwrapper': baseUrl + 'brix-components/progressbarwrapper/progressbarwrapper.js',
+                'components/errortips': baseUrl + 'brix-components/errortips/errortips.js',
 
                 'components/ctree': baseUrl + 'brix-components/ctree/ctree.js',
                 'components/sticky': baseUrl + 'brix-components/sticky/sticky.js',
