@@ -108,6 +108,14 @@ var dailyCmds = function() {
         'git push origin daily/' + version,
         'git push gitlab daily/' + version
     ])
+    cmds = cmds.concat([
+        'git checkout -b daily/' + tag,
+        'git branch',
+        'git push gitlab daily/' + tag,
+        'git checkout daily/' + version,
+        'git branch -d daily/' + tag, // 删除本地已发布的分枝
+        'echo done'
+    ])
     cmds = cmds.concat(reLinkCmds)
     return cmds
 }()
