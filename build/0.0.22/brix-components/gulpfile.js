@@ -1,8 +1,11 @@
 /* global require, console */
 var gulp = require('gulp')
+var through = require('through2')
 var jshint = require('gulp-jshint')
 var less = require('gulp-less')
 var rjs = require('gulp-requirejs')
+var uglify = require('gulp-uglify')
+var minifyCss = require('gulp-minify-css')
 
 gulp.task('hello', function() {
     console.log((function() {
@@ -24,7 +27,8 @@ gulp.task('jshint', function() {
     var globs = [
         '**/*.js',
         '!bower_components/**/*',
-        '!node_modules/**/*'
+        '!node_modules/**/*',
+        '!dist/**/*'
     ]
     return gulp.src(globs)
         .pipe(jshint('.jshintrc'))
@@ -56,7 +60,6 @@ gulp.task('less', function() {
 
 // https://github.com/plus3network/gulp-less
 gulp.task('tpl', function() {
-    var through = require('through2')
     var Buffer = require('buffer').Buffer
     var globs = [
         '**/*.tpl',
@@ -84,7 +87,7 @@ gulp.task('tpl', function() {
 })
 
 // https://github.com/RobinThrift/gulp-requirejs
-gulp.task('rjs', function() {
+gulp.task('rjs', function() { // TODO
     var build = {
         baseUrl: 'src',
         name: 'brix/base',
@@ -97,6 +100,47 @@ gulp.task('rjs', function() {
     }
     rjs(build)
         .pipe(gulp.dest('.')) // pipe it to the output DIR
+})
+
+// https://github.com/terinjokes/gulp-uglify
+gulp.task('compress', function() {
+    var globs = [
+        '*/**/*.js',
+        '!**/*.tpl.js',
+        '!bower_components/**/*',
+        '!node_modules/**/*',
+        '!dist/**/*'
+    ]
+    gulp.src(globs)
+        .pipe(uglify({
+            preserveComments: 'some'
+        }))
+        .pipe(gulp.dest('dist'))
+        // .pipe(through.obj(function(file, encoding, callback) {
+        //     console.log(file.path)
+        //     callback(null, file)
+        // }))
+
+    globs = [
+        '**/*.tpl.js'
+    ]
+    gulp.src(globs)
+        .pipe(gulp.dest('dist'))
+})
+
+// https://github.com/murphydanger/gulp-minify-css
+gulp.task('minify-css', function() {
+    var globs = [
+        '*/**/*.css',
+        '!bower_components/**/*',
+        '!node_modules/**/*',
+        '!dist/**/*'
+    ]
+    return gulp.src(globs)
+        .pipe(minifyCss({
+            compatibility: 'ie8'
+        }))
+        .pipe(gulp.dest('dist'));
 })
 
 gulp.task('default', ['hello', 'jshint', 'less', 'tpl', 'watch'])
