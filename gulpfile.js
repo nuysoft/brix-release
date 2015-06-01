@@ -6,6 +6,7 @@ var version = '0.0.22'
 var gulp = require('gulp')
 var concat = require('gulp-concat')
 var uglify = require('gulp-uglify')
+var minifyCss = require('gulp-minify-css')
 var connect = require('gulp-connect')
 var shell = require('gulp-shell')
 
