@@ -2106,6 +2106,7 @@ var requirejs, require, define;
     // http://requirejs.org/docs/api.html
     require.config({
         waitSeconds: 15, // http://requirejs.org/docs/api.html#config-waitSeconds
+        // urlArgs: "bust=" + (new Date()).getTime() // http://requirejs.org/docs/api.html#config-urlArgs
         map: { // http://requirejs.org/docs/api.html#config-map
             '*': {
                 // RequireJS 插件
