@@ -68,42 +68,6 @@ gulp.task('compress', function() {
         .pipe(gulp.dest('./build/' + version))
 })
 
-// https://github.com/terinjokes/gulp-uglify
-gulp.task('compress-all', function() {
-    gulp.src([
-            './build/' + version + '/**/*.js',
-            '!./build/' + version + '/**/*.tpl.js',
-            '!./build/' + version + '/dist/**/*'
-        ])
-        // .pipe(through.obj(function(file, encoding, callback) {
-        //     console.log(file.path)
-        //     callback(null, file)
-        // }))
-        .pipe(uglify({
-            preserveComments: 'some'
-        }))
-        .pipe(gulp.dest('./build/' + version + '/dist'))
-
-    gulp.src([
-            './build/' + version + '/**/*.tpl.js',
-            '!./build/' + version + '/dist/**/*'
-        ])
-        .pipe(gulp.dest('./build/' + version + '/dist'))
-})
-
-// https://github.com/murphydanger/gulp-minify-css
-gulp.task('minify-css', function() {
-    var globs = [
-        './build/' + version + '*/**/*.css',
-        '!./build/' + version + '/dist/**/*'
-    ]
-    return gulp.src(globs)
-        .pipe(minifyCss({
-            compatibility: 'ie8'
-        }))
-        .pipe(gulp.dest('./build/' + version + '/dist'))
-})
-
 // 
 var bower_components = 'bower_components/'
 var linked = function() {
