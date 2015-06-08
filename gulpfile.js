@@ -1,12 +1,11 @@
 /* global require */
 
 var tag = require('moment')().format('YYYYMMDD.HHmmss.SSS') // 年月日.时分秒.毫秒
-var version = '0.0.22'
+var version = require('./package.json').version
 
 var gulp = require('gulp')
 var concat = require('gulp-concat')
 var uglify = require('gulp-uglify')
-var minifyCss = require('gulp-minify-css')
 var connect = require('gulp-connect')
 var shell = require('gulp-shell')
 
