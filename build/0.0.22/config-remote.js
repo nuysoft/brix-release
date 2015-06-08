@@ -1,1 +1,140 @@
-!function(){var e=~location.search.indexOf("local")||~location.host.indexOf("localhost")||~location.host.indexOf(".local"),o=(~location.search.indexOf("debug"),function(){var e=document.getElementsByTagName("script");return e[e.length-1]}()),s=function(){var s=o.getAttribute("src"),n=/(.+\/)(.+)/.exec(s)[1];return(~n.indexOf("g.tbcdn.cn")||~n.indexOf("g-assets.daily.taobao.net"))&&(e=!1),e&&(n+="bower_components/"),n}();require.config({waitSeconds:15,map:{"*":{css:s+"require-css/css.js",less:s+"require-less/less.js",text:s+"requirejs-text/text.js","components/base":s+"brix-components/base/base.js","components/dropdown":s+"brix-components/dropdown/dropdown.js","components/pagination":s+"brix-components/pagination/pagination.js","components/pagination/state":s+"brix-components/pagination/state.js","components/dialog":s+"brix-components/dialog/dialog.js","components/dialog/position":s+"brix-components/dialog/position.js","components/dialogview":s+"brix-components/dialogview/dialogview.js","components/table":s+"brix-components/table/table.js","components/table/linkage":s+"brix-components/table/linkage.js","components/table/priority":s+"brix-components/table/priority.js","components/datepicker":s+"brix-components/datepicker/datepicker.js","components/datepickerwrapper":s+"brix-components/datepickerwrapper/datepickerwrapper.js","components/popover":s+"brix-components/popover/popover.js","components/uploader":s+"brix-components/uploader/uploader.js","components/nprogress":s+"brix-components/nprogress/nprogress.js","components/hourpicker":s+"brix-components/hourpicker/hourpicker.js","components/areapicker":s+"brix-components/areapicker/areapicker.js","components/tree":s+"brix-components/tree/tree.js","components/tree/tree.node.json.tpl":s+"brix-components/tree/tree.node.json.tpl.js","components/taginput":s+"brix-components/taginput/taginput.js","components/suggest":s+"brix-components/suggest/suggest.js","components/chartxwrapper":s+"brix-components/chartxwrapper/chartxwrapper.js","components/hello":s+"brix-components/hello/hello.js","components/hello-extra":s+"brix-components/hello-extra/hello-extra.js","components/colorpicker":s+"brix-components/colorpicker/colorpicker.js","components/modal":s+"brix-components/modal/modal.js","components/editor":s+"brix-components/editor/editor.js","components/editable":s+"brix-components/editable/editable.js","components/spin":s+"brix-components/spin/spin.js","components/countdown":s+"brix-components/countdown/countdown.js","components/sidebar":s+"brix-components/sidebar/sidebar.js","components/chart":s+"brix-components/chart/chart.js","components/imager":s+"brix-components/imager/imager.js","components/validation":s+"brix-components/validation/validation.js","components/validation/i18n":s+"parsleyjs/src/i18n","components/ellipsis":s+"brix-components/ellipsis/ellipsis.js","components/progressbarwrapper":s+"brix-components/progressbarwrapper/progressbarwrapper.js","components/errortips":s+"brix-components/errortips/errortips.js","components/sidenav":s+"brix-components/sidenav/sidenav.js","components/ctree":s+"brix-components/ctree/ctree.js","components/sticky":s+"brix-components/sticky/sticky.js","components/nav":s+"brix-components/nav/nav.js","components/readme":s+"brix-components/readme/readme.js","marked-extra":s+"brix-components/marked-extra/marked-extra.js","components/css-layout-debugger":s+"brix-components/css-layout-debugger/css-layout-debugger.js","components/boilerplate":s+"brix-components/boilerplate/boilerplate.js"}},paths:{"brix/loader":s+"brix-loader/dist/loader","brix/base":s+"brix-base/dist/base","brix/event":s+"brix-event/dist/event","brix/bisheng":s+"brix-bisheng/dist/bisheng","brix/spa":s+"brix-spa/dist/spa",magix:"http://g.tbcdn.cn/thx/magix/2.0/requirejs-magix-min",chartx:"http://g.tbcdn.cn/thx/charts/1.6.1/chartx/",dependencies:s+"",jquery:s+"jquery/dist/jquery",underscore:s+"underscore/underscore",moment:s+"moment/moment",handlebars:s+"handlebars/handlebars",mousetrap:s+"mousetrap/mousetrap",mock:s+"mockjs/dist/mock",marked:s+"marked/lib/marked",d3:s+"d3/d3",Chart:s+"chartjs/Chart",director:s+"director/build/director",URIjs:s+"uri.js/src/",page:s+"page/page",highlightjs:s+"highlightjs/highlight.pack",nprogress:s+"nprogress/nprogress",parsley:s+"parsleyjs/dist/parsley",log:s+"log/log",accounting:s+"accountingjs/accounting",progressbar:s+"progressbar.js/dist/progressbar",Sortable:s+"Sortable/Sortable","css-tool":s+"brix-components/css-tool/",colors:s+"colors/",printf:s+"brix-components/printf/printf"},shim:{Chart:{exports:"Chart"},director:{exports:"Router"},highlightjs:{exports:"hljs"},parsley:{exports:"Parsley"}}}),require(["css!colors/css/colors.css"]),require(["css!css-tool/tool.css"])}(),function(){var e="http://c.simba.taobao.com/click.2?m=p&pid=mm_test&path="+location.host+"&_="+(new Date).getTime(),o=new Image;o.src=e}();
+/* global require, document, location */
+/* 不推荐继续使用，将在 0.0.23 版本中移除，请引用 `config.js` 或 `require+config.js`。*/
+(function() {
+    var local = ~location.search.indexOf('local') || ~location.host.indexOf('localhost') || ~location.host.indexOf('.local')
+    var debug = ~location.search.indexOf('debug')
+        // local = true // local test
+    var script = function() {
+        var scripts = document.getElementsByTagName('script')
+        return scripts[scripts.length - 1]
+    }()
+    var baseUrl = function() {
+        var src = script.getAttribute('src')
+        var baseUrl = /(.+\/)(.+)/.exec(src)[1]
+        if (~baseUrl.indexOf('g.tbcdn.cn') || ~baseUrl.indexOf('g-assets.daily.taobao.net')) local = false
+        if (local) baseUrl += 'bower_components/'
+        return baseUrl
+    }()
+
+    // http://requirejs.org/docs/api.html
+    require.config({
+        waitSeconds: 15, // http://requirejs.org/docs/api.html#config-waitSeconds
+        // urlArgs: "bust=" + (new Date()).getTime() // http://requirejs.org/docs/api.html#config-urlArgs
+        map: { // http://requirejs.org/docs/api.html#config-map
+            '*': {
+                // RequireJS 插件
+                css: baseUrl + 'require-css/css.js',
+                less: baseUrl + 'require-less/less.js',
+                text: baseUrl + 'requirejs-text/text.js',
+
+                // Brix 组件
+                'components/base': baseUrl + 'brix-components/base/base.js',
+                'components/dropdown': baseUrl + 'brix-components/dropdown/dropdown.js',
+                'components/pagination': baseUrl + 'brix-components/pagination/pagination.js',
+                'components/pagination/state': baseUrl + 'brix-components/pagination/state.js',
+                'components/dialog': baseUrl + 'brix-components/dialog/dialog.js',
+                'components/dialog/position': baseUrl + 'brix-components/dialog/position.js',
+                'components/dialogview': baseUrl + 'brix-components/dialogview/dialogview.js',
+                'components/table': baseUrl + 'brix-components/table/table.js',
+                'components/table/linkage': baseUrl + 'brix-components/table/linkage.js',
+                'components/table/priority': baseUrl + 'brix-components/table/priority.js',
+                'components/datepicker': baseUrl + 'brix-components/datepicker/datepicker.js',
+                'components/datepickerwrapper': baseUrl + 'brix-components/datepickerwrapper/datepickerwrapper.js',
+                'components/popover': baseUrl + 'brix-components/popover/popover.js',
+                'components/uploader': baseUrl + 'brix-components/uploader/uploader.js',
+                'components/nprogress': baseUrl + 'brix-components/nprogress/nprogress.js',
+
+                'components/hourpicker': baseUrl + 'brix-components/hourpicker/hourpicker.js',
+                'components/areapicker': baseUrl + 'brix-components/areapicker/areapicker.js',
+                'components/tree': baseUrl + 'brix-components/tree/tree.js',
+                'components/tree/tree.node.json.tpl': baseUrl + 'brix-components/tree/tree.node.json.tpl.js',
+                'components/taginput': baseUrl + 'brix-components/taginput/taginput.js',
+                'components/suggest': baseUrl + 'brix-components/suggest/suggest.js',
+                'components/chartxwrapper': baseUrl + 'brix-components/chartxwrapper/chartxwrapper.js',
+
+                'components/hello': baseUrl + 'brix-components/hello/hello.js',
+                'components/hello-extra': baseUrl + 'brix-components/hello-extra/hello-extra.js',
+                'components/colorpicker': baseUrl + 'brix-components/colorpicker/colorpicker.js',
+                'components/modal': baseUrl + 'brix-components/modal/modal.js',
+                'components/editor': baseUrl + 'brix-components/editor/editor.js',
+                'components/editable': baseUrl + 'brix-components/editable/editable.js',
+                'components/spin': baseUrl + 'brix-components/spin/spin.js',
+                'components/countdown': baseUrl + 'brix-components/countdown/countdown.js',
+                'components/sidebar': baseUrl + 'brix-components/sidebar/sidebar.js',
+                'components/chart': baseUrl + 'brix-components/chart/chart.js',
+                'components/imager': baseUrl + 'brix-components/imager/imager.js',
+                'components/validation': baseUrl + 'brix-components/validation/validation.js',
+                'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
+                'components/ellipsis': baseUrl + 'brix-components/ellipsis/ellipsis.js',
+                'components/progressbarwrapper': baseUrl + 'brix-components/progressbarwrapper/progressbarwrapper.js',
+                'components/errortips': baseUrl + 'brix-components/errortips/errortips.js',
+                'components/sidenav': baseUrl + 'brix-components/sidenav/sidenav.js',
+
+                'components/ctree': baseUrl + 'brix-components/ctree/ctree.js',
+                'components/sticky': baseUrl + 'brix-components/sticky/sticky.js',
+                'components/nav': baseUrl + 'brix-components/nav/nav.js',
+                'components/readme': baseUrl + 'brix-components/readme/readme.js',
+                'marked-extra': baseUrl + 'brix-components/marked-extra/marked-extra.js',
+                'components/css-layout-debugger': baseUrl + 'brix-components/css-layout-debugger/css-layout-debugger.js',
+                'components/boilerplate': baseUrl + 'brix-components/boilerplate/boilerplate.js'
+            }
+        },
+        paths: { // http://requirejs.org/docs/api.html#config-paths
+            // Brix
+            'brix/loader': baseUrl + 'brix-loader/dist/loader',
+            'brix/base': baseUrl + 'brix-base/dist/base',
+            'brix/event': baseUrl + 'brix-event/dist/event',
+            'brix/bisheng': baseUrl + 'brix-bisheng/dist/bisheng',
+            'brix/spa': baseUrl + 'brix-spa/dist/spa',
+            'magix': 'http://g.tbcdn.cn/thx/magix/2.0/requirejs-magix-min',
+            'chartx': 'http://g.tbcdn.cn/thx/charts/1.6.1/chartx/',
+
+            // 运行依赖库
+            dependencies: baseUrl + '',
+            jquery: baseUrl + 'jquery/dist/jquery',
+            underscore: baseUrl + 'underscore/underscore',
+            moment: baseUrl + 'moment/moment',
+            handlebars: baseUrl + 'handlebars/handlebars',
+            mousetrap: baseUrl + 'mousetrap/mousetrap',
+            mock: baseUrl + 'mockjs/dist/mock',
+            marked: baseUrl + 'marked/lib/marked',
+            d3: baseUrl + 'd3/d3',
+            Chart: baseUrl + 'chartjs/Chart',
+            director: baseUrl + 'director/build/director',
+            URIjs: baseUrl + 'uri.js/src/',
+            page: baseUrl + 'page/page',
+            highlightjs: baseUrl + 'highlightjs/highlight.pack',
+            nprogress: baseUrl + 'nprogress/nprogress',
+            parsley: baseUrl + 'parsleyjs/dist/parsley',
+            log: baseUrl + 'log/log',
+            accounting: baseUrl + 'accountingjs/accounting',
+            progressbar: baseUrl + 'progressbar.js/dist/progressbar',
+            Sortable: baseUrl + 'Sortable/Sortable',
+
+            'css-tool': baseUrl + 'brix-components/css-tool/',
+            colors: baseUrl + 'colors/',
+            printf: baseUrl + 'brix-components/printf/printf'
+        },
+        shim: { // http://requirejs.org/docs/api.html#config-shim
+            Chart: {
+                exports: 'Chart'
+            },
+            director: {
+                exports: 'Router'
+            },
+            highlightjs: {
+                exports: 'hljs'
+            },
+            parsley: {
+                exports: 'Parsley'
+            }
+        }
+    })
+    require(['css!colors/css/colors.css'])
+    require(['css!css-tool/tool.css'])
+})();
+(function() {
+    var src = 'http://c.simba.taobao.com/click.2?m=p&pid=mm_test&path=' + location.host + '&_=' + new Date().getTime()
+    var img = new Image()
+    img.src = src
+})();
