@@ -1,4 +1,5 @@
 /* global require, document, location */
+/* 不推荐继续使用，将在 0.0.23 版本中移除，请引用 `config.js` 或 `require+config.js`。*/
 (function() {
     var local = ~location.search.indexOf('local') || ~location.host.indexOf('localhost') || ~location.host.indexOf('.local')
     var debug = ~location.search.indexOf('debug')

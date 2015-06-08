@@ -2,8 +2,10 @@
 
 var tag = require('moment')().format('YYYYMMDD.HHmmss.SSS') // 年月日.时分秒.毫秒
 var version = require('./package.json').version
+var build = './build/' + version
 
 var gulp = require('gulp')
+var through = require('through2')
 var concat = require('gulp-concat')
 var uglify = require('gulp-uglify')
 var connect = require('gulp-connect')
@@ -29,15 +31,13 @@ gulp.task('connect', function() {
 
 // https://github.com/wearefractal/gulp-concat
 gulp.task('concat', function() {
-    gulp.src(['bower_components/requirejs/require.js', 'config-remote.js'])
+    gulp.src(['bower_components/requirejs/require.js', 'config.js'])
         .pipe(concat('require+config.js'))
         .pipe(gulp.dest('./'))
 })
 
 gulp.task('build', function() {
     var path = require('path')
-    var through = require('through2')
-    var Buffer = require('buffer').Buffer
     var globs = [
         '**/*.js',
         '**/*.css',
@@ -54,17 +54,24 @@ gulp.task('build', function() {
             )
             callback(null, file)
         }))
-        .pipe(gulp.dest('./build/' + version))
+        .pipe(gulp.dest(build))
 })
 
 // https://github.com/terinjokes/gulp-uglify
 gulp.task('compress', function() {
-    gulp.src('./build/' + version + '/config-remote.js')
+    var globs = [build + '/config.js', build + '/require+config.js']
+    gulp.src(globs)
+        .pipe(through.obj(function(file, encoding, callback) {
+            file.path = file.path.replace(
+                '.js',
+                '-debug.js'
+            )
+            callback(null, file)
+        }))
+        .pipe(gulp.dest(build))
+    gulp.src(globs)
         .pipe(uglify())
-        .pipe(gulp.dest('./build/' + version))
-    gulp.src('./build/' + version + '/require+config.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('./build/' + version))
+        .pipe(gulp.dest(build))
 })
 
 // 

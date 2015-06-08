@@ -2095,11 +2095,22 @@ var requirejs, require, define;
         var scripts = document.getElementsByTagName('script')
         return scripts[scripts.length - 1]
     }()
+    var daily, cdn
     var baseUrl = function() {
         var src = script.getAttribute('src')
         var baseUrl = /(.+\/)(.+)/.exec(src)[1]
-        if (~baseUrl.indexOf('g.tbcdn.cn') || ~baseUrl.indexOf('g-assets.daily.taobao.net')) local = false
+        if (/-debug\.js$/.test(src)) debug = true
+        daily = ~baseUrl.indexOf('g-assets.daily.taobao.net')
+        cdn = ~baseUrl.indexOf('g.tbcdn.cn')
+        if (daily || cdn) local = false
         if (local) baseUrl += 'bower_components/'
+        return baseUrl
+    }()
+    var brixComponentsBaseUrl = function() {
+        var baseUrl = 'brix-components/'
+        if (local) debug = true
+        if (daily) debug = true
+        if (!debug) baseUrl += 'dist/'
         return baseUrl
     }()
 
@@ -2115,55 +2126,54 @@ var requirejs, require, define;
                 text: baseUrl + 'requirejs-text/text.js',
 
                 // Brix 组件
-                'components/base': baseUrl + 'brix-components/base/base.js',
-                'components/dropdown': baseUrl + 'brix-components/dropdown/dropdown.js',
-                'components/pagination': baseUrl + 'brix-components/pagination/pagination.js',
-                'components/pagination/state': baseUrl + 'brix-components/pagination/state.js',
-                'components/dialog': baseUrl + 'brix-components/dialog/dialog.js',
-                'components/dialog/position': baseUrl + 'brix-components/dialog/position.js',
-                'components/dialogview': baseUrl + 'brix-components/dialogview/dialogview.js',
-                'components/table': baseUrl + 'brix-components/table/table.js',
-                'components/table/linkage': baseUrl + 'brix-components/table/linkage.js',
-                'components/table/priority': baseUrl + 'brix-components/table/priority.js',
-                'components/datepicker': baseUrl + 'brix-components/datepicker/datepicker.js',
-                'components/datepickerwrapper': baseUrl + 'brix-components/datepickerwrapper/datepickerwrapper.js',
-                'components/popover': baseUrl + 'brix-components/popover/popover.js',
-                'components/uploader': baseUrl + 'brix-components/uploader/uploader.js',
-                'components/nprogress': baseUrl + 'brix-components/nprogress/nprogress.js',
+                'components/base': baseUrl + brixComponentsBaseUrl + 'base/base.js',
+                'components/dropdown': baseUrl + brixComponentsBaseUrl + 'dropdown/dropdown.js',
+                'components/pagination': baseUrl + brixComponentsBaseUrl + 'pagination/pagination.js',
+                'components/pagination/state': baseUrl + brixComponentsBaseUrl + 'pagination/state.js',
+                'components/dialog': baseUrl + brixComponentsBaseUrl + 'dialog/dialog.js',
+                'components/dialog/position': baseUrl + brixComponentsBaseUrl + 'dialog/position.js',
+                'components/dialogview': baseUrl + brixComponentsBaseUrl + 'dialogview/dialogview.js',
+                'components/table': baseUrl + brixComponentsBaseUrl + 'table/table.js',
+                'components/table/linkage': baseUrl + brixComponentsBaseUrl + 'table/linkage.js',
+                'components/table/priority': baseUrl + brixComponentsBaseUrl + 'table/priority.js',
+                'components/datepicker': baseUrl + brixComponentsBaseUrl + 'datepicker/datepicker.js',
+                'components/datepickerwrapper': baseUrl + brixComponentsBaseUrl + 'datepickerwrapper/datepickerwrapper.js',
+                'components/popover': baseUrl + brixComponentsBaseUrl + 'popover/popover.js',
+                'components/uploader': baseUrl + brixComponentsBaseUrl + 'uploader/uploader.js',
+                'components/nprogress': baseUrl + brixComponentsBaseUrl + 'nprogress/nprogress.js',
 
-                'components/hourpicker': baseUrl + 'brix-components/hourpicker/hourpicker.js',
-                'components/areapicker': baseUrl + 'brix-components/areapicker/areapicker.js',
-                'components/tree': baseUrl + 'brix-components/tree/tree.js',
-                'components/tree/tree.node.json.tpl': baseUrl + 'brix-components/tree/tree.node.json.tpl.js',
-                'components/taginput': baseUrl + 'brix-components/taginput/taginput.js',
-                'components/suggest': baseUrl + 'brix-components/suggest/suggest.js',
-                'components/chartxwrapper': baseUrl + 'brix-components/chartxwrapper/chartxwrapper.js',
+                'components/hourpicker': baseUrl + brixComponentsBaseUrl + 'hourpicker/hourpicker.js',
+                'components/areapicker': baseUrl + brixComponentsBaseUrl + 'areapicker/areapicker.js',
+                'components/tree': baseUrl + brixComponentsBaseUrl + 'tree/tree.js',
+                'components/tree/tree.node.json.tpl': baseUrl + brixComponentsBaseUrl + 'tree/tree.node.json.tpl.js',
+                'components/taginput': baseUrl + brixComponentsBaseUrl + 'taginput/taginput.js',
+                'components/suggest': baseUrl + brixComponentsBaseUrl + 'suggest/suggest.js',
+                'components/chartxwrapper': baseUrl + brixComponentsBaseUrl + 'chartxwrapper/chartxwrapper.js',
 
-                'components/hello': baseUrl + 'brix-components/hello/hello.js',
-                'components/hello-extra': baseUrl + 'brix-components/hello-extra/hello-extra.js',
-                'components/colorpicker': baseUrl + 'brix-components/colorpicker/colorpicker.js',
-                'components/modal': baseUrl + 'brix-components/modal/modal.js',
-                'components/editor': baseUrl + 'brix-components/editor/editor.js',
-                'components/editable': baseUrl + 'brix-components/editable/editable.js',
-                'components/spin': baseUrl + 'brix-components/spin/spin.js',
-                'components/countdown': baseUrl + 'brix-components/countdown/countdown.js',
-                'components/sidebar': baseUrl + 'brix-components/sidebar/sidebar.js',
-                'components/chart': baseUrl + 'brix-components/chart/chart.js',
-                'components/imager': baseUrl + 'brix-components/imager/imager.js',
-                'components/validation': baseUrl + 'brix-components/validation/validation.js',
+                'components/hello': baseUrl + brixComponentsBaseUrl + 'hello/hello.js',
+                'components/hello-extra': baseUrl + brixComponentsBaseUrl + 'hello-extra/hello-extra.js',
+                'components/colorpicker': baseUrl + brixComponentsBaseUrl + 'colorpicker/colorpicker.js',
+                'components/modal': baseUrl + brixComponentsBaseUrl + 'modal/modal.js',
+                'components/editor': baseUrl + brixComponentsBaseUrl + 'editor/editor.js',
+                'components/editable': baseUrl + brixComponentsBaseUrl + 'editable/editable.js',
+                'components/spin': baseUrl + brixComponentsBaseUrl + 'spin/spin.js',
+                'components/countdown': baseUrl + brixComponentsBaseUrl + 'countdown/countdown.js',
+                'components/sidebar': baseUrl + brixComponentsBaseUrl + 'sidebar/sidebar.js',
+                'components/chart': baseUrl + brixComponentsBaseUrl + 'chart/chart.js',
+                'components/imager': baseUrl + brixComponentsBaseUrl + 'imager/imager.js',
+                'components/validation': baseUrl + brixComponentsBaseUrl + 'validation/validation.js',
                 'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
-                'components/ellipsis': baseUrl + 'brix-components/ellipsis/ellipsis.js',
-                'components/progressbarwrapper': baseUrl + 'brix-components/progressbarwrapper/progressbarwrapper.js',
-                'components/errortips': baseUrl + 'brix-components/errortips/errortips.js',
-                'components/sidenav': baseUrl + 'brix-components/sidenav/sidenav.js',
+                'components/ellipsis': baseUrl + brixComponentsBaseUrl + 'ellipsis/ellipsis.js',
+                'components/progressbarwrapper': baseUrl + brixComponentsBaseUrl + 'progressbarwrapper/progressbarwrapper.js',
+                'components/errortips': baseUrl + brixComponentsBaseUrl + 'errortips/errortips.js',
+                'components/sidenav': baseUrl + brixComponentsBaseUrl + 'sidenav/sidenav.js',
 
-                'components/ctree': baseUrl + 'brix-components/ctree/ctree.js',
-                'components/sticky': baseUrl + 'brix-components/sticky/sticky.js',
-                'components/nav': baseUrl + 'brix-components/nav/nav.js',
-                'components/readme': baseUrl + 'brix-components/readme/readme.js',
-                'marked-extra': baseUrl + 'brix-components/marked-extra/marked-extra.js',
-                'components/css-layout-debugger': baseUrl + 'brix-components/css-layout-debugger/css-layout-debugger.js',
-                'components/boilerplate': baseUrl + 'brix-components/boilerplate/boilerplate.js'
+                'components/ctree': baseUrl + brixComponentsBaseUrl + 'ctree/ctree.js',
+                'components/sticky': baseUrl + brixComponentsBaseUrl + 'sticky/sticky.js',
+                'components/nav': baseUrl + brixComponentsBaseUrl + 'nav/nav.js',
+                'components/readme': baseUrl + brixComponentsBaseUrl + 'readme/readme.js',
+                'components/css-layout-debugger': baseUrl + brixComponentsBaseUrl + 'css-layout-debugger/css-layout-debugger.js',
+                'components/boilerplate': baseUrl + brixComponentsBaseUrl + 'boilerplate/boilerplate.js'
             }
         },
         paths: { // http://requirejs.org/docs/api.html#config-paths
