@@ -47,7 +47,6 @@
                 'components/dialogview': baseUrl + brixComponentsBaseUrl + 'dialogview/dialogview.js',
                 'components/table': baseUrl + brixComponentsBaseUrl + 'table/table.js',
                 'components/table/linkage': baseUrl + brixComponentsBaseUrl + 'table/linkage.js',
-                'components/table/priority': baseUrl + brixComponentsBaseUrl + 'table/priority.js',
                 'components/datepicker': baseUrl + brixComponentsBaseUrl + 'datepicker/datepicker.js',
                 'components/datepickerwrapper': baseUrl + brixComponentsBaseUrl + 'datepickerwrapper/datepickerwrapper.js',
                 'components/popover': baseUrl + brixComponentsBaseUrl + 'popover/popover.js',
