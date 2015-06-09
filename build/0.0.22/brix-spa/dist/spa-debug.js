@@ -1,3 +1,4 @@
+
 /* global define, location, console */
 /* jshint multistr:true */
 /*
@@ -14,7 +15,7 @@
         拦截和取消 Ajax 请求
  */
 define(
-    [
+    'brix/spa',[
         'jquery', 'underscore', 'director', 'URIjs/URI', 'page',
         'brix/loader',
         'URIjs/URI.fragmentQuery', 'URIjs/URI.fragmentURI'
@@ -113,4 +114,4 @@ define(
             }
         }
     }
-)
+);
