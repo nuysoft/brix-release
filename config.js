@@ -117,6 +117,7 @@
             accounting: baseUrl + 'accountingjs/accounting' + (debug ? '.min' : ''),
             progressbar: baseUrl + 'progressbar.js/dist/progressbar',
             Sortable: baseUrl + 'Sortable/Sortable',
+            fontawesome: baseUrl + 'fontawesome/',
 
             'css-tool': baseUrl + 'brix-components/css-tool/',
             colors: baseUrl + 'colors/',
