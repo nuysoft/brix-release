@@ -2135,7 +2135,6 @@ var requirejs, require, define;
                 'components/dialogview': baseUrl + brixComponentsBaseUrl + 'dialogview/dialogview.js',
                 'components/table': baseUrl + brixComponentsBaseUrl + 'table/table.js',
                 'components/table/linkage': baseUrl + brixComponentsBaseUrl + 'table/linkage.js',
-                'components/table/priority': baseUrl + brixComponentsBaseUrl + 'table/priority.js',
                 'components/datepicker': baseUrl + brixComponentsBaseUrl + 'datepicker/datepicker.js',
                 'components/datepickerwrapper': baseUrl + brixComponentsBaseUrl + 'datepickerwrapper/datepickerwrapper.js',
                 'components/popover': baseUrl + brixComponentsBaseUrl + 'popover/popover.js',
@@ -2206,6 +2205,7 @@ var requirejs, require, define;
             accounting: baseUrl + 'accountingjs/accounting' + (debug ? '.min' : ''),
             progressbar: baseUrl + 'progressbar.js/dist/progressbar',
             Sortable: baseUrl + 'Sortable/Sortable',
+            fontawesome: baseUrl + 'fontawesome/',
 
             'css-tool': baseUrl + 'brix-components/css-tool/',
             colors: baseUrl + 'colors/',
