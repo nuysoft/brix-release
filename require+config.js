@@ -2195,7 +2195,6 @@ var requirejs, require, define;
             mousetrap: baseUrl + 'mousetrap/mousetrap' + (debug ? '.min' : ''),
             mock: baseUrl + 'mockjs/dist/mock' + (debug ? '-min' : ''),
             marked: baseUrl + 'marked/lib/marked',
-            d3: baseUrl + 'd3/d3',
             Chart: baseUrl + 'chartjs/Chart',
             director: baseUrl + 'director/build/director',
             URIjs: baseUrl + 'uri.js/src/',
