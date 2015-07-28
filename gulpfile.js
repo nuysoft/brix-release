@@ -32,7 +32,7 @@ gulp.task('connect', function() {
 // https://github.com/wearefractal/gulp-concat
 gulp.task('concat', function() {
     gulp.src(['bower_components/requirejs/require.js', 'config.js'])
-        .pipe(concat('require+config.js'))
+        .pipe(concat('require-config.js'))
         .pipe(gulp.dest('./'))
 })
 
@@ -59,7 +59,7 @@ gulp.task('build', function() {
 
 // https://github.com/terinjokes/gulp-uglify
 gulp.task('compress', function() {
-    var globs = [build + '/config.js', build + '/require+config.js']
+    var globs = [build + '/config.js', build + '/require-config.js']
     gulp.src(globs)
         .pipe(through.obj(function(file, encoding, callback) {
             file.path = file.path.replace(
