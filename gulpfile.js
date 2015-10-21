@@ -41,6 +41,7 @@ gulp.task('build', function() {
     var globs = [
         '**/*.js',
         '**/*.css',
+        '**/*.eot', '**/*.svg', '**/*.ttf', '**/*.woff', '**/*.woff2',
         '**/*.map',
         '!build/**/*',
         '!node_modules/**/*',
