@@ -34,6 +34,9 @@ gulp.task('concat', function() {
     gulp.src(['bower_components/requirejs/require.js', 'config.js'])
         .pipe(concat('require-config.js'))
         .pipe(gulp.dest('./'))
+    gulp.src(['bower_components/requirejs/require.js', 'config.js', 'css.js'])
+        .pipe(concat('require-config-css.js'))
+        .pipe(gulp.dest('./'))
 })
 
 gulp.task('build', function() {
