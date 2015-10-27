@@ -2182,6 +2182,9 @@ var requirejs, require, define;
                 'components/progressbarwrapper': baseUrl + brixComponentsBaseUrl + 'progressbarwrapper/progressbarwrapper.js',
                 'components/errortips': baseUrl + brixComponentsBaseUrl + 'errortips/errortips.js',
                 'components/sidenav': baseUrl + brixComponentsBaseUrl + 'sidenav/sidenav.js',
+                'components/footer': baseUrl + brixComponentsBaseUrl + 'footer/footer.js',
+                'components/wizard': baseUrl + brixComponentsBaseUrl + 'wizard/wizard.js',
+                'components/tab': baseUrl + brixComponentsBaseUrl + 'tab/tab.js',
 
                 'components/ctree': baseUrl + brixComponentsBaseUrl + 'ctree/ctree.js',
                 'components/sticky': baseUrl + brixComponentsBaseUrl + 'sticky/sticky.js',
@@ -2242,7 +2245,7 @@ var requirejs, require, define;
             }
         }
     })
-    require(['css!colors/css/colors.css'])
+    // require(['css!colors/css/colors.css'])
     require(['css!css-tool/tool.css'])
 })();
 (function() {
@@ -2253,5 +2256,6 @@ var requirejs, require, define;
 /* global require, document, location */
 (function() {
 	require(['css!dependencies/bootstrap/dist/css/bootstrap'])
-	require(['css!css-tool/mm.css'])
+	// require(['css!css-tool/mm.css'])
+	require(['css!css-tool/minecraft.css'])
 })();

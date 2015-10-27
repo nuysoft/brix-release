@@ -78,6 +78,9 @@
                 'components/progressbarwrapper': baseUrl + brixComponentsBaseUrl + 'progressbarwrapper/progressbarwrapper.js',
                 'components/errortips': baseUrl + brixComponentsBaseUrl + 'errortips/errortips.js',
                 'components/sidenav': baseUrl + brixComponentsBaseUrl + 'sidenav/sidenav.js',
+                'components/footer': baseUrl + brixComponentsBaseUrl + 'footer/footer.js',
+                'components/wizard': baseUrl + brixComponentsBaseUrl + 'wizard/wizard.js',
+                'components/tab': baseUrl + brixComponentsBaseUrl + 'tab/tab.js',
 
                 'components/ctree': baseUrl + brixComponentsBaseUrl + 'ctree/ctree.js',
                 'components/sticky': baseUrl + brixComponentsBaseUrl + 'sticky/sticky.js',
@@ -138,7 +141,7 @@
             }
         }
     })
-    require(['css!colors/css/colors.css'])
+    // require(['css!colors/css/colors.css'])
     require(['css!css-tool/tool.css'])
 })();
 (function() {
