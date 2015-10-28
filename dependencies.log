@@ -1,25 +1,25 @@
 bower check-new     Checking for new versions of the project dependencies..
 brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
-├─┬ brix-base#0.0.5 linked
+├─┬ brix-base#91de117b7e
 │ ├── jquery#1.11.3 (latest is 3.0.0-alpha1+compat)
 │ └── underscore#1.7.0 (1.8.3 available)
-├─┬ brix-bisheng#0.1.5 linked
+├─┬ brix-bisheng#62713692d7
 │ ├── handlebars#2.0.0 (latest is 4.0.3)
 │ ├── jquery#1.11.3
 │ └── underscore#1.7.0 (latest is 1.8.3)
 ├─┬ brix-components#0.0.5 linked
-│ ├── Sortable#1.1.1 (latest is 1.4.1)
+│ ├── Sortable#1.1.1 (latest is 1.4.2)
 │ ├── accountingjs#0.3.2 (latest is 0.4.1)
 │ ├─┬ bootstrap#3.3.5 (4.0.0-alpha available)
 │ │ └── jquery#1.11.3 (3.0.0-alpha1+compat available)
-│ ├─┬ brix-base#0.0.5 linked
+│ ├─┬ brix-base#91de117b7e
 │ │ ├── jquery#1.11.3
 │ │ └── underscore#1.7.0
-│ ├─┬ brix-event#0.0.7 linked
+│ ├─┬ brix-event#f69539a826
 │ │ ├── jquery#1.11.3
 │ │ └── underscore#1.7.0
-│ ├── brix-loader#0.0.9 linked
-│ ├── chartjs#1.0.2 (2.0.0-alpha4 available)
+│ ├── brix-loader#78b9bc0a08
+│ ├── chartjs#1.0.2 (2.0.0-beta available)
 │ ├── colors#2.2.0
 │ ├── director#1.2.8
 │ ├── fontawesome#4.4.0
@@ -42,12 +42,12 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── requirejs-text#2.0.14
 │ ├── swfobject#0a37c21d17
 │ └── underscore#1.7.0
-├─┬ brix-event#0.0.7 linked
+├─┬ brix-event#f69539a826
 │ ├── jquery#1.11.3
 │ └── underscore#1.7.0
-├── brix-loader#0.0.9 linked
-├─┬ brix-spa#0.0.1 linked
-│ ├── brix-loader#0.0.9 linked
+├── brix-loader#78b9bc0a08
+├─┬ brix-spa#83d41d4f1a
+│ ├── brix-loader#78b9bc0a08
 │ ├── director#1.2.8
 │ ├── jquery#1.11.3
 │ ├── page#1.4.1 (latest is 1.6.4)
