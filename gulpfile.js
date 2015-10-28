@@ -63,7 +63,7 @@ gulp.task('build', function() {
 
 // https://github.com/terinjokes/gulp-uglify
 gulp.task('compress', function() {
-    var globs = [build + '/config.js', build + '/require-config.js', build + '/require-config-css.js']
+    var globs = [build + '/config.js', build + '/css.js', build + '/require-config.js', build + '/require-config-css.js']
     gulp.src(globs)
         .pipe(through.obj(function(file, encoding, callback) {
             file.path = file.path.replace(

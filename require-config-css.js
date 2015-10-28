@@ -2260,9 +2260,9 @@ var requirejs, require, define;
 	
 	// 所有组件样式
 	require(['css!css-tool/components.css'])
+	require(['css!dependencies/parsleyjs/src/parsley.css'])
 
 	// MineCraft 规范样式
-	// require(['css!css-tool/mm.css'])
 	require(['css!css-tool/minecraft.css'])
 
 	// 动画 Animation
