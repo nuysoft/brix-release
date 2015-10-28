@@ -164,8 +164,10 @@ var publishCmds = function() {
 }()
 gulp.task('publish', shell.task(publishCmds))
 gulp.task('cmds', function() {
-    console.log(dailyCmds)
-    console.log(publishCmds)
+    console.log('=== daily ===')
+    console.log(dailyCmds.join('\n'))
+    console.log('=== publish ===')
+    console.log(publishCmds.join('\n'))
 })
 
 console.log(__dirname)

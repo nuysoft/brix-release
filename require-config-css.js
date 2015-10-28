@@ -2259,7 +2259,7 @@ var requirejs, require, define;
 	require(['css!dependencies/bootstrap/dist/css/bootstrap'])
 	
 	// 所有组件样式
-	require(['css!css-tool/all.css'])
+	require(['css!css-tool/components.css'])
 
 	// MineCraft 规范样式
 	// require(['css!css-tool/mm.css'])
