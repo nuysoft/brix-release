@@ -1,0 +1,1 @@
+!function(){require(["css!dependencies/bootstrap/dist/css/bootstrap"]),require(["css!css-tool/components.css"]),require(["css!dependencies/parsleyjs/src/parsley.css"]),require(["css!css-tool/minecraft.css"]),require(["css!http://g.tbcdn.cn/thx/minecraft-animation/0.0.1/css/animate.css"])}();
