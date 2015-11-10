@@ -37,6 +37,9 @@ gulp.task('concat', function() {
     gulp.src(['bower_components/requirejs/require.js', 'config.js', 'css.js'])
         .pipe(concat('require-config-css.js'))
         .pipe(gulp.dest('./'))
+    gulp.src(['bower_components/requirejs/require.js', 'config.js', 'css.js', 'animation.js'])
+        .pipe(concat('require-config-css-animation.js'))
+        .pipe(gulp.dest('./'))
 })
 
 gulp.task('build', function() {
@@ -63,7 +66,13 @@ gulp.task('build', function() {
 
 // https://github.com/terinjokes/gulp-uglify
 gulp.task('compress', function() {
-    var globs = [build + '/config.js', build + '/css.js', build + '/require-config.js', build + '/require-config-css.js']
+    var globs = [
+        build + '/config.js',
+        build + '/css.js',
+        build + '/require-config.js',
+        build + '/require-config-css.js',
+        build + '/require-config-css-animation.js'
+    ]
     gulp.src(globs)
         .pipe(through.obj(function(file, encoding, callback) {
             file.path = file.path.replace(
