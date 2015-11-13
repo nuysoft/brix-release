@@ -4,7 +4,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── jquery#1.11.3 (latest is 3.0.0-alpha1+compat)
 │ └── underscore#1.7.0 (1.8.3 available)
 ├─┬ brix-bisheng#62713692d7
-│ ├── handlebars#2.0.0 (latest is 4.0.3)
+│ ├── handlebars#2.0.0 (latest is 4.0.4)
 │ ├── jquery#1.11.3
 │ └── underscore#1.7.0 (latest is 1.8.3)
 ├─┬ brix-components#0.0.5 linked
@@ -24,7 +24,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── director#1.2.8
 │ ├── fontawesome#4.4.0
 │ ├── handlebars#2.0.0
-│ ├── highlightjs#8.8.0
+│ ├── highlightjs#8.9.1
 │ ├── jquery#1.11.3
 │ ├── less#2.5.3
 │ ├── log#0.3.0
@@ -33,7 +33,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── moment#2.10.6
 │ ├── mousetrap#1.5.3
 │ ├── nprogress#0.2.0
-│ ├─┬ parsleyjs#2.1.3 (2.2.0-rc2 available)
+│ ├─┬ parsleyjs#2.1.3 (2.2.0-rc4 available)
 │ │ └── jquery#1.11.3 (3.0.0-alpha1+compat available)
 │ ├── progressbar.js#0.7.4 (latest is 0.9.0)
 │ ├── require-css#0.1.8
@@ -55,4 +55,6 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── requirejs-text#2.0.14
 │ ├── underscore#1.7.0
 │ └── uri.js#1.16.1
-└── magix#2.0.0
+├── magix#2.0.0
+├── minecraft-animation#c4d6bccec7
+└── vue#1.0.8
