@@ -2225,6 +2225,7 @@ var requirejs, require, define;
             progressbar: baseUrl + 'progressbar.js/dist/progressbar',
             Sortable: baseUrl + 'Sortable/Sortable',
             fontawesome: baseUrl + 'fontawesome/',
+            vue: baseUrl + 'vue/dist/vue' + (debug ? '' : '.min'),
 
             'css-tool': baseUrl + 'brix-components/css-tool/',
             colors: baseUrl + 'colors/',

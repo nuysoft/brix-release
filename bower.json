@@ -18,7 +18,9 @@
     "brix-components": "master",
     "brix-bisheng": "master",
     "brix-spa": "master",
-    "magix": "*"
+    "magix": "*",
+    "minecraft-animation": "thx/minecraft-animation",
+    "vue": "~1.0.8"
   },
   "devDependencies": {},
   "resolutions": {
