@@ -2225,6 +2225,7 @@ var requirejs, require, define;
             progressbar: baseUrl + 'progressbar.js/dist/progressbar',
             Sortable: baseUrl + 'Sortable/Sortable',
             fontawesome: baseUrl + 'fontawesome/',
+            vue: baseUrl + 'vue/dist/vue' + (debug ? '' : '.min'),
 
             'css-tool': baseUrl + 'brix-components/css-tool/',
             colors: baseUrl + 'colors/',
@@ -2268,5 +2269,5 @@ var requirejs, require, define;
 /* global require, document, location */
 (function() {
 	// 动画 Animation
-	require(['css!http://g.tbcdn.cn/thx/minecraft-animation/0.0.1/css/animate-min.css'])
+	require(['css!dependencies/minecraft-animation/dist/css/animate-min.css'])
 })();
