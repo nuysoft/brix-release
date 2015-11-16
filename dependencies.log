@@ -10,7 +10,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 ├─┬ brix-components#0.0.5 linked
 │ ├── Sortable#1.1.1 (latest is 1.4.2)
 │ ├── accountingjs#0.3.2 (latest is 0.4.1)
-│ ├─┬ bootstrap#3.3.5 (4.0.0-alpha available)
+│ ├─┬ bootstrap#3.3.5 (latest is 4.0.0-alpha)
 │ │ └── jquery#1.11.3 (3.0.0-alpha1+compat available)
 │ ├─┬ brix-base#91de117b7e
 │ │ ├── jquery#1.11.3
@@ -19,7 +19,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ │ ├── jquery#1.11.3
 │ │ └── underscore#1.7.0
 │ ├── brix-loader#78b9bc0a08
-│ ├── chartjs#1.0.2 (2.0.0-beta available)
+│ ├── chartjs#1.0.2 (latest is 2.0.0-beta)
 │ ├── colors#2.2.0
 │ ├── director#1.2.8
 │ ├── fontawesome#4.4.0
@@ -29,18 +29,17 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── less#2.5.3
 │ ├── log#0.3.0
 │ ├── marked#0.3.5
-│ ├── mockjs#0.1.10 (0.2.0-alpha1 available)
+│ ├── mockjs#0.1.10 (latest is 0.2.0-alpha1)
 │ ├── moment#2.10.6
 │ ├── mousetrap#1.5.3
 │ ├── nprogress#0.2.0
-│ ├─┬ parsleyjs#2.1.3 (2.2.0-rc4 available)
+│ ├─┬ parsleyjs#2.1.3 (latest is 2.2.0-rc4)
 │ │ └── jquery#1.11.3 (3.0.0-alpha1+compat available)
 │ ├── progressbar.js#0.7.4 (latest is 0.9.0)
 │ ├── require-css#0.1.8
 │ ├── require-less#0.1.5
 │ ├── requirejs#2.1.20
 │ ├── requirejs-text#2.0.14
-│ ├── swfobject#0a37c21d17
 │ └── underscore#1.7.0
 ├─┬ brix-event#f69539a826
 │ ├── jquery#1.11.3
@@ -54,7 +53,8 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── requirejs#2.1.20
 │ ├── requirejs-text#2.0.14
 │ ├── underscore#1.7.0
-│ └── uri.js#1.16.1
+│ └── uri.js#1.16.1 (1.17.0 available)
 ├── magix#2.0.0
 ├── minecraft-animation#c4d6bccec7
+├── swfobject#0a37c21d17 extraneous
 └── vue#1.0.8
