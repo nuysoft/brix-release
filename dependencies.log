@@ -38,7 +38,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── progressbar.js#0.7.4 (latest is 0.9.0)
 │ ├── require-css#0.1.8
 │ ├── require-less#0.1.5
-│ ├── requirejs#2.1.20
+│ ├── requirejs#2.1.21
 │ ├── requirejs-text#2.0.14
 │ └── underscore#1.7.0
 ├─┬ brix-event#f69539a826
@@ -50,7 +50,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── director#1.2.8
 │ ├── jquery#1.11.3
 │ ├── page#1.4.1 (latest is 1.6.4)
-│ ├── requirejs#2.1.20
+│ ├── requirejs#2.1.21
 │ ├── requirejs-text#2.0.14
 │ ├── underscore#1.7.0
 │ └── uri.js#1.16.1 (1.17.0 available)
