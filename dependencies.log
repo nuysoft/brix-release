@@ -7,7 +7,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── handlebars#2.0.0 (latest is 4.0.5)
 │ ├── jquery#1.11.3
 │ └── underscore#1.7.0 (latest is 1.8.3)
-├─┬ brix-components#3029acf3a3
+├─┬ brix-components#29de19b5a7
 │ ├── Sortable#1.1.1 (latest is 1.4.2)
 │ ├── accountingjs#0.3.2 (latest is 0.4.1)
 │ ├─┬ bootstrap#3.3.5 (latest is 4.0.0-alpha)
@@ -15,11 +15,11 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├─┬ brix-base#91de117b7e
 │ │ ├── jquery#1.11.3
 │ │ └── underscore#1.7.0
-│ ├─┬ brix-event#f69539a826
+│ ├─┬ brix-event#0d9c97bc3c
 │ │ ├── jquery#1.11.3
 │ │ └── underscore#1.7.0
-│ ├── brix-loader#9090d09975
-│ ├── chartjs#1.0.2 (latest is 2.0.0-beta)
+│ ├── brix-loader#f65736246c
+│ ├── chartjs#1.0.2 (latest is 2.0.0-beta1)
 │ ├── colors#2.2.0
 │ ├── director#1.2.8
 │ ├── fontawesome#4.4.0 (latest is 4.5.0)
@@ -41,12 +41,12 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── requirejs#2.1.22
 │ ├── requirejs-text#2.0.14
 │ └── underscore#1.7.0
-├─┬ brix-event#f69539a826
+├─┬ brix-event#0d9c97bc3c
 │ ├── jquery#1.11.3
 │ └── underscore#1.7.0
-├── brix-loader#9090d09975
+├── brix-loader#f65736246c
 ├─┬ brix-spa#83d41d4f1a
-│ ├── brix-loader#9090d09975
+│ ├── brix-loader#f65736246c
 │ ├── director#1.2.8
 │ ├── jquery#1.11.3
 │ ├── page#1.4.1 (latest is 1.6.4)
