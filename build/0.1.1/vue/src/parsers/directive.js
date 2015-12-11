@@ -1,15 +1,16 @@
-var _ = require('../util')
-var Cache = require('../cache')
-var cache = new Cache(1000)
-var filterTokenRE = /[^\s'"]+|'[^']*'|"[^"]*"/g
-var reservedArgRE = /^in$|^-?\d+/
+import { toNumber, stripQuotes } from '../util/index'
+import Cache from '../cache'
+
+const cache = new Cache(1000)
+const filterTokenRE = /[^\s'"]+|'[^']*'|"[^"]*"/g
+const reservedArgRE = /^in$|^-?\d+/
 
 /**
  * Parser state
  */
 
 var str, dir
-var c, i, l, lastFilterIndex
+var c, prev, i, l, lastFilterIndex
 var inSingle, inDouble, curly, square, paren
 
 /**
@@ -43,11 +44,11 @@ function pushFilter () {
 function processFilterArg (arg) {
   if (reservedArgRE.test(arg)) {
     return {
-      value: _.toNumber(arg),
+      value: toNumber(arg),
       dynamic: false
     }
   } else {
-    var stripped = _.stripQuotes(arg)
+    var stripped = stripQuotes(arg)
     var dynamic = stripped === arg
     return {
       value: dynamic ? arg : stripped,
@@ -74,7 +75,7 @@ function processFilterArg (arg) {
  * @return {Object}
  */
 
-exports.parse = function (s) {
+export function parseDirective (s) {
 
   var hit = cache.get(s)
   if (hit) {
@@ -89,13 +90,14 @@ exports.parse = function (s) {
   dir = {}
 
   for (i = 0, l = str.length; i < l; i++) {
+    prev = c
     c = str.charCodeAt(i)
     if (inSingle) {
       // check single quote
-      if (c === 0x27) inSingle = !inSingle
+      if (c === 0x27 && prev !== 0x5C) inSingle = !inSingle
     } else if (inDouble) {
       // check double quote
-      if (c === 0x22) inDouble = !inDouble
+      if (c === 0x22 && prev !== 0x5C) inDouble = !inDouble
     } else if (
       c === 0x7C && // pipe
       str.charCodeAt(i + 1) !== 0x7C &&

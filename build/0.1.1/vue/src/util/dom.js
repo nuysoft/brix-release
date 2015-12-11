@@ -1,6 +1,8 @@
-var _ = require('./index')
-var config = require('../config')
-var transition = require('../transition')
+import config from '../config'
+import { isIE9 } from './env'
+import { warn } from './debug'
+import { camelize } from './lang'
+import { removeWithTransition } from '../transition/index'
 
 /**
  * Query an element selector if it's not an element already.
@@ -9,12 +11,12 @@ var transition = require('../transition')
  * @return {Element}
  */
 
-exports.query = function (el) {
+export function query (el) {
   if (typeof el === 'string') {
     var selector = el
     el = document.querySelector(el)
     if (!el) {
-      process.env.NODE_ENV !== 'production' && _.warn(
+      process.env.NODE_ENV !== 'production' && warn(
         'Cannot find element: ' + selector
       )
     }
@@ -34,7 +36,7 @@ exports.query = function (el) {
  * @return {Boolean}
  */
 
-exports.inDoc = function (node) {
+export function inDoc (node) {
   var doc = document.documentElement
   var parent = node && node.parentNode
   return doc === node ||
@@ -46,13 +48,13 @@ exports.inDoc = function (node) {
  * Get and remove an attribute from a node.
  *
  * @param {Node} node
- * @param {String} attr
+ * @param {String} _attr
  */
 
-exports.attr = function (node, attr) {
-  var val = node.getAttribute(attr)
+export function getAttr (node, _attr) {
+  var val = node.getAttribute(_attr)
   if (val !== null) {
-    node.removeAttribute(attr)
+    node.removeAttribute(_attr)
   }
   return val
 }
@@ -65,12 +67,26 @@ exports.attr = function (node, attr) {
  * @return {String|null}
  */
 
-exports.getBindAttr = function (node, name) {
-  var val = exports.attr(node, ':' + name)
+export function getBindAttr (node, name) {
+  var val = getAttr(node, ':' + name)
   if (val === null) {
-    val = exports.attr(node, 'v-bind:' + name)
+    val = getAttr(node, 'v-bind:' + name)
   }
   return val
+}
+
+/**
+ * Check the presence of a bind attribute.
+ *
+ * @param {Node} node
+ * @param {String} name
+ * @return {Boolean}
+ */
+
+export function hasBindAttr (node, name) {
+  return node.hasAttribute(name) ||
+    node.hasAttribute(':' + name) ||
+    node.hasAttribute('v-bind:' + name)
 }
 
 /**
@@ -80,7 +96,7 @@ exports.getBindAttr = function (node, name) {
  * @param {Element} target
  */
 
-exports.before = function (el, target) {
+export function before (el, target) {
   target.parentNode.insertBefore(el, target)
 }
 
@@ -91,9 +107,9 @@ exports.before = function (el, target) {
  * @param {Element} target
  */
 
-exports.after = function (el, target) {
+export function after (el, target) {
   if (target.nextSibling) {
-    exports.before(el, target.nextSibling)
+    before(el, target.nextSibling)
   } else {
     target.parentNode.appendChild(el)
   }
@@ -105,7 +121,7 @@ exports.after = function (el, target) {
  * @param {Element} el
  */
 
-exports.remove = function (el) {
+export function remove (el) {
   el.parentNode.removeChild(el)
 }
 
@@ -116,9 +132,9 @@ exports.remove = function (el) {
  * @param {Element} target
  */
 
-exports.prepend = function (el, target) {
+export function prepend (el, target) {
   if (target.firstChild) {
-    exports.before(el, target.firstChild)
+    before(el, target.firstChild)
   } else {
     target.appendChild(el)
   }
@@ -131,7 +147,7 @@ exports.prepend = function (el, target) {
  * @param {Element} el
  */
 
-exports.replace = function (target, el) {
+export function replace (target, el) {
   var parent = target.parentNode
   if (parent) {
     parent.replaceChild(el, target)
@@ -146,7 +162,7 @@ exports.replace = function (target, el) {
  * @param {Function} cb
  */
 
-exports.on = function (el, event, cb) {
+export function on (el, event, cb) {
   el.addEventListener(event, cb)
 }
 
@@ -158,24 +174,43 @@ exports.on = function (el, event, cb) {
  * @param {Function} cb
  */
 
-exports.off = function (el, event, cb) {
+export function off (el, event, cb) {
   el.removeEventListener(event, cb)
+}
+
+/**
+ * In IE9, setAttribute('class') will result in empty class
+ * if the element also has the :class attribute; However in
+ * PhantomJS, setting `className` does not work on SVG elements...
+ * So we have to do a conditional check here.
+ *
+ * @param {Element} el
+ * @param {String} cls
+ */
+
+function setClass (el, cls) {
+  /* istanbul ignore if */
+  if (isIE9 && el.hasOwnProperty('className')) {
+    el.className = cls
+  } else {
+    el.setAttribute('class', cls)
+  }
 }
 
 /**
  * Add class with compatibility for IE & SVG
  *
  * @param {Element} el
- * @param {Strong} cls
+ * @param {String} cls
  */
 
-exports.addClass = function (el, cls) {
+export function addClass (el, cls) {
   if (el.classList) {
     el.classList.add(cls)
   } else {
     var cur = ' ' + (el.getAttribute('class') || '') + ' '
     if (cur.indexOf(' ' + cls + ' ') < 0) {
-      el.setAttribute('class', (cur + cls).trim())
+      setClass(el, (cur + cls).trim())
     }
   }
 }
@@ -184,10 +219,10 @@ exports.addClass = function (el, cls) {
  * Remove class with compatibility for IE & SVG
  *
  * @param {Element} el
- * @param {Strong} cls
+ * @param {String} cls
  */
 
-exports.removeClass = function (el, cls) {
+export function removeClass (el, cls) {
   if (el.classList) {
     el.classList.remove(cls)
   } else {
@@ -196,7 +231,7 @@ exports.removeClass = function (el, cls) {
     while (cur.indexOf(tar) >= 0) {
       cur = cur.replace(tar, ' ')
     }
-    el.setAttribute('class', cur.trim())
+    setClass(el, cur.trim())
   }
   if (!el.className) {
     el.removeAttribute('class')
@@ -212,18 +247,18 @@ exports.removeClass = function (el, cls) {
  * @return {Element}
  */
 
-exports.extractContent = function (el, asFragment) {
+export function extractContent (el, asFragment) {
   var child
   var rawContent
   /* istanbul ignore if */
   if (
-    exports.isTemplate(el) &&
+    isTemplate(el) &&
     el.content instanceof DocumentFragment
   ) {
     el = el.content
   }
   if (el.hasChildNodes()) {
-    exports.trimNode(el)
+    trimNode(el)
     rawContent = asFragment
       ? document.createDocumentFragment()
       : document.createElement('div')
@@ -242,7 +277,7 @@ exports.extractContent = function (el, asFragment) {
  * @param {Node} node
  */
 
-exports.trimNode = function (node) {
+export function trimNode (node) {
   trim(node, node.firstChild)
   trim(node, node.lastChild)
 }
@@ -261,7 +296,7 @@ function trim (parent, node) {
  * @param {Element} el
  */
 
-exports.isTemplate = function (el) {
+export function isTemplate (el) {
   return el.tagName &&
     el.tagName.toLowerCase() === 'template'
 }
@@ -284,7 +319,7 @@ exports.isTemplate = function (el) {
  * @return {Comment|Text}
  */
 
-exports.createAnchor = function (content, persist) {
+export function createAnchor (content, persist) {
   var anchor = config.debug
     ? document.createComment(content)
     : document.createTextNode(persist ? ' ' : '')
@@ -300,13 +335,13 @@ exports.createAnchor = function (content, persist) {
  */
 
 var refRE = /^v-ref:/
-exports.findRef = function (node) {
+export function findRef (node) {
   if (node.hasAttributes()) {
     var attrs = node.attributes
     for (var i = 0, l = attrs.length; i < l; i++) {
       var name = attrs[i].name
       if (refRE.test(name)) {
-        return _.camelize(name.replace(refRE, ''))
+        return camelize(name.replace(refRE, ''))
       }
     }
   }
@@ -320,7 +355,7 @@ exports.findRef = function (node) {
  * @param {Function} op
  */
 
-exports.mapNodeRange = function (node, end, op) {
+export function mapNodeRange (node, end, op) {
   var next
   while (node !== end) {
     next = node.nextSibling
@@ -342,14 +377,14 @@ exports.mapNodeRange = function (node, end, op) {
  * @param {Function} cb
  */
 
-exports.removeNodeRange = function (start, end, vm, frag, cb) {
+export function removeNodeRange (start, end, vm, frag, cb) {
   var done = false
   var removed = 0
   var nodes = []
-  exports.mapNodeRange(start, end, function (node) {
+  mapNodeRange(start, end, function (node) {
     if (node === end) done = true
     nodes.push(node)
-    transition.remove(node, vm, onRemoved)
+    removeWithTransition(node, vm, onRemoved)
   })
   function onRemoved () {
     removed++

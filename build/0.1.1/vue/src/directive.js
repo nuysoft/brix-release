@@ -1,6 +1,18 @@
-var _ = require('./util')
-var Watcher = require('./watcher')
-var expParser = require('./parsers/expression')
+import {
+  extend,
+  bind,
+  on,
+  off,
+  getAttr,
+  getBindAttr,
+  camelize,
+  nextTick,
+  warn
+} from './util/index'
+import Watcher from './watcher'
+import { removeTags } from './parsers/text'
+import { parseExpression, isSimplePath } from './parsers/expression'
+
 function noop () {}
 
 /**
@@ -27,7 +39,7 @@ function noop () {}
  * @constructor
  */
 
-function Directive (descriptor, vm, el, host, scope, frag) {
+export default function Directive (descriptor, vm, el, host, scope, frag) {
   this.vm = vm
   this.el = el
   // copy descriptor properties
@@ -71,7 +83,15 @@ Directive.prototype._bind = function () {
     this.el && this.el.removeAttribute
   ) {
     var attr = descriptor.attr || ('v-' + name)
-    this.el.removeAttribute(attr)
+    if (attr !== 'class') {
+      this.el.removeAttribute(attr)
+    } else {
+      // for class interpolations, only remove the parts that
+      // need to be interpolated.
+      this.el.className = removeTags(this.el.className)
+        .trim()
+        .replace(/\s+/g, ' ')
+    }
   }
 
   // copy def properties
@@ -79,7 +99,7 @@ Directive.prototype._bind = function () {
   if (typeof def === 'function') {
     this.update = def
   } else {
-    _.extend(this, def)
+    extend(this, def)
   }
 
   // setup directive params
@@ -109,10 +129,10 @@ Directive.prototype._bind = function () {
       this._update = noop
     }
     var preProcess = this._preProcess
-      ? _.bind(this._preProcess, this)
+      ? bind(this._preProcess, this)
       : null
     var postProcess = this._postProcess
-      ? _.bind(this._postProcess, this)
+      ? bind(this._postProcess, this)
       : null
     var watcher = this._watcher = new Watcher(
       this.vm,
@@ -155,14 +175,14 @@ Directive.prototype._setupParams = function () {
   var key, val, mappedKey
   while (i--) {
     key = params[i]
-    mappedKey = _.camelize(key)
-    val = _.getBindAttr(this.el, key)
+    mappedKey = camelize(key)
+    val = getBindAttr(this.el, key)
     if (val != null) {
       // dynamic
       this._setupParamWatcher(mappedKey, val)
     } else {
       // static
-      val = _.attr(this.el, key)
+      val = getAttr(this.el, key)
       if (val != null) {
         this.params[mappedKey] = val === '' ? true : val
       }
@@ -213,9 +233,9 @@ Directive.prototype._checkStatement = function () {
   var expression = this.expression
   if (
     expression && this.acceptStatement &&
-    !expParser.isSimplePath(expression)
+    !isSimplePath(expression)
   ) {
-    var fn = expParser.parse(expression).get
+    var fn = parseExpression(expression).get
     var scope = this._scope || this.vm
     var handler = function (e) {
       scope.$event = e
@@ -246,7 +266,7 @@ Directive.prototype.set = function (value) {
       this._watcher.set(value)
     })
   } else if (process.env.NODE_ENV !== 'production') {
-    _.warn(
+    warn(
       'Directive.set() can only be used inside twoWay' +
       'directives.'
     )
@@ -264,7 +284,7 @@ Directive.prototype._withLock = function (fn) {
   var self = this
   self._locked = true
   fn.call(self)
-  _.nextTick(function () {
+  nextTick(function () {
     self._locked = false
   })
 }
@@ -279,7 +299,7 @@ Directive.prototype._withLock = function (fn) {
  */
 
 Directive.prototype.on = function (event, handler) {
-  _.on(this.el, event, handler)
+  on(this.el, event, handler)
   ;(this._listeners || (this._listeners = []))
     .push([event, handler])
 }
@@ -302,7 +322,7 @@ Directive.prototype._teardown = function () {
     if (listeners) {
       i = listeners.length
       while (i--) {
-        _.off(this.el, listeners[i][0], listeners[i][1])
+        off(this.el, listeners[i][0], listeners[i][1])
       }
     }
     var unwatchFns = this._paramUnwatchFns
@@ -318,5 +338,3 @@ Directive.prototype._teardown = function () {
     this.vm = this.el = this._watcher = this._listeners = null
   }
 }
-
-module.exports = Directive

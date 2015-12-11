@@ -7,10 +7,10 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── handlebars#2.0.0 (latest is 4.0.5)
 │ ├── jquery#1.11.3
 │ └── underscore#1.7.0 (latest is 1.8.3)
-├─┬ brix-components#29de19b5a7
+├─┬ brix-components#6cd1ee5d51
 │ ├── Sortable#1.1.1 (latest is 1.4.2)
 │ ├── accountingjs#0.3.2 (latest is 0.4.1)
-│ ├─┬ bootstrap#3.3.5 (latest is 4.0.0-alpha)
+│ ├─┬ bootstrap#3.3.5 (latest is 4.0.0-alpha.2)
 │ │ └── jquery#1.11.3 (3.0.0-alpha1+compat available)
 │ ├─┬ brix-base#91de117b7e
 │ │ ├── jquery#1.11.3
@@ -24,7 +24,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── director#1.2.8
 │ ├── fontawesome#4.4.0 (latest is 4.5.0)
 │ ├── handlebars#2.0.0
-│ ├── highlightjs#8.9.1
+│ ├── highlightjs#8.9.1 (latest is 9.0.0)
 │ ├── jquery#1.11.3
 │ ├── less#2.5.3
 │ ├── log#0.3.0
@@ -57,4 +57,4 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 ├── magix#2.0.0
 ├── minecraft-animation#c4d6bccec7
 ├── swfobject#0a37c21d17 extraneous
-└── vue#1.0.8 (1.0.10 available)
+└── vue#1.0.11

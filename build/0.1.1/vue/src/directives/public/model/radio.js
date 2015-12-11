@@ -1,8 +1,8 @@
-var _ = require('../../../util')
+import { toNumber, looseEqual } from '../../../util/index'
 
-module.exports = {
+export default {
 
-  bind: function () {
+  bind () {
     var self = this
     var el = this.el
 
@@ -13,7 +13,7 @@ module.exports = {
       }
       var val = el.value
       if (self.params.number) {
-        val = _.toNumber(val)
+        val = toNumber(val)
       }
       return val
     }
@@ -23,12 +23,12 @@ module.exports = {
     }
     this.on('change', this.listener)
 
-    if (el.checked) {
+    if (el.hasAttribute('checked')) {
       this.afterBind = this.listener
     }
   },
 
-  update: function (value) {
-    this.el.checked = _.looseEqual(value, this.getValue())
+  update (value) {
+    this.el.checked = looseEqual(value, this.getValue())
   }
 }
