@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.3
+
+1. 更新 thx/brix-loader
+
+	* 修复：#4 销毁父组件时传入 remove 为 false，依然会移除掉子组件节点
+
 ## 0.1.2
 
 1. DatePicker & DatePickerWrapper
