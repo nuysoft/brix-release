@@ -4,7 +4,7 @@
 
 1. 更新 thx/brix-loader
 
-	* 修复：#4 销毁父组件时传入 remove 为 false，依然会移除掉子组件节点
+	* 修复：[thx/brix-loader#4](https://github.com/thx/brix-loader/issues/4) 销毁父组件时传入 `remove` 为 `false`，依然会移除掉子组件节点。
 
 ## 0.1.2
 
