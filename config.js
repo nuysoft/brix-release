@@ -97,8 +97,8 @@
             'brix/event': baseUrl + 'brix-event/dist/event' + (debug ? '-debug' : ''),
             'brix/bisheng': baseUrl + 'brix-bisheng/dist/bisheng' + (debug ? '-debug' : ''),
             'brix/spa': baseUrl + 'brix-spa/dist/spa',
-            'magix': 'http://g.tbcdn.cn/thx/magix/2.0/requirejs-magix-min',
-            'chartx': 'http://g.tbcdn.cn/thx/charts/1.6.1/chartx/',
+            'magix': '//g.tbcdn.cn/thx/magix/2.0/requirejs-magix-min',
+            'chartx': '//g.tbcdn.cn/thx/charts/1.6.1/chartx/',
 
             // 运行依赖库
             dependencies: baseUrl + '',
