@@ -2143,7 +2143,7 @@ var requirejs, require, define;
         var baseUrl = /(.+\/)(.+)/.exec(src)[1]
         if (/-debug\.js$/.test(src)) debug = true
         daily = ~baseUrl.indexOf('g-assets.daily.taobao.net')
-        cdn = ~baseUrl.indexOf('g.tbcdn.cn')
+        cdn = ~baseUrl.indexOf('g.tbcdn.cn') || ~baseUrl.indexOf('g.alicdn.com')
         if (daily || cdn) local = false
         if (local) baseUrl += 'bower_components/'
         return baseUrl
@@ -2227,8 +2227,8 @@ var requirejs, require, define;
             'brix/event': baseUrl + 'brix-event/dist/event' + (debug ? '-debug' : ''),
             'brix/bisheng': baseUrl + 'brix-bisheng/dist/bisheng' + (debug ? '-debug' : ''),
             'brix/spa': baseUrl + 'brix-spa/dist/spa',
-            'magix': '//g.tbcdn.cn/thx/magix/2.0/requirejs-magix-min',
-            'chartx': '//g.tbcdn.cn/thx/charts/1.6.1/chartx/',
+            'magix': '//g.alicdn.com/thx/magix/2.0/requirejs-magix-min',
+            'chartx': '//g.alicdn.com/thx/charts/1.6.1/chartx/',
 
             // 运行依赖库
             dependencies: baseUrl + '',
