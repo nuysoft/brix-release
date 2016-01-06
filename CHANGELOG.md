@@ -11,6 +11,16 @@
 2. 支持 `https://`
 	* `g.tbcdn.cn` ＝> `g.alicdn.com`
 
+3. 更新 thx/brix-loader
+	* 修复 [#5 『移除当前组件关联的元素』可能不符合预期](https://github.com/thx/brix-loader/issues/5)
+
+```diff
+instance.destroy = function() {
+---	destroy(instance)
++++	destroy(false, instance)
+}
+```
+
 ## 0.1.3
 
 1. 更新 thx/brix-loader
