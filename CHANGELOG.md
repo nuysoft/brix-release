@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.1.5
+
+1. 更新 thx/brix-loader
+	* 修复 [#6 对选项集 options 执行浅拷贝 Util.extend() 会导致 options 中的对象属性冲突](https://github.com/thx/brix-loader/issues/6)
+	* 修复 [#7 早已不支持 options.events，但相关的代码未移除](https://github.com/thx/brix-loader/issues/7)
+	* 修复 [#8 新建模块实例时，传入构造函数的配置项 options 中的属性可能不全](https://github.com/thx/brix-loader/issues/8)
+2. 升级 jQuery `v1.11.3` ＝> `v1.12.0`
+3. 更新 thx/brix-components/css-tool/minecraft.less
+	* 移除 `input` 和 `textarea` 的 `.transition(none);`
+	* 调整 `.contextual-message` 有背景色时文案透明度 `1` =>`0.8`
+	* 增加 `.contextual-message` 中的链接下划线
+	* 调整 `.mm-tabs` 鼠标移入标签时文案颜色 `@brand` ＝> `#333`
+
 ## 0.1.4
 
 1. 更新 thx/brix-components
