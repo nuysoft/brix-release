@@ -1,54 +1,54 @@
 bower check-new     Checking for new versions of the project dependencies..
 brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 ├─┬ brix-base#91de117b7e
-│ ├── jquery#1.11.3 (latest is 3.0.0-alpha1+compat)
+│ ├── jquery#1.12.0 (latest is 3.0.0-beta1)
 │ └── underscore#1.7.0 (1.8.3 available)
 ├─┬ brix-bisheng#62713692d7
 │ ├── handlebars#2.0.0 (latest is 4.0.5)
-│ ├── jquery#1.11.3
+│ ├── jquery#1.12.0
 │ └── underscore#1.7.0 (latest is 1.8.3)
-├─┬ brix-components#6cd1ee5d51
+├─┬ brix-components#20e80099c2
 │ ├── Sortable#1.1.1 (latest is 1.4.2)
 │ ├── accountingjs#0.3.2 (latest is 0.4.1)
 │ ├─┬ bootstrap#3.3.5 (latest is 4.0.0-alpha.2)
-│ │ └── jquery#1.11.3 (3.0.0-alpha1+compat available)
+│ │ └── jquery#1.12.0 (3.0.0-beta1 available)
 │ ├─┬ brix-base#91de117b7e
-│ │ ├── jquery#1.11.3
+│ │ ├── jquery#1.12.0
 │ │ └── underscore#1.7.0
-│ ├─┬ brix-event#0d9c97bc3c
-│ │ ├── jquery#1.11.3
+│ ├─┬ brix-event#9dbb3c8812
+│ │ ├── jquery#1.12.0
 │ │ └── underscore#1.7.0
-│ ├── brix-loader#f65736246c
-│ ├── chartjs#1.0.2 (latest is 2.0.0-beta1)
-│ ├── colors#2.2.0
+│ ├── brix-loader#38c1f7ede1
+│ ├── chartjs#1.0.2 (latest is 2.0.0-beta2)
+│ ├── colors#2.2.0 (latest is 3.0.0)
 │ ├── director#1.2.8
 │ ├── fontawesome#4.4.0 (latest is 4.5.0)
 │ ├── handlebars#2.0.0
-│ ├── highlightjs#8.9.1 (latest is 9.0.0)
-│ ├── jquery#1.11.3
+│ ├── highlightjs#8.9.1 (latest is 9.1.0)
+│ ├── jquery#1.12.0
 │ ├── less#2.5.3
 │ ├── log#0.3.0
 │ ├── marked#0.3.5
-│ ├── mockjs#0.1.10 (latest is 0.2.0-alpha1)
-│ ├── moment#2.10.6
+│ ├── mockjs#0.1.11 (latest is 1.0.1-beta1)
+│ ├── moment#2.10.6 (latest is 2.11.1)
 │ ├── mousetrap#1.5.3
 │ ├── nprogress#0.2.0
-│ ├─┬ parsleyjs#2.1.3 (latest is 2.2.0-rc4)
-│ │ └── jquery#1.11.3 (3.0.0-alpha1+compat available)
+│ ├─┬ parsleyjs#2.1.3 (latest is 2.2.0)
+│ │ └── jquery#1.12.0 (3.0.0-beta1 available)
 │ ├── progressbar.js#0.7.4 (latest is 0.9.0)
 │ ├── require-css#0.1.8
 │ ├── require-less#0.1.5
 │ ├── requirejs#2.1.22
 │ ├── requirejs-text#2.0.14
 │ └── underscore#1.7.0
-├─┬ brix-event#0d9c97bc3c
-│ ├── jquery#1.11.3
+├─┬ brix-event#9dbb3c8812
+│ ├── jquery#1.12.0
 │ └── underscore#1.7.0
-├── brix-loader#f65736246c
+├── brix-loader#38c1f7ede1
 ├─┬ brix-spa#83d41d4f1a
-│ ├── brix-loader#f65736246c
+│ ├── brix-loader#38c1f7ede1
 │ ├── director#1.2.8
-│ ├── jquery#1.11.3
+│ ├── jquery#1.12.0
 │ ├── page#1.4.1 (latest is 1.6.4)
 │ ├── requirejs#2.1.22
 │ ├── requirejs-text#2.0.14
@@ -57,4 +57,4 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 ├── magix#2.0.0
 ├── minecraft-animation#c4d6bccec7
 ├── swfobject#0a37c21d17 extraneous
-└── vue#1.0.11
+└── vue#1.0.11 (1.0.15 available)
