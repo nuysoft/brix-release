@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.1.6 **更新** thx/brix-components
+1. Dropdown
+	* **修复** [#4 下拉图标错位](https://github.com/thx/brix-components/issues/4)
+	* **优化** [#10 下拉内容过多时（4000+条），搜素功能非常慢](https://github.com/thx/brix-components/issues/10)
+2. Popover
+	* **修复** [#5 浮层中的字体错误](https://github.com/thx/brix-components/issues/5)
+3. Linkage
+	* **增加** [#6 支持 indeterminate、radio](https://github.com/thx/brix-components/issues/6)
+4. DatePickerWrapper
+	* **修复** [#7 单个日期时，覆盖掉了 data-index-0 的内容，而不是更新](https://github.com/thx/brix-components/issues/7)
+	* **完善** [#12 下拉上拉指示箭头的使用不方便](https://github.com/thx/brix-components/issues/12)
+5. Sidenav
+	* **完善** [#9 页面横向滚动时，fixed 状态下 left 值实时计算](https://github.com/thx/brix-components/issues/9)
+6. TagInput
+	* **完善** [#11 未设置 autocomplete="off"](https://github.com/thx/brix-components/issues/11)
+
 ## 0.1.5
 
 1. **更新** thx/brix-loader
