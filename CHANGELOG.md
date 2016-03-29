@@ -17,6 +17,8 @@
 	* **完善** [#11 未设置 autocomplete="off"](https://github.com/thx/brix-components/issues/11)
 7. **升级** jQuery
 	* `v1.12.0` ＝> `v1.12.2`
+8. **更新** thx/brix-loader
+	* **修复** [#9 IE8 初始化组件时，报调用栈溢出](https://github.com/thx/brix-loader/issues/9)
 
 ## 0.1.5
 
