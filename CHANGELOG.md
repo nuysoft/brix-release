@@ -6,6 +6,7 @@
 	* **优化** [#10 下拉内容过多时（4000+条），搜素功能非常慢](https://github.com/thx/brix-components/issues/10)
 2. **更新** thx/brix-components Popover
 	* **修复** [#5 浮层中的字体错误](https://github.com/thx/brix-components/issues/5)
+	* **增加** [#15 支持自定义 HTML 模板](https://github.com/thx/brix-components/issues/15)
 3. **更新** thx/brix-components Linkage
 	* **增加** [#6 支持 indeterminate、radio](https://github.com/thx/brix-components/issues/6)
 4. **更新** thx/brix-components DatePickerWrapper
