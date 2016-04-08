@@ -4,6 +4,8 @@
 1. **更新** thx/brix-components Dropdown
 	* **修复** [#4 下拉图标错位](https://github.com/thx/brix-components/issues/4)
 	* **优化** [#10 下拉内容过多时（4000+条），搜素功能非常慢](https://github.com/thx/brix-components/issues/10)
+	* **修复** [#8 在事件 change.dropdown 中手动调用 .val() 无效](https://github.com/thx/brix-components/issues/8)
+	* **完善** [#18 事件 change.dropdown 的第二个参数 extra 的结构不一致](https://github.com/thx/brix-components/issues/18)
 2. **更新** thx/brix-components Popover
 	* **修复** [#5 浮层中的字体错误](https://github.com/thx/brix-components/issues/5)
 	* **增加** [#15 支持自定义 HTML 模板](https://github.com/thx/brix-components/issues/15)
@@ -20,6 +22,7 @@
 	* `v1.12.0` ＝> `v1.12.2`
 8. **更新** thx/brix-loader
 	* **修复** [#9 IE8 初始化组件时，报调用栈溢出](https://github.com/thx/brix-loader/issues/9)
+9. 新增 [Brix Animation](https://github.com/thx/brix-animation)
 
 ## 0.1.5
 

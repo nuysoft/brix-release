@@ -1,13 +1,17 @@
 bower check-new     Checking for new versions of the project dependencies..
 brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
-├─┬ brix-base#91de117b7e
-│ ├── jquery#1.12.2 (latest is 3.0.0-beta1)
+├─┬ brix-animation#0.0.1
+│ ├── jquery#1.12.2 (1.12.3 available, latest is 3.0.0-beta1)
+│ ├── requirejs#2.1.22 (2.2.0 available)
 │ └── underscore#1.7.0 (1.8.3 available)
+├─┬ brix-base#91de117b7e
+│ ├── jquery#1.12.2
+│ └── underscore#1.7.0
 ├─┬ brix-bisheng#62713692d7
 │ ├── handlebars#2.0.0 (latest is 4.0.5)
 │ ├── jquery#1.12.2
 │ └── underscore#1.7.0 (latest is 1.8.3)
-├─┬ brix-components#c7537e1ee8
+├─┬ brix-components#de055ee63a
 │ ├── Sortable#1.1.1 (latest is 1.4.2)
 │ ├── accountingjs#0.3.2 (latest is 0.4.1)
 │ ├─┬ bootstrap#3.3.5 (latest is 4.0.0-alpha.2)
@@ -18,7 +22,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├─┬ brix-event#9dbb3c8812
 │ │ ├── jquery#1.12.2
 │ │ └── underscore#1.7.0
-│ ├── brix-loader#38c1f7ede1
+│ ├── brix-loader#7596dcc0d8
 │ ├── chartjs#1.0.2 (latest is 2.0.0-beta2)
 │ ├── colors#2.2.0 (latest is 3.0.0)
 │ ├── director#1.2.8
@@ -29,7 +33,7 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 │ ├── less#2.5.3 (latest is 2.6.1)
 │ ├── log#0.3.0
 │ ├── marked#0.3.5
-│ ├── mockjs#0.1.11 (latest is 1.0.1-beta2)
+│ ├── mockjs#0.1.11 (latest is 1.0.1-beta3)
 │ ├── moment#2.10.6 (latest is 2.12.0)
 │ ├── mousetrap#1.5.3
 │ ├── nprogress#0.2.0
@@ -44,17 +48,17 @@ brix-release /Users/mo/AliDrive/ws/brix-central-impl/brix-release
 ├─┬ brix-event#9dbb3c8812
 │ ├── jquery#1.12.2
 │ └── underscore#1.7.0
-├── brix-loader#38c1f7ede1
+├── brix-loader#7596dcc0d8
 ├─┬ brix-spa#83d41d4f1a
-│ ├── brix-loader#38c1f7ede1
+│ ├── brix-loader#7596dcc0d8
 │ ├── director#1.2.8
 │ ├── jquery#1.12.2
 │ ├── page#1.4.1 (latest is 1.7.1)
-│ ├── requirejs#2.1.22 (2.2.0 available)
+│ ├── requirejs#2.1.22
 │ ├── requirejs-text#2.0.14
 │ ├── underscore#1.7.0
 │ └── uri.js#1.16.1 (1.17.1 available)
-├── magix#2.0.0
+├── magix#2.0.0 (2.1.0 available)
 ├── minecraft-animation#c4d6bccec7
 ├── swfobject#0a37c21d17 extraneous
-└── vue#1.0.11 (1.0.20 available)
+└── vue#1.0.11 (1.0.21 available)

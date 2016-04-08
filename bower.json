@@ -18,6 +18,7 @@
     "brix-components": "master",
     "brix-bisheng": "master",
     "brix-spa": "master",
+    "brix-animation": "*",
     "magix": "*",
     "minecraft-animation": "thx/minecraft-animation",
     "vue": "~1.0.8"

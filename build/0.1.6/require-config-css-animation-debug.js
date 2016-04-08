@@ -2226,6 +2226,7 @@ var requirejs, require, define;
             'brix/base': baseUrl + 'brix-base/dist/base' + (debug ? '-debug' : ''),
             'brix/event': baseUrl + 'brix-event/dist/event' + (debug ? '-debug' : ''),
             'brix/bisheng': baseUrl + 'brix-bisheng/dist/bisheng' + (debug ? '-debug' : ''),
+            'brix/animation': baseUrl + 'brix-animation/dist/animation' + (debug ? '-debug' : ''),
             'brix/spa': baseUrl + 'brix-spa/dist/spa',
             'magix': '//g.alicdn.com/thx/magix/2.0/requirejs-magix-min',
             'chartx': '//g.alicdn.com/thx/charts/1.6.1/chartx/',
