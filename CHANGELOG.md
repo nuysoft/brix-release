@@ -22,7 +22,7 @@
 	* `v1.12.0` ＝> `v1.12.2`
 8. **更新** thx/brix-loader
 	* **修复** [#9 IE8 初始化组件时，报调用栈溢出](https://github.com/thx/brix-loader/issues/9)
-9. 新增 [Brix Animation](https://github.com/thx/brix-animation)
+9. **增加** [Brix Animation](https://github.com/thx/brix-animation)
 
 ## 0.1.5
 
