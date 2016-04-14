@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.7
+
+1. **更新** thx/brix-loader
+	* **修复** [#10 错误提示信息不友好](https://github.com/thx/brix-loader/issues/10)
+	* **修复** [#11 Loader.destroy() 没有拦截错误](https://github.com/thx/brix-loader/issues/11)
+	* **增加** [#12 在组件模块上附加 __x_created_with: 'Brix Loader'](https://github.com/thx/brix-loader/issues/12)
+
 ## 0.1.6
 1. **更新** thx/brix-components Dropdown
 	* **修复** [#4 下拉图标错位](https://github.com/thx/brix-components/issues/4)
