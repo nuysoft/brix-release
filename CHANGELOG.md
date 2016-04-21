@@ -5,7 +5,17 @@
 1. **更新** thx/brix-loader
 	* **修复** [#10 错误提示信息不友好](https://github.com/thx/brix-loader/issues/10)
 	* **修复** [#11 Loader.destroy() 没有拦截错误](https://github.com/thx/brix-loader/issues/11)
-	* **增加** [#12 在组件模块上附加 __x_created_with: 'Brix Loader'](https://github.com/thx/brix-loader/issues/12)
+	* **增加** [#12 在组件模块上附加 `__x_created_with: 'Brix Loader'`](https://github.com/thx/brix-loader/issues/12)，参见 [thx/brix-base#3](https://github.com/thx/brix-base/issues/3)
+2. **更新** thx/brix-components Dropdown
+	* **修复** [#16 初始化时闪烁](https://github.com/thx/brix-components/issues/16)
+3. **更新** thx/brix-components DatePickerWrapper
+	* **修复** [#20 event.preventDefault() 不生效](https://github.com/thx/brix-components/issues/20)
+4. **更新** thx/brix-components Base
+	* **优化** [#22 事件状态不同步：通过 JS 绑定的事件的 isDefaultPrevented 与通过 Brix Event 绑定的不同步](https://github.com/thx/brix-components/issues/22)
+5. **更新** thx/brix-components components.css
+	* **优化** [#23 CSS 文件顺序不固定](https://github.com/thx/brix-components/issues/23)
+6. **更新** thx/brix-components Sidenav
+	* **优化** [#24 hash含反斜杠 / 符号时导致菜单选中状态匹配失败](https://github.com/thx/brix-components/issues/24)
 
 ## 0.1.6
 1. **更新** thx/brix-components Dropdown
