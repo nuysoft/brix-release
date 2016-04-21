@@ -16,6 +16,8 @@
 	* **优化** [#23 CSS 文件顺序不固定](https://github.com/thx/brix-components/issues/23)
 6. **更新** thx/brix-components Sidenav
 	* **优化** [#24 hash含反斜杠 / 符号时导致菜单选中状态匹配失败](https://github.com/thx/brix-components/issues/24)
+7. **升级** jQuery
+	* `v1.12.2` ＝> `v1.12.3`
 
 ## 0.1.6
 1. **更新** thx/brix-components Dropdown
