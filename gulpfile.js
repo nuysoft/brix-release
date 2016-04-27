@@ -9,6 +9,7 @@ var through = require('through2')
 var concat = require('gulp-concat')
 var uglify = require('gulp-uglify')
 var connect = require('gulp-connect')
+var combo = require('connect-combo')
 var shell = require('gulp-shell')
 
 
@@ -18,6 +19,7 @@ gulp.task('connect', function() {
         port: 4242,
         middleware: function(connect, opt) {
             return [
+                combo({}),
                 // https://github.com/senchalabs/connect/#use-middleware
                 function cors(req, res, next) {
                     res.setHeader('Access-Control-Allow-Origin', '*')
