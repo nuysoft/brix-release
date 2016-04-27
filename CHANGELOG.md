@@ -6,8 +6,10 @@
 	* **修复** [#10 错误提示信息不友好](https://github.com/thx/brix-loader/issues/10)
 	* **修复** [#11 Loader.destroy() 没有拦截错误](https://github.com/thx/brix-loader/issues/11)
 	* **增加** [#12 在组件模块上附加 `__x_created_with: 'Brix Loader'`](https://github.com/thx/brix-loader/issues/12)，参见 [thx/brix-base#3](https://github.com/thx/brix-base/issues/3)
+	* **增加** [#14 运行时异常收集](https://github.com/thx/brix-loader/issues/14)
 2. **更新** thx/brix-components Dropdown
 	* **修复** [#16 初始化时闪烁](https://github.com/thx/brix-components/issues/16)
+	* **优化** [#25 性能优化](https://github.com/thx/brix-components/issues/16)，参见 [thx/brix-loader#13 性能测试](https://github.com/thx/brix-loader/issues/13)
 3. **更新** thx/brix-components DatePickerWrapper
 	* **修复** [#20 event.preventDefault() 不生效](https://github.com/thx/brix-components/issues/20)
 4. **更新** thx/brix-components Base
