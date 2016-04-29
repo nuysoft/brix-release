@@ -40,6 +40,7 @@
                 // Brix 组件
                 'components/base': baseUrl + brixComponentsBaseUrl + 'base/base.js',
                 'components/dropdown': baseUrl + brixComponentsBaseUrl + 'dropdown/dropdown.js',
+                'components/switch': baseUrl + brixComponentsBaseUrl + 'switch/switch.js',
                 'components/pagination': baseUrl + brixComponentsBaseUrl + 'pagination/pagination.js',
                 'components/pagination/state': baseUrl + brixComponentsBaseUrl + 'pagination/state.js',
                 'components/dialog': baseUrl + brixComponentsBaseUrl + 'dialog/dialog.js',
