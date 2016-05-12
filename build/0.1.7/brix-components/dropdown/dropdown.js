@@ -113,6 +113,10 @@ define(
                 data: [],
                 disabled: undefined,
 
+                width: undefined, // data-width="100" data-width="100px" data-width="100%"
+                className: undefined, // { data-class | data-className | className: ''}
+                justify: false, // 两端对齐 data-justify="true|false"
+
                 searchbox: false, // false | true | keyup | enter
                 placeholder: '搜索关键词',
                 _searchboxEvent: 'keyup', // keyup | enter
@@ -167,16 +171,38 @@ define(
                         options.popover = true
                     }
                 }
+
+                // data-class => data-className
+                if (this.options.class) this.options.className = this.options.class
             },
             render: function() {
                 this.$relatedElement = $(
                     compiledTemplate(this.options)
                 ).insertBefore(this.$element)
 
+                var width = this.options.width
+                if (width) {
+                    if (parseInt(width) == width) width += 'px'
+                    this.$relatedElement.css({
+                        width: width,
+                        'min-width': width
+                    })
+                }
+
+                // 类样式 data-className
+                if (this.options.className) {
+                    this.$relatedElement.addClass(this.options.className)
+                }
+
+                // 两端对齐 data-justify
+                if (this.options.justify) {
+                    this.$relatedElement.addClass('dropdown-justify')
+                }
+
                 this.$manager.delegate(this.$element, this)
                 this.$manager.delegate(this.$relatedElement, this)
 
-                if(this.options.popover) Loader.boot(this.$relatedElement)
+                if (this.options.popover) Loader.boot(this.$relatedElement)
 
                 // this._responsive()
                 this._autoHide()
@@ -250,7 +276,8 @@ define(
                 // TODO #19 支持 event.preventDefault()
                 // 应该先触发 change.dropdown 事件，然后检测事件的默认行为是否被阻止，然后才是改变样式！
 
-                this.trigger('change' + NAMESPACE, {
+                var event = $.Event('change' + NAMESPACE)
+                this.trigger(event, {
                     name: this.options.name,
                     label: data.label,
                     value: data.value
@@ -278,7 +305,7 @@ define(
 
                 this.$manager.delegate(this.$relatedElement, this)
 
-                if(this.options.popover) Loader.boot(this.$relatedElement)
+                if (this.options.popover) Loader.boot(this.$relatedElement)
 
                 return this
             },

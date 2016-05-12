@@ -50,6 +50,7 @@
                 'components/table/linkage': baseUrl + brixComponentsBaseUrl + 'table/linkage.js',
                 'components/datepicker': baseUrl + brixComponentsBaseUrl + 'datepicker/datepicker.js',
                 'components/datepickerwrapper': baseUrl + brixComponentsBaseUrl + 'datepickerwrapper/datepickerwrapper.js',
+                'components/datepicker/ancient': baseUrl + brixComponentsBaseUrl + 'datepicker/ancient/datepicker.js',
                 'components/popover': baseUrl + brixComponentsBaseUrl + 'popover/popover.js',
                 'components/uploader': baseUrl + brixComponentsBaseUrl + 'uploader/uploader.js',
                 'components/nprogress': baseUrl + brixComponentsBaseUrl + 'nprogress/nprogress.js',

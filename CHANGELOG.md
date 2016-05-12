@@ -7,18 +7,35 @@
 	* **修复** [#11 Loader.destroy() 没有拦截错误](https://github.com/thx/brix-loader/issues/11)
 	* **增加** [#12 在组件模块上附加 `__x_created_with: 'Brix Loader'`](https://github.com/thx/brix-loader/issues/12)，参见 [thx/brix-base#3](https://github.com/thx/brix-base/issues/3)
 	* **增加** [#14 运行时异常收集](https://github.com/thx/brix-loader/issues/14)
-2. **更新** thx/brix-components Dropdown
+2. **更新** thx/brix-components Base
+	* **修复** [#22 事件状态不同步：通过 JS 绑定的事件的 isDefaultPrevented 与通过 Brix Event 绑定的不同步](https://github.com/thx/brix-components/issues/22)
+3. **更新** thx/brix-components components.css
+	* **优化** [#23 CSS 文件顺序不固定](https://github.com/thx/brix-components/issues/23)
+4. **更新** thx/brix-components Dropdown
 	* **修复** [#16 初始化时闪烁](https://github.com/thx/brix-components/issues/16)
 	* **优化** [#25 性能优化](https://github.com/thx/brix-components/issues/16)，参见 [thx/brix-loader#13 性能测试](https://github.com/thx/brix-loader/issues/13)
-3. **更新** thx/brix-components DatePickerWrapper
+	* **修复** [#37 与 Vue 整合后，不需要再执行 _fillSelect()](https://github.com/thx/brix-components/issues/37)
+	* **修复** [#38 与 Vue 整合后，组件节点 <select> 的内容更新后不自动更新 Dropdown 的内容](https://github.com/thx/brix-components/issues/38)
+	* **新增** [#46 增加宽度选项 width、两端对齐 justify](https://github.com/thx/brix-components/issues/46)
+5. **更新** thx/brix-components DatePickerWrapper
 	* **修复** [#20 event.preventDefault() 不生效](https://github.com/thx/brix-components/issues/20)
-4. **更新** thx/brix-components Base
-	* **优化** [#22 事件状态不同步：通过 JS 绑定的事件的 isDefaultPrevented 与通过 Brix Event 绑定的不同步](https://github.com/thx/brix-components/issues/22)
-5. **更新** thx/brix-components components.css
-	* **优化** [#23 CSS 文件顺序不固定](https://github.com/thx/brix-components/issues/23)
+	* **修复** [#41 快捷日期遇到含有31天的月份时，计算『上月』错误](https://github.com/thx/brix-components/issues/41)
+	* **修复** [#44 执行 .val( value ) 后快捷日期的焦点没有重置](https://github.com/thx/brix-components/issues/44)
+	* **优化** [#50 执行 .val( value ) 没有更新组件节点的内容，没有触发 change.datepickerwrapper 事件](https://github.com/thx/brix-components/issues/50)
 6. **更新** thx/brix-components Sidenav
-	* **优化** [#24 hash含反斜杠 / 符号时导致菜单选中状态匹配失败](https://github.com/thx/brix-components/issues/24)
-7. **升级** jQuery
+	* **修复** [#24 hash含反斜杠 / 符号时导致菜单选中状态匹配失败](https://github.com/thx/brix-components/issues/24)
+7. **更新** thx/brix-components Uploader
+	* **增加** [#34 支持进度](https://github.com/thx/brix-components/issues/34)
+8. **更新** thx/brix-components Pagination
+	* **优化** [#36 当改变分页大小时触发了 change.dropdown 和 change.pagination 两个事件，改为只触发 change.pagination](https://github.com/thx/brix-components/issues/36)
+	* **优化** [#39 当改变分页大小后，当前页自动回到第 1 页](https://github.com/thx/brix-components/issues/39)
+	* **修复** [#45 设置 data-limits 后分页大小混乱](https://github.com/thx/brix-components/issues/45)
+9. **更新** thx/brix-components Switch Button
+	* **增加** [#35 Switch Button](https://github.com/thx/brix-components/issues/35)
+10. **更新** thx/brix-components Table
+	* **增加** [#42 Table.extend 是 undefined](https://github.com/thx/brix-components/issues/42)
+	* **增加** [#47 Table Column Priority 支持配置默认显示的 fields](https://github.com/thx/brix-components/issues/47)
+10. **升级** jQuery
 	* `v1.12.2` ＝> `v1.12.3`
 
 ## 0.1.6

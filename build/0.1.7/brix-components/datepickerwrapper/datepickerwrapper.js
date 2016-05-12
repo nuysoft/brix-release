@@ -52,8 +52,8 @@ define(
                     moment().startOf('day')
                 ],
                 '上月': [
-                    moment().startOf('day').subtract(1, 'month').subtract(nowDate - 1, 'days'),
-                    moment().startOf('day').subtract(nowDate, 'days')
+                    moment().startOf('day').startOf('month').subtract(1, 'month'),
+                    moment().startOf('day').startOf('month').subtract(1, 'days')
                 ],
                 '最近 15 天': [
                     moment().startOf('day').subtract(15, 'days'),
@@ -160,6 +160,8 @@ define(
                             _.isArray(value) ? value[index] : value
                         )
                     })
+
+                    this.submit() // #44 #50
                     return this
                 }
                 return _.map(pickerComponents, function(item /*, index*/ ) {
@@ -372,8 +374,7 @@ define(
                     top: offset.top + relatedMarginTop + (this.options.offset.top || 0)
                 }
             },
-            /* jshint unused:false */
-            submit: function(event, from) {
+            submit: function(event /* jshint unused:false */ , from) {
                 var that = this
 
                 switch (from) {
