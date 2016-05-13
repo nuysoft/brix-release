@@ -15,7 +15,7 @@
 	* **修复** [#16 初始化时闪烁](https://github.com/thx/brix-components/issues/16)
 	* **优化** [#25 性能优化](https://github.com/thx/brix-components/issues/16)，参见 [thx/brix-loader#13 性能测试](https://github.com/thx/brix-loader/issues/13)
 	* **修复** [#37 与 Vue 整合后，不需要再执行 _fillSelect()](https://github.com/thx/brix-components/issues/37)
-	* **修复** [#38 与 Vue 整合后，组件节点 <select> 的内容更新后不自动更新 Dropdown 的内容](https://github.com/thx/brix-components/issues/38)
+	* **修复** [#38 与 Vue 整合后，组件节点 `<select>` 的内容更新后不自动更新 Dropdown 的内容](https://github.com/thx/brix-components/issues/38)
 	* **新增** [#46 增加宽度选项 width、两端对齐 justify](https://github.com/thx/brix-components/issues/46)
 5. **更新** thx/brix-components DatePickerWrapper
 	* **修复** [#20 event.preventDefault() 不生效](https://github.com/thx/brix-components/issues/20)
