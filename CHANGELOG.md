@@ -19,6 +19,7 @@
 	* **新增** [#46 增加宽度选项 width、两端对齐 justify](https://github.com/thx/brix-components/issues/46)
 5. **更新** thx/brix-components DatePickerWrapper
 	* **修复** [#20 event.preventDefault() 不生效](https://github.com/thx/brix-components/issues/20)
+	* **修复** [#28 支持禁选范围 excluded](https://github.com/thx/brix-components/issues/28)
 	* **修复** [#41 快捷日期遇到含有31天的月份时，计算『上月』错误](https://github.com/thx/brix-components/issues/41)
 	* **修复** [#44 执行 .val( value ) 后快捷日期的焦点没有重置](https://github.com/thx/brix-components/issues/44)
 	* **优化** [#50 执行 .val( value ) 没有更新组件节点的内容，没有触发 change.datepickerwrapper 事件](https://github.com/thx/brix-components/issues/50)
@@ -35,7 +36,9 @@
 10. **更新** thx/brix-components Table
 	* **增加** [#42 Table.extend 是 undefined](https://github.com/thx/brix-components/issues/42)
 	* **增加** [#47 Table Column Priority 支持配置默认显示的 fields](https://github.com/thx/brix-components/issues/47)
-10. **升级** jQuery
+11. **更新** thx/brix-components HourPicker
+	* **增加** [#52 选择小时后触发 change.hourpicker 事件](https://github.com/thx/brix-components/issues/52)
+12. **升级** jQuery
 	* `v1.12.2` ＝> `v1.12.3`
 
 ## 0.1.6
