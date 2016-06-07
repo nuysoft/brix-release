@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.1.8-beta1
+
+### thx/brix-loader
+1. **优化** [#18 尝试快速获取已经加载过的模块](https://github.com/thx/brix-loader/issues/18)
+
+### thx/brix-components
+1. **Dropdown** [#55 支持 .disabled() 方法](https://github.com/thx/brix-components/issues/55)、[#60 增加 title="<% item.label %>"](https://github.com/thx/brix-components/issues/60)
+2. **Sidenav** [#57 支持默认展开或收起，支持 localStorage](https://github.com/thx/brix-components/issues/57)
+
 ## 0.1.7
 
 1. **更新** thx/brix-loader
