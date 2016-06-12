@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.1.8-beta2
+
+### thx/brix-event
+1. **优化** [#6 支持预分析事件](https://github.com/thx/brix-event/issues/6)
+
+### thx/brix-components
+1. **Dialog** [#61 事件 close.dialog 支持 event.preventDefault()](https://github.com/thx/brix-components/issues/61)
+
+
 ## 0.1.8-beta1
 
 ### thx/brix-loader
