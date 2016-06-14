@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.1.8-beta3
+
+1. [#1 `waitSeconds: 0`](https://github.com/thx/brix-release/issues/1)
+
+### thx/brix-components
+1. [#62 模板文件打包：放弃 heredoc，改用字符串拼接](https://github.com/thx/brix-components/issues/62)
+
+
 ## 0.1.8-beta2
 
 ### thx/brix-event
