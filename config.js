@@ -28,7 +28,7 @@
 
     // http://requirejs.org/docs/api.html
     require.config({
-        waitSeconds: 15, // http://requirejs.org/docs/api.html#config-waitSeconds
+        waitSeconds: 0, // http://requirejs.org/docs/api.html#config-waitSeconds
         // urlArgs: "bust=" + (new Date()).getTime() // http://requirejs.org/docs/api.html#config-urlArgs
         map: { // http://requirejs.org/docs/api.html#config-map
             '*': {
