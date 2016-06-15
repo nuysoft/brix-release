@@ -6,6 +6,7 @@
 
 ### thx/brix-components
 1. [#62 模板文件打包：放弃 heredoc，改用字符串拼接](https://github.com/thx/brix-components/issues/62)
+2. [#63 梳理和修正所有组件事件](https://github.com/thx/brix-components/issues/63)
 
 
 ## 0.1.8-beta2
