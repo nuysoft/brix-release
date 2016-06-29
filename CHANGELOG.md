@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.8-beta4
+
+### thx/brix-components
+1. 增加 SiteNav 组件
+
+
 ## 0.1.8-beta3
 
 1. [#1 `waitSeconds: 0`](https://github.com/thx/brix-release/issues/1)
