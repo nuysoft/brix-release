@@ -2,10 +2,12 @@
     // [Add support for making combo requests for loading modules](https://github.com/requirejs/requirejs/issues/1201)
     // [RequireJS Request Aggregator](https://gist.github.com/prajwalit/0570797630293fd873fb)
     var __load = require.load
-    var COMBO_MODULES = [
-        'brix/loader', 'brix/base', 'brix/event', 'brix/bisheng', 'brix/animation', 'brix/spa',
-        'components/base', 'components/dropdown', 'components/switch', 'components/pagination', 'components/pagination/state', 'components/dialog', 'components/dialog/position', 'components/dialogview', 'components/table', 'components/table/linkage', 'components/datepicker', 'components/datepickerwrapper', 'components/datepicker/ancient', 'components/popover', 'components/uploader', 'components/nprogress', 'components/hourpicker', 'components/areapicker', 'components/tree', 'components/tree/tree.node.json.tpl', 'components/taginput', 'components/suggest', 'components/chartxwrapper', 'components/hello', 'components/hello-extra', 'components/colorpicker', 'components/modal', 'components/editor', 'components/editable', 'components/spin', 'components/countdown', 'components/sidebar', 'components/chart', 'components/imager', 'components/validation', 'components/validation/i18n', 'components/ellipsis', 'components/progressbarwrapper', 'components/errortips', 'components/sidenav', 'components/sitenav', 'components/footer', 'components/wizard', 'components/tab', 'components/ctree', 'components/sticky', 'components/nav', 'components/readme', 'components/css-layout-debugger', 'components/boilerplate'
+    var INCLUDE = [
+        'brix/loader', 'brix/base', 'brix/event', 'brix/animation', 'brix/spa',
+        'magix', 'chartx', 'jquery', 'underscore', 'moment', 'handlebars', 'mousetrap', 'mock', 'marked', 'Chart', 'director',
+        'components/base', 'components/dropdown', 'components/pagination', 'components/pagination/state', 'components/dialog', 'components/dialog/position', 'components/dialogview', 'components/table', 'components/table/linkage', 'components/datepicker', 'components/datepickerwrapper', 'components/datepicker/ancient', 'components/popover', 'components/uploader', 'components/nprogress', 'components/hourpicker', 'components/areapicker', 'components/tree', 'components/tree/tree.node.json.tpl', 'components/taginput', 'components/suggest', 'components/chartxwrapper', 'components/hello', 'components/hello-extra', 'components/colorpicker', 'components/modal', 'components/editor', 'components/editable', 'components/spin', 'components/countdown', 'components/sidebar', 'components/chart', 'components/imager', 'components/validation', 'components/ellipsis', 'components/progressbarwrapper', 'components/errortips', 'components/sidenav', 'components/sitenav', 'components/footer', 'components/wizard', 'components/tab', 'components/ctree', 'components/sticky', 'components/nav', 'components/readme', 'components/css-layout-debugger', 'components/boilerplate'
     ]
+    var EXCLUDE = ['marked']
 
     var local = ~location.search.indexOf('local') || ~location.host.indexOf('localhost') || ~location.host.indexOf('.local')
     var debug = ~location.search.indexOf('debug')
@@ -36,7 +38,7 @@
         for (var i = 0; i < modules.length; i++) {
             segments.push(modules[i].url.replace(COMBO_BASE, ''))
         }
-        node.src = COMBO_BASE + '??' + segments.join(',')
+        node.src = COMBO_BASE + (segments.length > 1 ? '??' : '') + segments.join(',')
 
         node.addEventListener('load', function(event) {
             for (var i = 0; i < modules.length; i++) {
@@ -55,7 +57,8 @@
     require.load = function(context, moduleName, url) {
         console.log(moduleName)
         if (
-            COMBO_MODULES.indexOf(moduleName) === -1 ||
+            EXCLUDE.indexOf(moduleName) !== -1 ||
+            INCLUDE.indexOf(moduleName) === -1 ||
             url.indexOf(COMBO_BASE) !== 0
         ) return __load.call(require, context, moduleName, url)
 

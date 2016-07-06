@@ -22,7 +22,8 @@
         var baseUrl = 'brix-components/'
         if (local) debug = true
         if (daily) debug = true
-        baseUrl += 'dist/'
+        if (!debug) baseUrl += 'dist/'
+        baseUrl += 'dist/' // test
         return baseUrl
     }()
 
@@ -63,34 +64,34 @@
                 // 'components/suggest': baseUrl + brixComponentsBaseUrl + 'suggest/suggest.js',
                 // 'components/chartxwrapper': baseUrl + brixComponentsBaseUrl + 'chartxwrapper/chartxwrapper.js',
 
-                'components/hello': baseUrl + brixComponentsBaseUrl + 'hello/hello.js',
-                'components/hello-extra': baseUrl + brixComponentsBaseUrl + 'hello-extra/hello-extra.js',
-                'components/colorpicker': baseUrl + brixComponentsBaseUrl + 'colorpicker/colorpicker.js',
-                'components/modal': baseUrl + brixComponentsBaseUrl + 'modal/modal.js',
-                'components/editor': baseUrl + brixComponentsBaseUrl + 'editor/editor.js',
-                'components/editable': baseUrl + brixComponentsBaseUrl + 'editable/editable.js',
-                'components/spin': baseUrl + brixComponentsBaseUrl + 'spin/spin.js',
-                'components/countdown': baseUrl + brixComponentsBaseUrl + 'countdown/countdown.js',
-                'components/sidebar': baseUrl + brixComponentsBaseUrl + 'sidebar/sidebar.js',
-                'components/chart': baseUrl + brixComponentsBaseUrl + 'chart/chart.js',
-                'components/imager': baseUrl + brixComponentsBaseUrl + 'imager/imager.js',
-                'components/validation': baseUrl + brixComponentsBaseUrl + 'validation/validation.js',
-                'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
-                'components/ellipsis': baseUrl + brixComponentsBaseUrl + 'ellipsis/ellipsis.js',
-                'components/progressbarwrapper': baseUrl + brixComponentsBaseUrl + 'progressbarwrapper/progressbarwrapper.js',
-                'components/errortips': baseUrl + brixComponentsBaseUrl + 'errortips/errortips.js',
-                'components/sidenav': baseUrl + brixComponentsBaseUrl + 'sidenav/sidenav.js',
-                'components/sitenav': baseUrl + brixComponentsBaseUrl + 'sitenav/sitenav.js',
-                'components/footer': baseUrl + brixComponentsBaseUrl + 'footer/footer.js',
-                'components/wizard': baseUrl + brixComponentsBaseUrl + 'wizard/wizard.js',
-                'components/tab': baseUrl + brixComponentsBaseUrl + 'tab/tab.js',
+                // 'components/hello': baseUrl + brixComponentsBaseUrl + 'hello/hello.js',
+                // 'components/hello-extra': baseUrl + brixComponentsBaseUrl + 'hello-extra/hello-extra.js',
+                // 'components/colorpicker': baseUrl + brixComponentsBaseUrl + 'colorpicker/colorpicker.js',
+                // 'components/modal': baseUrl + brixComponentsBaseUrl + 'modal/modal.js',
+                // 'components/editor': baseUrl + brixComponentsBaseUrl + 'editor/editor.js',
+                // 'components/editable': baseUrl + brixComponentsBaseUrl + 'editable/editable.js',
+                // 'components/spin': baseUrl + brixComponentsBaseUrl + 'spin/spin.js',
+                // 'components/countdown': baseUrl + brixComponentsBaseUrl + 'countdown/countdown.js',
+                // 'components/sidebar': baseUrl + brixComponentsBaseUrl + 'sidebar/sidebar.js',
+                // 'components/chart': baseUrl + brixComponentsBaseUrl + 'chart/chart.js',
+                // 'components/imager': baseUrl + brixComponentsBaseUrl + 'imager/imager.js',
+                // 'components/validation': baseUrl + brixComponentsBaseUrl + 'validation/validation.js',
+                // 'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
+                // 'components/ellipsis': baseUrl + brixComponentsBaseUrl + 'ellipsis/ellipsis.js',
+                // 'components/progressbarwrapper': baseUrl + brixComponentsBaseUrl + 'progressbarwrapper/progressbarwrapper.js',
+                // 'components/errortips': baseUrl + brixComponentsBaseUrl + 'errortips/errortips.js',
+                // 'components/sidenav': baseUrl + brixComponentsBaseUrl + 'sidenav/sidenav.js',
+                // 'components/sitenav': baseUrl + brixComponentsBaseUrl + 'sitenav/sitenav.js',
+                // 'components/footer': baseUrl + brixComponentsBaseUrl + 'footer/footer.js',
+                // 'components/wizard': baseUrl + brixComponentsBaseUrl + 'wizard/wizard.js',
+                // 'components/tab': baseUrl + brixComponentsBaseUrl + 'tab/tab.js',
 
-                'components/ctree': baseUrl + brixComponentsBaseUrl + 'ctree/ctree.js',
-                'components/sticky': baseUrl + brixComponentsBaseUrl + 'sticky/sticky.js',
-                'components/nav': baseUrl + brixComponentsBaseUrl + 'nav/nav.js',
-                'components/readme': baseUrl + brixComponentsBaseUrl + 'readme/readme.js',
-                'components/css-layout-debugger': baseUrl + brixComponentsBaseUrl + 'css-layout-debugger/css-layout-debugger.js',
-                'components/boilerplate': baseUrl + brixComponentsBaseUrl + 'boilerplate/boilerplate.js'
+                // 'components/ctree': baseUrl + brixComponentsBaseUrl + 'ctree/ctree.js',
+                // 'components/sticky': baseUrl + brixComponentsBaseUrl + 'sticky/sticky.js',
+                // 'components/nav': baseUrl + brixComponentsBaseUrl + 'nav/nav.js',
+                // 'components/readme': baseUrl + brixComponentsBaseUrl + 'readme/readme.js',
+                // 'components/css-layout-debugger': baseUrl + brixComponentsBaseUrl + 'css-layout-debugger/css-layout-debugger.js',
+                // 'components/boilerplate': baseUrl + brixComponentsBaseUrl + 'boilerplate/boilerplate.js'
             }
         },
         paths: { // http://requirejs.org/docs/api.html#config-paths
@@ -98,7 +99,6 @@
             'brix/loader': baseUrl + 'brix-loader/dist/loader' + (debug ? '-debug' : ''),
             'brix/base': baseUrl + 'brix-base/dist/base' + (debug ? '-debug' : ''),
             'brix/event': baseUrl + 'brix-event/dist/event' + (debug ? '-debug' : ''),
-            'brix/bisheng': baseUrl + 'brix-bisheng/dist/bisheng' + (debug ? '-debug' : ''),
             'brix/animation': baseUrl + 'brix-animation/dist/animation' + (debug ? '-debug' : ''),
             'brix/spa': baseUrl + 'brix-spa/dist/spa',
             'magix': '//g.alicdn.com/thx/magix/2.0/requirejs-magix-min',
@@ -129,6 +129,35 @@
             'components/taginput': baseUrl + brixComponentsBaseUrl + 'taginput/taginput',
             'components/suggest': baseUrl + brixComponentsBaseUrl + 'suggest/suggest',
             'components/chartxwrapper': baseUrl + brixComponentsBaseUrl + 'chartxwrapper/chartxwrapper',
+
+            'components/hello': baseUrl + brixComponentsBaseUrl + 'hello/hello',
+            'components/hello-extra': baseUrl + brixComponentsBaseUrl + 'hello-extra/hello-extra',
+            'components/colorpicker': baseUrl + brixComponentsBaseUrl + 'colorpicker/colorpicker',
+            'components/modal': baseUrl + brixComponentsBaseUrl + 'modal/modal',
+            'components/editor': baseUrl + brixComponentsBaseUrl + 'editor/editor',
+            'components/editable': baseUrl + brixComponentsBaseUrl + 'editable/editable',
+            'components/spin': baseUrl + brixComponentsBaseUrl + 'spin/spin',
+            'components/countdown': baseUrl + brixComponentsBaseUrl + 'countdown/countdown',
+            'components/sidebar': baseUrl + brixComponentsBaseUrl + 'sidebar/sidebar',
+            'components/chart': baseUrl + brixComponentsBaseUrl + 'chart/chart',
+            'components/imager': baseUrl + brixComponentsBaseUrl + 'imager/imager',
+            'components/validation': baseUrl + brixComponentsBaseUrl + 'validation/validation',
+            'components/validation/i18n': baseUrl + 'parsleyjs/src/i18n',
+            'components/ellipsis': baseUrl + brixComponentsBaseUrl + 'ellipsis/ellipsis',
+            'components/progressbarwrapper': baseUrl + brixComponentsBaseUrl + 'progressbarwrapper/progressbarwrapper',
+            'components/errortips': baseUrl + brixComponentsBaseUrl + 'errortips/errortips',
+            'components/sidenav': baseUrl + brixComponentsBaseUrl + 'sidenav/sidenav',
+            'components/sitenav': baseUrl + brixComponentsBaseUrl + 'sitenav/sitenav',
+            'components/footer': baseUrl + brixComponentsBaseUrl + 'footer/footer',
+            'components/wizard': baseUrl + brixComponentsBaseUrl + 'wizard/wizard',
+            'components/tab': baseUrl + brixComponentsBaseUrl + 'tab/tab',
+
+            'components/ctree': baseUrl + brixComponentsBaseUrl + 'ctree/ctree',
+            'components/sticky': baseUrl + brixComponentsBaseUrl + 'sticky/sticky',
+            'components/nav': baseUrl + brixComponentsBaseUrl + 'nav/nav',
+            'components/readme': baseUrl + brixComponentsBaseUrl + 'readme/readme',
+            'components/css-layout-debugger': baseUrl + brixComponentsBaseUrl + 'css-layout-debugger/css-layout-debugger',
+            'components/boilerplate': baseUrl + brixComponentsBaseUrl + 'boilerplate/boilerplate',
 
             // 运行依赖库
             dependencies: baseUrl + '',
