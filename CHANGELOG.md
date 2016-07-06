@@ -1,9 +1,14 @@
 # CHANGELOG
 
+## 0.1.8-beta5
+### thx/brix-loader
+1. [取消快速获取已经加载过的模块](https://github.com/thx/brix-loader/issues/18)
+
 ## 0.1.8-beta4
 
 ### thx/brix-components
-1. 增加 SiteNav 组件
+1. [增加 SiteNav 组件](https://github.com/thx/brix-components/issues/64)
+2. [更新 Footer 组件](https://github.com/thx/brix-components/issues/65)
 
 
 ## 0.1.8-beta3
