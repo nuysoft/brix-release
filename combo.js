@@ -2,7 +2,18 @@
     // [Add support for making combo requests for loading modules](https://github.com/requirejs/requirejs/issues/1201)
     // [RequireJS Request Aggregator](https://gist.github.com/prajwalit/0570797630293fd873fb)
     var __load = require.load
-    var COMBO_BASE = function() {
+    var COMBO_MODULES = [
+        'brix/loader', 'brix/base', 'brix/event', 'brix/bisheng', 'brix/animation', 'brix/spa',
+        'components/base', 'components/dropdown', 'components/switch', 'components/pagination', 'components/pagination/state', 'components/dialog', 'components/dialog/position', 'components/dialogview', 'components/table', 'components/table/linkage', 'components/datepicker', 'components/datepickerwrapper', 'components/datepicker/ancient', 'components/popover', 'components/uploader', 'components/nprogress', 'components/hourpicker', 'components/areapicker', 'components/tree', 'components/tree/tree.node.json.tpl', 'components/taginput', 'components/suggest', 'components/chartxwrapper', 'components/hello', 'components/hello-extra', 'components/colorpicker', 'components/modal', 'components/editor', 'components/editable', 'components/spin', 'components/countdown', 'components/sidebar', 'components/chart', 'components/imager', 'components/validation', 'components/validation/i18n', 'components/ellipsis', 'components/progressbarwrapper', 'components/errortips', 'components/sidenav', 'components/sitenav', 'components/footer', 'components/wizard', 'components/tab', 'components/ctree', 'components/sticky', 'components/nav', 'components/readme', 'components/css-layout-debugger', 'components/boilerplate'
+    ]
+
+    var local = ~location.search.indexOf('local') || ~location.host.indexOf('localhost') || ~location.host.indexOf('.local')
+    var debug = ~location.search.indexOf('debug')
+    var script = function() {
+        var scripts = document.getElementsByTagName('script')
+        return scripts[scripts.length - 1]
+    }()
+    var COMBO_BASE = function(script) {
         var src = script.getAttribute('src')
         var baseUrl = /(.+\/)(.+)/.exec(src)[1]
         if (/-debug\.js$/.test(src)) debug = true
@@ -11,7 +22,7 @@
         if (daily || cdn) local = false
         if (local) baseUrl += 'bower_components/'
         return baseUrl
-    }()
+    }(script)
     var needComboModules = []
     var fetching = false
 
@@ -42,7 +53,11 @@
     }
 
     require.load = function(context, moduleName, url) {
-        if (url.indexOf(COMBO_BASE) !== 0) return __load.call(require, context, moduleName, url)
+        console.log(moduleName)
+        if (
+            COMBO_MODULES.indexOf(moduleName) === -1 ||
+            url.indexOf(COMBO_BASE) !== 0
+        ) return __load.call(require, context, moduleName, url)
 
         needComboModules.push({
             context: context,

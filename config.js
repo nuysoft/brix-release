@@ -22,7 +22,7 @@
         var baseUrl = 'brix-components/'
         if (local) debug = true
         if (daily) debug = true
-        if (!debug) baseUrl += 'dist/'
+        baseUrl += 'dist/'
         return baseUrl
     }()
 
@@ -38,30 +38,30 @@
                 text: baseUrl + 'requirejs-text/text.js',
 
                 // Brix 组件
-                'components/base': baseUrl + brixComponentsBaseUrl + 'base/base.js',
-                'components/dropdown': baseUrl + brixComponentsBaseUrl + 'dropdown/dropdown.js',
-                'components/switch': baseUrl + brixComponentsBaseUrl + 'switch/switch.js',
-                'components/pagination': baseUrl + brixComponentsBaseUrl + 'pagination/pagination.js',
-                'components/pagination/state': baseUrl + brixComponentsBaseUrl + 'pagination/state.js',
-                'components/dialog': baseUrl + brixComponentsBaseUrl + 'dialog/dialog.js',
-                'components/dialog/position': baseUrl + brixComponentsBaseUrl + 'dialog/position.js',
-                'components/dialogview': baseUrl + brixComponentsBaseUrl + 'dialogview/dialogview.js',
-                'components/table': baseUrl + brixComponentsBaseUrl + 'table/table.js',
-                'components/table/linkage': baseUrl + brixComponentsBaseUrl + 'table/linkage.js',
-                'components/datepicker': baseUrl + brixComponentsBaseUrl + 'datepicker/datepicker.js',
-                'components/datepickerwrapper': baseUrl + brixComponentsBaseUrl + 'datepickerwrapper/datepickerwrapper.js',
-                'components/datepicker/ancient': baseUrl + brixComponentsBaseUrl + 'datepicker/ancient/datepicker.js',
-                'components/popover': baseUrl + brixComponentsBaseUrl + 'popover/popover.js',
-                'components/uploader': baseUrl + brixComponentsBaseUrl + 'uploader/uploader.js',
-                'components/nprogress': baseUrl + brixComponentsBaseUrl + 'nprogress/nprogress.js',
+                // 'components/base': baseUrl + brixComponentsBaseUrl + 'base/base.js',
+                // 'components/dropdown': baseUrl + brixComponentsBaseUrl + 'dropdown/dropdown.js',
+                // 'components/switch': baseUrl + brixComponentsBaseUrl + 'switch/switch.js',
+                // 'components/pagination': baseUrl + brixComponentsBaseUrl + 'pagination/pagination.js',
+                // 'components/pagination/state': baseUrl + brixComponentsBaseUrl + 'pagination/state.js',
+                // 'components/dialog': baseUrl + brixComponentsBaseUrl + 'dialog/dialog.js',
+                // 'components/dialog/position': baseUrl + brixComponentsBaseUrl + 'dialog/position.js',
+                // 'components/dialogview': baseUrl + brixComponentsBaseUrl + 'dialogview/dialogview.js',
+                // 'components/table': baseUrl + brixComponentsBaseUrl + 'table/table.js',
+                // 'components/table/linkage': baseUrl + brixComponentsBaseUrl + 'table/linkage.js',
+                // 'components/datepicker': baseUrl + brixComponentsBaseUrl + 'datepicker/datepicker.js',
+                // 'components/datepickerwrapper': baseUrl + brixComponentsBaseUrl + 'datepickerwrapper/datepickerwrapper.js',
+                // 'components/datepicker/ancient': baseUrl + brixComponentsBaseUrl + 'datepicker/ancient/datepicker.js',
+                // 'components/popover': baseUrl + brixComponentsBaseUrl + 'popover/popover.js',
+                // 'components/uploader': baseUrl + brixComponentsBaseUrl + 'uploader/uploader.js',
+                // 'components/nprogress': baseUrl + brixComponentsBaseUrl + 'nprogress/nprogress.js',
 
-                'components/hourpicker': baseUrl + brixComponentsBaseUrl + 'hourpicker/hourpicker.js',
-                'components/areapicker': baseUrl + brixComponentsBaseUrl + 'areapicker/areapicker.js',
-                'components/tree': baseUrl + brixComponentsBaseUrl + 'tree/tree.js',
-                'components/tree/tree.node.json.tpl': baseUrl + brixComponentsBaseUrl + 'tree/tree.node.json.tpl.js',
-                'components/taginput': baseUrl + brixComponentsBaseUrl + 'taginput/taginput.js',
-                'components/suggest': baseUrl + brixComponentsBaseUrl + 'suggest/suggest.js',
-                'components/chartxwrapper': baseUrl + brixComponentsBaseUrl + 'chartxwrapper/chartxwrapper.js',
+                // 'components/hourpicker': baseUrl + brixComponentsBaseUrl + 'hourpicker/hourpicker.js',
+                // 'components/areapicker': baseUrl + brixComponentsBaseUrl + 'areapicker/areapicker.js',
+                // 'components/tree': baseUrl + brixComponentsBaseUrl + 'tree/tree.js',
+                // 'components/tree/tree.node.json.tpl': baseUrl + brixComponentsBaseUrl + 'tree/tree.node.json.tpl.js',
+                // 'components/taginput': baseUrl + brixComponentsBaseUrl + 'taginput/taginput.js',
+                // 'components/suggest': baseUrl + brixComponentsBaseUrl + 'suggest/suggest.js',
+                // 'components/chartxwrapper': baseUrl + brixComponentsBaseUrl + 'chartxwrapper/chartxwrapper.js',
 
                 'components/hello': baseUrl + brixComponentsBaseUrl + 'hello/hello.js',
                 'components/hello-extra': baseUrl + brixComponentsBaseUrl + 'hello-extra/hello-extra.js',
@@ -94,7 +94,7 @@
             }
         },
         paths: { // http://requirejs.org/docs/api.html#config-paths
-            // Brix
+            // Brix Core
             'brix/loader': baseUrl + 'brix-loader/dist/loader' + (debug ? '-debug' : ''),
             'brix/base': baseUrl + 'brix-base/dist/base' + (debug ? '-debug' : ''),
             'brix/event': baseUrl + 'brix-event/dist/event' + (debug ? '-debug' : ''),
@@ -103,6 +103,32 @@
             'brix/spa': baseUrl + 'brix-spa/dist/spa',
             'magix': '//g.alicdn.com/thx/magix/2.0/requirejs-magix-min',
             'chartx': '//g.alicdn.com/thx/charts/1.6.1/chartx/',
+
+            // Brix Components
+            'components/base': baseUrl + brixComponentsBaseUrl + 'base/base',
+            'components/dropdown': baseUrl + brixComponentsBaseUrl + 'dropdown/dropdown',
+            'components/switch': baseUrl + brixComponentsBaseUrl + 'switch/switch',
+            'components/pagination': baseUrl + brixComponentsBaseUrl + 'pagination/pagination',
+            'components/pagination/state': baseUrl + brixComponentsBaseUrl + 'pagination/state',
+            'components/dialog': baseUrl + brixComponentsBaseUrl + 'dialog/dialog',
+            'components/dialog/position': baseUrl + brixComponentsBaseUrl + 'dialog/position',
+            'components/dialogview': baseUrl + brixComponentsBaseUrl + 'dialogview/dialogview',
+            'components/table': baseUrl + brixComponentsBaseUrl + 'table/table',
+            'components/table/linkage': baseUrl + brixComponentsBaseUrl + 'table/linkage',
+            'components/datepicker': baseUrl + brixComponentsBaseUrl + 'datepicker/datepicker',
+            'components/datepickerwrapper': baseUrl + brixComponentsBaseUrl + 'datepickerwrapper/datepickerwrapper',
+            'components/datepicker/ancient': baseUrl + brixComponentsBaseUrl + 'datepicker/ancient/datepicker',
+            'components/popover': baseUrl + brixComponentsBaseUrl + 'popover/popover',
+            'components/uploader': baseUrl + brixComponentsBaseUrl + 'uploader/uploader',
+            'components/nprogress': baseUrl + brixComponentsBaseUrl + 'nprogress/nprogress',
+
+            'components/hourpicker': baseUrl + brixComponentsBaseUrl + 'hourpicker/hourpicker',
+            'components/areapicker': baseUrl + brixComponentsBaseUrl + 'areapicker/areapicker',
+            'components/tree': baseUrl + brixComponentsBaseUrl + 'tree/tree',
+            'components/tree/tree.node.json.tpl': baseUrl + brixComponentsBaseUrl + 'tree/tree.node.json.tpl',
+            'components/taginput': baseUrl + brixComponentsBaseUrl + 'taginput/taginput',
+            'components/suggest': baseUrl + brixComponentsBaseUrl + 'suggest/suggest',
+            'components/chartxwrapper': baseUrl + brixComponentsBaseUrl + 'chartxwrapper/chartxwrapper',
 
             // 运行依赖库
             dependencies: baseUrl + '',

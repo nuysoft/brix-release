@@ -4,7 +4,7 @@
 
 ### thx/brix-components
 1. 增加 SiteNav 组件
-
+2. 更新 Footer 组件
 
 ## 0.1.8-beta3
 
