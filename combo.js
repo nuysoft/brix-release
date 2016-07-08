@@ -55,7 +55,7 @@
     }
 
     require.load = function(context, moduleName, url) {
-        console.log(moduleName)
+        console.log(moduleName, url)
         if (
             EXCLUDE.indexOf(moduleName) !== -1 ||
             INCLUDE.indexOf(moduleName) === -1 ||
