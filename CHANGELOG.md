@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.8-beta6
+### thx/brix-components
+1. [更新 ErrorTips: 组件兼容触发节点消失时，自动居中提示框](https://github.com/thx/brix-components/issues/66)
+
 ## 0.1.8-beta5
 ### thx/brix-loader
 1. [取消快速获取已经加载过的模块](https://github.com/thx/brix-loader/issues/18)
