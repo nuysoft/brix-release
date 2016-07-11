@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.1.8-beta7
+
+### thx/brix-loader
+1. [#14 运行时异常收集增加 moduleId moduleUrl](https://github.com/thx/brix-loader/issues/14)
+
+### thx/brix-components
+1. [#67 Table Column RWD：翻页按钮遮挡表头字段](https://github.com/thx/brix-components/issues/67)
+
 ## 0.1.8-beta6
 ### thx/brix-components
 1. [更新 ErrorTips: 组件兼容触发节点消失时，自动居中提示框](https://github.com/thx/brix-components/issues/66)
