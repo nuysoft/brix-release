@@ -1,0 +1,1 @@
+define(function(){return"<p>Hello <%= message %>!</p>"});
