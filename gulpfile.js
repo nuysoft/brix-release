@@ -141,7 +141,9 @@ var dailyCmds = function() {
     cmds = cmds.concat(reLinkCmds)
     return cmds
 }()
-gulp.task('daily', shell.task(dailyCmds))
+gulp.task('daily', shell.task(dailyCmds, {
+    verbose: true
+}))
 
 var publishCmds = function() {
     var cmds = [] // dailyCmds.slice(0)
@@ -173,7 +175,9 @@ var publishCmds = function() {
     ])
     return cmds
 }()
-gulp.task('publish', shell.task(publishCmds))
+gulp.task('publish', shell.task(publishCmds, {
+    verbose: true
+}))
 gulp.task('cmds', function() {
     console.log('=== daily ===')
     console.log(dailyCmds.join('\n'))
