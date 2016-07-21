@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.8-beta8
+
+### thx/brix-components
+1. [#64 SiteNav：支持 https](https://github.com/thx/brix-components/issues/64)
+2. [#69 ErrorTips：修复提示框位置计算错误](https://github.com/thx/brix-components/issues/69)
+
+
 ## 0.1.8-beta7
 
 ### thx/brix-loader
