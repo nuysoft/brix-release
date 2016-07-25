@@ -17,7 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "connect-combo": "^0.3.1",
-    "gulp": "*",
+    "gulp": "^3.9.1",
     "gulp-concat": "^2.5.2",
     "gulp-connect": "^3.2.3",
     "gulp-shell": "^0.5.2",

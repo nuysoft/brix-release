@@ -1,0 +1,1 @@
+define(function(){return"<span class=\"switch \n\t<%= checked ? 'switch-checked' : '' %> \n\t<%= disabled ? 'switch-disabled' : '' %>\n\t<%= size ? 'switch-' + size : '' %>\n\t\" bx-click=\"toggle\">\n\t<small></small>\n</span>"});
