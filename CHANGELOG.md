@@ -1,11 +1,17 @@
 # CHANGELOG
 
+## 0.1.8-beta9
+
+### thx/brix-components
+1. [#70 升级依赖包，升级打包方式](https://github.com/thx/brix-components/issues/70)
+2. [#71 Suggest：默认高亮颜色不正确](https://github.com/thx/brix-components/issues/71)
+3. [#72 Uploader：阻止上传后再次选择同一文件不触发上传](https://github.com/thx/brix-components/issues/72)
+
 ## 0.1.8-beta8
 
 ### thx/brix-components
 1. [#64 SiteNav：支持 https](https://github.com/thx/brix-components/issues/64)
 2. [#69 ErrorTips：修复提示框位置计算错误](https://github.com/thx/brix-components/issues/69)
-
 
 ## 0.1.8-beta7
 
