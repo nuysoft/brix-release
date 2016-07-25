@@ -1,6 +1,11 @@
 # CHANGELOG
 
-## 0.1.8-beta9
+## 2016.07.25, Version 0.1.8-beta9
+
+```
+//g.alicdn.com/thx/brix-release/0.1.8-beta9/require-config-css-debug.js
+//g.alicdn.com/thx/brix-release/0.1.8-beta9/require-config-css.js
+```
 
 ### thx/brix-components
 1. [#70 升级依赖包，升级打包方式](https://github.com/thx/brix-components/issues/70)
