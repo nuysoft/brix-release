@@ -33,13 +33,13 @@ gulp.task('connect', function() {
 
 // https://github.com/wearefractal/gulp-concat
 gulp.task('concat', function() {
-    gulp.src(['bower_components/requirejs/require.js', 'config.js'])
+    gulp.src(['bower_components/requirejs/require.js', 'config.js', 'feedback.js'])
         .pipe(concat('require-config.js'))
         .pipe(gulp.dest('./'))
-    gulp.src(['bower_components/requirejs/require.js', 'config.js', 'css.js'])
+    gulp.src(['bower_components/requirejs/require.js', 'config.js', 'css.js', 'feedback.js'])
         .pipe(concat('require-config-css.js'))
         .pipe(gulp.dest('./'))
-    gulp.src(['bower_components/requirejs/require.js', 'config.js', 'css.js', 'animation.js'])
+    gulp.src(['bower_components/requirejs/require.js', 'config.js', 'css.js', 'animation.js', 'feedback.js'])
         .pipe(concat('require-config-css-animation.js'))
         .pipe(gulp.dest('./'))
 })
@@ -142,7 +142,8 @@ var dailyCmds = function() {
     return cmds
 }()
 gulp.task('daily', shell.task(dailyCmds, {
-    verbose: true
+    verbose: true,
+    ignoreErrors: true
 }))
 
 var publishCmds = function() {
@@ -176,7 +177,8 @@ var publishCmds = function() {
     return cmds
 }()
 gulp.task('publish', shell.task(publishCmds, {
-    verbose: true
+    verbose: true,
+    ignoreErrors: true
 }))
 gulp.task('cmds', function() {
     console.log('=== daily ===')

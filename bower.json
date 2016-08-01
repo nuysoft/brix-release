@@ -12,23 +12,21 @@
     "tests"
   ],
   "dependencies": {
-    "brix-loader": "master",
-    "brix-base": "master",
-    "brix-event": "master",
-    "brix-components": "master",
-    "brix-bisheng": "master",
-    "brix-spa": "master",
-    "brix-animation": "*",
-    "magix": "*",
+    "brix-loader":         "master",
+    "brix-base":           "master",
+    "brix-event":          "master",
+    "brix-components":     "master",
+    "brix-animation":      "*",
+    "magix":               "*",
     "minecraft-animation": "thx/minecraft-animation",
-    "vue": "~1.0.8"
+    "mockjs":              "*",
+    "vue":                 "~1.0.8"
   },
   "devDependencies": {},
   "resolutions": {
-    "jquery": "1.x.x",
+    "jquery":      "1.x.x",
     "brix-loader": "master",
-    "brix-base": "master",
-    "brix-event": "master",
-    "brix-bisheng": "master"
+    "brix-base":   "master",
+    "brix-event":  "master"
   }
 }
