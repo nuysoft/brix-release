@@ -71,6 +71,7 @@ gulp.task('compress', function() {
     var globs = [
         build + '/config.js',
         build + '/css.js',
+        build + '/animation.js',
         build + '/require-config.js',
         build + '/require-config-css.js',
         build + '/require-config-css-animation.js'
