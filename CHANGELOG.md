@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 2016.08.01, Version 1.0.0-alpha.1
+
+```
+//g-assets.daily.taobao.net/thx/brix-release/1.0.0-alpha.1/require-config-css-debug.js
+```
+
+```
+//g.alicdn.com/thx/brix-release/1.0.0-alpha.1/require-config-css-debug.js
+//g.alicdn.com/thx/brix-release/1.0.0-alpha.1/require-config-css.js
+```
+### thx/brix-release
+1. 依赖包更新，见 [dependencies.log](https://github.com/thx/brix-release/blob/daily/1.0.0-alpha.1/dependencies.log)
+
+### thx/brix-components
+1. [#70 升级依赖包，升级打包方式](https://github.com/thx/brix-components/issues/70)
+2. [#74 重构目录，重构配置](https://github.com/thx/brix-components/issues/74)
+
 ## 2016.07.25, Version 0.1.8-beta9
 
 ```
