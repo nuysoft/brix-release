@@ -1,4 +1,4 @@
-/* global require, document, location */
+/* global require */
 (function() {
 	// 基于 Bootstrap
 	require(['css!brix/deps/bootstrap/dist/css/bootstrap.min.css'])

@@ -2156,9 +2156,7 @@ var requirejs, require, define;
         map: { // http://requirejs.org/docs/api.html#config-map
             '*': {
                 // RequireJS Loader 插件
-                css: base + 'require-css/css.js',
-                less: base + 'require-less/less.js',
-                text: base + 'requirejs-text/text.js',
+                css: base + 'require-css/css.js'
             }
         }
     })
@@ -2190,34 +2188,19 @@ var requirejs, require, define;
         underscore:  base + 'underscore/' + gogogo('underscore', 'underscore-min'),
         moment:      base + gogogo('moment/moment', 'moment/min/moment.min'),
         handlebars:  base + 'handlebars/' + gogogo('handlebars', 'handlebars.min'),
-        mousetrap:   base + 'mousetrap/' + gogogo('mousetrap', 'mousetrap.min'),
         mock:        base + 'mockjs/dist/' + gogogo('mock', 'mock-min'),
         marked:      base + 'marked/lib/marked',
-        Chart:       base + 'chartjs/Chart',
-        director:    base + 'director/build/director',
-        URIjs:       base + 'uri.js/src/',
-        page:        base + 'page/page',
         highlightjs: base + 'highlightjs/highlight.pack',
         nprogress:   base + 'nprogress/nprogress',
         parsley:     base + 'parsleyjs/dist/' + gogogo('parsley', 'parsley.min'),
-        log:         base + 'log/log',
         accounting:  base + 'accountingjs/' + gogogo('accounting', 'accounting.min'),
         progressbar: base + 'progressbar.js/dist/progressbar',
         Sortable:    base + 'Sortable/Sortable',
-        fontawesome: base + 'fontawesome/',
-        vue:         base + 'vue/dist/' + gogogo('vue', 'vue.min'),
-        colors:      base + 'colors/',
-        printf:      base + 'brix-components/printf/printf'
+        vue:         base + 'vue/dist/' + gogogo('vue', 'vue.min')
     }
     require.config({
         paths: deps,
         shim: { // http://requirejs.org/docs/api.html#config-shim
-            Chart: {
-                exports: 'Chart'
-            },
-            director: {
-                exports: 'Router'
-            },
             highlightjs: {
                 exports: 'hljs'
             },
@@ -2228,7 +2211,7 @@ var requirejs, require, define;
     })
 
 })();
-/* global require, document, location */
+/* global require */
 (function() {
 	// 基于 Bootstrap
 	require(['css!brix/deps/bootstrap/dist/css/bootstrap.min.css'])
@@ -2240,8 +2223,8 @@ var requirejs, require, define;
 	// MineCraft 规范样式
 	require(['css!brix/styles/minecraft.css'])
 })();
-/* global require, document, location */
+/* global require */
 (function() {
 	// 动画 Animation
-	require(['css!dependencies/minecraft-animation/dist/css/animate-min.css'])
+	require(['css!brix/deps/minecraft-animation/dist/css/animate-min.css'])
 })();

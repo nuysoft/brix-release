@@ -1,5 +1,5 @@
-/* global require, document, location */
+/* global require */
 (function() {
 	// 动画 Animation
-	require(['css!dependencies/minecraft-animation/dist/css/animate-min.css'])
+	require(['css!brix/deps/minecraft-animation/dist/css/animate-min.css'])
 })();
