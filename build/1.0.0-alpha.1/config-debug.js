@@ -2,7 +2,6 @@
 (function() {
     var local = !!~location.search.indexOf('local') || !!~location.host.indexOf('localhost') || !!~location.host.indexOf('.local')
     var debug = !!~location.search.indexOf('debug')
-    var daily, cdn
     var base = function() {
         var scripts = document.getElementsByTagName('script')
         var portal = scripts[scripts.length - 1]
@@ -10,8 +9,8 @@
         var base = /(.+\/)(.+)/.exec(path)[1]
 
         if (/-debug\.js$/.test(path)) debug = true
-        daily = !!~base.indexOf('g-assets.daily.taobao.net')
-        cdn = !!~base.indexOf('g.tbcdn.cn') || !!~base.indexOf('g.alicdn.com')
+        var daily = !!~base.indexOf('g-assets.daily.taobao.net')
+        var cdn = !!~base.indexOf('g.tbcdn.cn') || !!~base.indexOf('g.alicdn.com')
         if (daily || cdn) local = false
         if (local || daily) debug = true
 
