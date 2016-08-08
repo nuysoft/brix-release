@@ -10,8 +10,8 @@
 
         if (/-debug\.js$/.test(path)) debug = true
         var daily = !!~base.indexOf('g-assets.daily.taobao.net')
-        var cdn = !!~base.indexOf('g.tbcdn.cn') || !!~base.indexOf('g.alicdn.com')
-        if (daily || cdn) local = false
+        var publish = !!~base.indexOf('g.tbcdn.cn') || !!~base.indexOf('g.alicdn.com')
+        if (daily || publish) local = false
         if (local || daily) debug = true
 
         if (local) base += 'bower_components/'
