@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 2016.08.10, Version 1.0.0-alpha.2
+
+```
+//g-assets.daily.taobao.net/thx/brix-release/1.0.0-alpha.2/require-config-css-debug.js
+```
+
+```
+//g.alicdn.com/thx/brix-release/1.0.0-alpha.2/require-config-css-debug.js
+//g.alicdn.com/thx/brix-release/1.0.0-alpha.2/require-config-css.js
+```
+
+### thx/brix-components
+1. [#75 增加 ColorPicker](https://github.com/thx/brix-components/issues/75)
+
+
 ## 2016.08.01, Version 1.0.0-alpha.1
 
 ```
