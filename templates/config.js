@@ -59,7 +59,7 @@
     var deps = {
         jquery:      base + 'jquery/dist/' + gogogo('jquery', 'jquery.min'),
         underscore:  base + 'underscore/' + gogogo('underscore', 'underscore-min'),
-        moment:      base + gogogo('moment/moment', 'moment/min/moment.min'),
+        moment:      base + 'moment/' + gogogo('moment', 'min/moment.min'),
         handlebars:  base + 'handlebars/' + gogogo('handlebars', 'handlebars.min'),
         mock:        base + 'mockjs/dist/' + gogogo('mock', 'mock-min'),
         marked:      base + 'marked/lib/marked',
