@@ -6,6 +6,7 @@ var build = './build/' + version
 
 var gulp = require('gulp')
 var through = require('through2')
+var template = require('gulp-template')
 var concat = require('gulp-concat')
 var uglify = require('gulp-uglify')
 var connect = require('gulp-connect')
@@ -30,9 +31,16 @@ gulp.task('connect', function() {
         }
     })
 })
+gulp.task('template:config', function() {
+    gulp.src(['templates/config.js'])
+        .pipe(template({
+            version: version
+        }))
+        .pipe(gulp.dest('./'))
+})
 
 // https://github.com/wearefractal/gulp-concat
-gulp.task('concat', function() {
+gulp.task('concat', ['template:config'], function() {
     gulp.src(['bower_components/requirejs/require.js', 'config.js', 'feedback.js'])
         .pipe(concat('require-config.js'))
         .pipe(gulp.dest('./'))
@@ -51,6 +59,7 @@ gulp.task('build', function() {
         '**/*.css',
         '**/*.eot', '**/*.svg', '**/*.ttf', '**/*.woff', '**/*.woff2',
         '**/*.map',
+        '!templates/**/*',
         '!build/**/*',
         '!node_modules/**/*',
         '!gulpfile.js'
@@ -76,6 +85,9 @@ gulp.task('compress', function() {
         build + '/require-config-css.js',
         build + '/require-config-css-animation.js'
     ]
+    gulp.src(globs)
+        .pipe(gulp.dest('./build/'))
+
     gulp.src(globs)
         .pipe(through.obj(function(file, encoding, callback) {
             file.path = file.path.replace(

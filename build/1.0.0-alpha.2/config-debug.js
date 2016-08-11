@@ -11,7 +11,11 @@
         if (/-debug\.js$/.test(path)) debug = true
         var daily = !!~base.indexOf('g-assets.daily.taobao.net')
         var publish = !!~base.indexOf('g.tbcdn.cn') || !!~base.indexOf('g.alicdn.com')
-        if (daily || publish) local = false
+
+        if (daily || publish) {
+            local = false
+            if (/brix-release\/$/.test(base)) base += '1.0.0-alpha.2/'
+        }
         if (local || daily) debug = true
 
         if (local) base += 'bower_components/'
