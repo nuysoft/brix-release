@@ -13,7 +13,6 @@ var connect = require('gulp-connect')
 var combo = require('connect-combo')
 var shell = require('gulp-shell')
 
-
 // https://github.com/AveVlad/gulp-connect
 gulp.task('connect', function() {
     connect.server({
@@ -31,6 +30,7 @@ gulp.task('connect', function() {
         }
     })
 })
+
 gulp.task('template:config', function(cb) {
     gulp.src(['templates/config.js'])
         .pipe(template({
