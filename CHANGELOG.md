@@ -13,6 +13,7 @@
 
 ### thx/brix-components
 1. **增加** [#75 ColorPicker](https://github.com/thx/brix-components/issues/75)
+2. **移除** [#76 AreaPicker](https://github.com/thx/brix-components/issues/76)
 
 
 ## 2016.08.01, Version 1.0.0-alpha.1
