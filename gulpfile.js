@@ -31,12 +31,13 @@ gulp.task('connect', function() {
         }
     })
 })
-gulp.task('template:config', function() {
+gulp.task('template:config', function(cb) {
     gulp.src(['templates/config.js'])
         .pipe(template({
             version: version
         }))
         .pipe(gulp.dest('./'))
+        .on('end', cb)
 })
 
 // https://github.com/wearefractal/gulp-concat
@@ -52,7 +53,7 @@ gulp.task('concat', ['template:config'], function() {
         .pipe(gulp.dest('./'))
 })
 
-gulp.task('build', function() {
+gulp.task('build', function(cb) {
     var path = require('path')
     var globs = [
         '**/*.js',
@@ -73,10 +74,11 @@ gulp.task('build', function() {
             callback(null, file)
         }))
         .pipe(gulp.dest(build))
+        .on('end', cb)
 })
 
 // https://github.com/terinjokes/gulp-uglify
-gulp.task('compress', function() {
+gulp.task('compress', function(cb) {
     var globs = [
         build + '/config.js',
         build + '/css.js',
@@ -100,6 +102,7 @@ gulp.task('compress', function() {
     gulp.src(globs)
         .pipe(uglify())
         .pipe(gulp.dest(build))
+        .on('end', cb)
 })
 
 // 
