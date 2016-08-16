@@ -15,7 +15,7 @@
     "brix-loader":         "master",
     "brix-base":           "master",
     "brix-event":          "master",
-    "brix-components":     "master",
+    "brix-components":     "1.0.0",
     "brix-animation":      "*",
     "magix":               "*",
     "minecraft-animation": "thx/minecraft-animation",
