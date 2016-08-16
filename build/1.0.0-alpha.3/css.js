@@ -1,0 +1,1 @@
+!function(){require(["css!brix/deps/bootstrap/dist/css/bootstrap.min.css"]),require(["css!brix/styles/components.css"]),require(["css!brix/deps/parsleyjs/src/parsley.css"]),require(["css!brix/styles/minecraft.css"])}();

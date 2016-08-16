@@ -1,13 +1,19 @@
 # CHANGELOG
 
 ```
-//g-assets.daily.taobao.net/thx/brix-release/1.0.0-alpha.2/require-config-css-debug.js
+//g-assets.daily.taobao.net/thx/brix-release/1.0.0-alpha.3/require-config-css-debug.js
 ```
 
 ```
-//g.alicdn.com/thx/brix-release/1.0.0-alpha.2/require-config-css-debug.js
-//g.alicdn.com/thx/brix-release/1.0.0-alpha.2/require-config-css.js
+//g.alicdn.com/thx/brix-release/1.0.0-alpha.3/require-config-css-debug.js
+//g.alicdn.com/thx/brix-release/1.0.0-alpha.3/require-config-css.js
 ```
+
+## 2016.08.16, Version 1.0.0-alpha.3
+
+### thx/brix-components
+1. **增加** [#17 Parsley 支持任意容器元素](https://github.com/thx/brix-components/issues/17)
+
 
 ## 2016.08.10, Version 1.0.0-alpha.2
 

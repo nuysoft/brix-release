@@ -14,7 +14,7 @@
 
         if (daily || publish) {
             local = false
-            if (/brix-release\/$/.test(base)) base += '1.0.0-alpha.2/'
+            if (/brix-release\/$/.test(base)) base += '1.0.0-alpha.3/'
         }
         if (local || daily) debug = true
 
