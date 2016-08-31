@@ -2178,10 +2178,10 @@ var requirejs, require, define;
         'brix/dependencies': base,
         'brix/deps':         base
     }
-    brix.components = brix['brix/components']
-    brix.styles = brix['brix/styles']
+    brix.components   = brix['brix/components']
+    brix.styles       = brix['brix/styles']
     brix.dependencies = brix['brix/dependencies']
-    brix.deps = brix.dependencies
+    brix.deps         = brix['brix/dependencies']
     require.config({
         paths: brix
     })
