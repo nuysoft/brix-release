@@ -13,9 +13,8 @@
 
 ### thx/brix-components
 
-1. **增加** [#19 Dropdown 支持 event.preventDefault()](https://github.com/thx/brix-components/issues/19)
-2. **增加** [#80 Dropdown 支持多选](https://github.com/thx/brix-components/issues/19)
-3. **修复** [#84 TagInput 在 Safari 中输入框错位](https://github.com/thx/brix-components/issues/84)
+1. **增加** [#80 Dropdown 支持多选](https://github.com/thx/brix-components/issues/19)
+2. **修复** [#84 TagInput 在 Safari 中输入框错位](https://github.com/thx/brix-components/issues/84)
 
 
 ## 2016.08.31, Version 1.0.0-alpha.4
