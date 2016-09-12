@@ -9,6 +9,15 @@
 //g.alicdn.com/thx/brix-release/1.0.0-alpha.4/require-config-css.js
 ```
 
+## 2016.09.12, Version 1.0.0-alpha.5
+
+### thx/brix-components
+
+1. **增加** [#19 Dropdown 支持 event.preventDefault()](https://github.com/thx/brix-components/issues/19)
+2. **增加** [#80 Dropdown 支持多选](https://github.com/thx/brix-components/issues/19)
+3. **修复** [#84 TagInput 在 Safari 中输入框错位](https://github.com/thx/brix-components/issues/84)
+
+
 ## 2016.08.31, Version 1.0.0-alpha.4
 
 ### thx/brix-loader
@@ -156,7 +165,6 @@
 
 
 ## 2016.04.11, Version 0.1.6
-
 
 ### thx/brix-release
 1. **升级** jQuery `v1.12.0` ＝> `v1.12.2`
