@@ -16,6 +16,7 @@
     "brix-base":           "master",
     "brix-event":          "master",
     "brix-components":     "master",
+    "brix-vue":            "master",
     "brix-animation":      "*",
     "magix":               "*",
     "minecraft-animation": "thx/minecraft-animation",
