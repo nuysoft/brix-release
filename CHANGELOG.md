@@ -1,23 +1,27 @@
 # CHANGELOG
 
 ```
-//g-assets.daily.taobao.net/thx/brix-release/1.0.0-alpha.7/require-config-css-debug.js
+//g-assets.daily.taobao.net/thx/brix-release/1.0.0-beta.1/require-config-css-debug.js
 ```
 
 ```
-//g.alicdn.com/thx/brix-release/1.0.0-alpha.7/require-config-css-debug.js
-//g.alicdn.com/thx/brix-release/1.0.0-alpha.7/require-config-css.js
+//g.alicdn.com/thx/brix-release/1.0.0-beta.1/require-config-css-debug.js
+//g.alicdn.com/thx/brix-release/1.0.0-beta.1/require-config-css.js
 ```
+
+
+## 2016.12.14, Version 1.0.0-beta.1
+
+### thx/brix-components
+1. [#94 Dropdown：修复 .data() 渲染时参数不完整](https://github.com/thx/brix-components/issues/94)
+2. [#96 Validation：完善自定义命名空间](https://github.com/thx/brix-components/issues/96)
+
 
 ## 2016.12.12, Version 1.0.0-alpha.8
 
 ### thx/brix-components
 1. [#94 Dropdown：支持修改值时不触发 change 事件，避免与 Vue 整合时重复触发](https://github.com/thx/brix-components/issues/94)
 
-### thx/brix-components
-1. [#74 重构目录，重构配置](https://github.com/thx/brix-components/issues/74)
-2. [#77 重构文档](https://github.com/thx/brix-components/issues/77)
-3. [#89 组件的按钮会提交所在的表单](https://github.com/thx/brix-components/issues/89)
 
 ## 2016.12.08, Version 1.0.0-alpha.7
 
