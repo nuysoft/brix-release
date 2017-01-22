@@ -2144,7 +2144,7 @@ var requirejs, require, define;
 
         if (daily || publish) {
             local = false
-            if (/brix-release\/$/.test(base)) base += '1.0.0-beta.3/'
+            if (/brix-release\/$/.test(base)) base += '1.0.0-beta.4/'
         }
         if (local || daily) debug = true
 
