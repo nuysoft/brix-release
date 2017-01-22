@@ -9,6 +9,12 @@
 //g.alicdn.com/thx/brix-release/1.0.0-beta.3/require-config-css.js
 ```
 
+## 2016.01.22, Version 1.0.0-beta.4
+
+### thx/brix-loader
+1. [#25 销毁不存在的模块可能报错](https://github.com/thx/brix-loader/issues/25)
+
+
 ## 2016.01.19, Version 1.0.0-beta.3
 
 ### thx/brix-components
