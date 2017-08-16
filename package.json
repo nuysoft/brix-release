@@ -1,6 +1,6 @@
 {
   "name": "brix-release",
-  "version": "1.0.0-beta.16",
+  "version": "1.0.0-beta.17",
   "description": "该仓库只做发布之用。",
   "main": "gulpfile.js",
   "scripts": {
