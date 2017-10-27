@@ -1,64 +1,136 @@
-var Partial_ContentReg = /\d+\u001d/g;
-var Partial_AttrReg = /([\w\-:]+)(?:=(["'])([\s\S]*?)\2)?/g;
+var Partial_ContentReg = /\d+\x1d/g;
+var Partial_AttrReg = /([\w\-]+)(?:="([\s\S]*?)")?/g;
 var Partial_UnescapeMap = {
     'amp': '&',
     'lt': '<',
     'gt': '>',
-    'quot': '"',
-    '#x27': '\'',
-    '#x60': '`'
+    '#34': '"',
+    '#39': '\'',
+    '#96': '`'
 };
-var Partial_UnescapeReg = /&([^;]+?);/g;
-var Partial_Unescape = function(m, name) {
+var Partial_UnescapeReg = /&([^;]+);/g;
+var Partial_Unescape = function (m, name) {
     return Partial_UnescapeMap[name] || m;
 };
-var Partial_UpdateNode = function(node, view, one, renderData, updateAttrs, updateTmpl, viewId) {
+
+var Partial_UpdateNode = function (node, view, one, renderData, updateAttrs, updateTmpl, viewId) {
     var id = node.id || (node.id = G_Id());
 
-    var hasMagixView, viewValue, vf;
+    var hasMagixView, viewValue, vf = view.owner;
     if (updateAttrs) {
-        var attr = View_SetEventOwner(Tmpl(one.attr, renderData), viewId);
-        var nowAttrs = {};
-        attr.replace(Partial_AttrReg, function(match, name, q, value) {
-            nowAttrs[name] = value;
-        });
-        for (var i = one.attrs.length - 1, a, n, old, now, f; i >= 0; i--) {
-            a = one.attrs[i];
-            n = a.n;
-            f = a.f;
-            if (a.v) {
-                hasMagixView = 1;
-                viewValue = nowAttrs[n];
-            } else {
-                old = a.p ? node[f || n] : node.getAttribute(n);
-                now = a.b ? G_Has(nowAttrs, n) : nowAttrs[n] || '';
-                if (old != now) {
-                    if (a.p) {
-                        if (a.q) now = now.replace(Partial_UnescapeReg, Partial_Unescape);
-                        node[f || n] = now;
-                    } else if (now) {
-                        node.setAttribute(n, now);
-                    } else {
-                        node.removeAttribute(n);
+        if (DEBUG) {
+            var attr = View_SetEventOwner(Tmpl(one.attr, renderData, arguments[arguments.length - 1]), viewId);
+            var nowAttrs = {};
+            attr.replace(Partial_AttrReg, function (match, name, value) {
+                nowAttrs[name] = value;
+            });
+            for (var i = one.attrs.length, a, n, old, now, exist, f; i--;) {
+                a = one.attrs[i];
+                n = a.n;
+                f = a.f;
+                if (a.v) {
+                    hasMagixView = 1;
+                    viewValue = nowAttrs[n];
+                } else {
+                    exist = G_Has(nowAttrs, n);
+                    old = a.p ? node[f || n] : node.getAttribute(n);
+                    now = a.b ? exist : nowAttrs[n] || G_EMPTY;
+                    if (old !== now) {
+                        if (a.p) {
+                            //decode html
+                            if (a.q) now.replace(Partial_UnescapeReg, Partial_Unescape);
+                            node[f || n] = now;
+                        } else if (exist) {
+                            node.setAttribute(n, now);
+                        } else {
+                            node.removeAttribute(n);
+                        }
+                    }
+                }
+            }
+        } else {
+            var attr = View_SetEventOwner(Tmpl(one.attr, renderData), viewId);
+            var nowAttrs = {};
+            attr.replace(Partial_AttrReg, function (match, name, value) {
+                nowAttrs[name] = value;
+            });
+            for (var i = one.attrs.length, a, n, old, now, exist, f; i--;) {
+                a = one.attrs[i];
+                n = a.n;
+                f = a.f;
+                if (a.v) {
+                    hasMagixView = 1;
+                    viewValue = nowAttrs[n];
+                } else {
+                    exist = G_Has(nowAttrs, n);
+                    old = a.p ? node[f || n] : node.getAttribute(n);
+                    now = a.b ? exist : nowAttrs[n] || G_EMPTY;
+                    if (old !== now) {
+                        if (a.p) {
+                            //decode html
+                            if (a.q) now.replace(Partial_UnescapeReg, Partial_Unescape);
+                            node[f || n] = now;
+                        } else if (exist) {
+                            node.setAttribute(n, now);
+                        } else {
+                            node.removeAttribute(n);
+                        }
                     }
                 }
             }
         }
     }
-    if (hasMagixView) {
-        vf = Vframe_Vframes[id];
-        if (vf) {
-            vf[viewValue ? 'unmountView' : 'unmountVframe']();
+    var nVf = Vframe_Vframes[id], mount, po, nPo, params;
+    if (hasMagixView && !updateTmpl && nVf) {
+        po = G_ParseUri(viewValue);
+        params = po[G_PARAMS];
+        nPo = G_ParseUri(nVf[G_PATH]);
+        if (nPo[G_PATH] == po[G_PATH]) {
+            if (viewValue.indexOf(G_SPLITER) > 0) {
+                GSet_Params(view.$u, params, params);
+            }
+            nVf[G_PATH] = viewValue;
+            mount = nVf.invoke('assign', params);
+            if (mount) nVf.invoke('render');
         }
     }
-    if (updateTmpl) {
-        view.setHTML(id, Tmpl(one.tmpl, renderData));
-    }
-    if (hasMagixView && viewValue) {
-        view.owner.mountVframe(id, viewValue);
+    if (!mount) {
+        if (hasMagixView) {
+            vf.unmountVframe(id, viewValue);
+        }
+        if (updateTmpl) {
+            /*#if(modules.updaterIncrement){#*/
+            if (one.s) {
+                view.beginUpdate(id);
+                if (DEBUG) {
+                    Updater_Increment(node, View_SetEventOwner(Tmpl(one.tmpl, renderData, arguments[arguments.length - 1]), viewId), viewId);
+                } else {
+                    Updater_Increment(node, View_SetEventOwner(Tmpl(one.tmpl, renderData), viewId), viewId);
+                }
+                view.endUpdate(id);
+            } else {
+                if (DEBUG) {
+                    view.setHTML(id, Tmpl(one.tmpl, renderData, arguments[arguments.length - 1]));
+                } else {
+
+                    view.setHTML(id, Tmpl(one.tmpl, renderData));
+                }
+            }
+            /*#}else{#*/
+            if (DEBUG) {
+                view.setHTML(id, Tmpl(one.tmpl, renderData, arguments[arguments.length - 1]));
+            } else {
+
+                view.setHTML(id, Tmpl(one.tmpl, renderData));
+            }
+            /*#}#*/
+        }
+        if (hasMagixView && viewValue) {
+            vf.mountVframe(id, viewValue);
+        }
     }
 };
-var Partial_UpdateDOM = function(updater, changedKeys, renderData) {
+var Partial_UpdateDOM = function (updater, changedKeys, renderData) {
     var selfId = updater.$i;
     var vf = Vframe_Vframes[selfId];
     var view = vf && vf.$v,
@@ -69,7 +141,7 @@ var Partial_UpdateDOM = function(updater, changedKeys, renderData) {
     if (updater.$rd && changedKeys) {
         var keys, one, updateTmpl, updateAttrs;
 
-        for (var i = list.length - 1, update, q, mask, m; i >= 0; i--) { //keys
+        for (var i = list.length, update, q, mask, m; i--;) { //keys
             updateTmpl = 0;
             updateAttrs = 0;
             one = list[i];
@@ -77,8 +149,7 @@ var Partial_UpdateDOM = function(updater, changedKeys, renderData) {
             mask = one.mask;
             keys = one.pKeys;
             if (keys) {
-                q = keys.length;
-                while (--q >= 0) {
+                for (q = keys.length; q--;) {
                     if (G_Has(changedKeys, keys[q])) {
                         update = 0;
                         break;
@@ -86,10 +157,9 @@ var Partial_UpdateDOM = function(updater, changedKeys, renderData) {
                 }
             }
             if (update) {
-                keys = one.keys;
-                q = keys.length;
                 update = 0;
-                while (--q >= 0) {
+                keys = one.keys;
+                for (q = keys.length; q--;) {
                     if (G_Has(changedKeys, keys[q])) {
                         update = 1;
                         if (!mask || (updateTmpl && updateAttrs)) {
@@ -106,34 +176,37 @@ var Partial_UpdateDOM = function(updater, changedKeys, renderData) {
                     var nodes = $(View_SetEventOwner(one.path, selfId));
                     q = 0;
                     while (q < nodes.length) {
-                        Partial_UpdateNode(nodes[q++], view, one, renderData, updateAttrs, updateTmpl, selfId, vf);
+                        if (DEBUG) {
+                            Partial_UpdateNode(nodes[q++], view, one, renderData, updateAttrs, updateTmpl, selfId, tmplObject.file);
+                        } else {
+                            Partial_UpdateNode(nodes[q++], view, one, renderData, updateAttrs, updateTmpl, selfId);
+                        }
                     }
                 }
             }
         }
     } else {
-        var map,
-            tmplment = function(guid) {
-                return map[guid].tmpl;
-            },
-            x;
-        if (list) {
-            if (!list.$) { //process once
-                list.$ = map = {};
-                x = list.length;
-                while (x > 0) {
-                    var s = list[--x];
-                    if (s.s) {
-                        map[s.s] = s;
-                        s.tmpl = s.tmpl.replace(Partial_ContentReg, tmplment);
-                        delete s.s;
-                    }
+        if (!tmplObject[G_SPLITER]) {
+            tmplObject[G_SPLITER] = 1;
+            var map = {},
+                tmplment = function (guid) {
+                    return map[guid].tmpl;
+                },
+                x, s;
+            for (x = list.length; x--;) {
+                s = list[x];
+                if (s.s) {
+                    map[s.s] = s;
+                    s.tmpl = s.tmpl.replace(Partial_ContentReg, tmplment);
                 }
             }
-            map = list.$;
+            tmpl = tmplObject.html = tmpl.replace(Partial_ContentReg, tmplment);
         }
         updater.$rd = 1;
-        var str = tmpl.replace(Partial_ContentReg, tmplment);
-        view.setHTML(updater.$t, Tmpl(str, renderData));
+        if (DEBUG) {
+            view.setHTML(updater.$t, Tmpl(tmpl, renderData, tmplObject.file));
+        } else {
+            view.setHTML(updater.$t, Tmpl(tmpl, renderData));
+        }
     }
 };

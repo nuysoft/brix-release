@@ -184,9 +184,11 @@ var Vframe = function(id, pId, me) {
     me.id = id;
     if (DEBUG) {
         setTimeout(function() {
-            var parent = Vframe_Vframes[pId];
-            if (id != Magix_Cfg.rootId && (!pId || !parent || !parent.$c[id])) {
-                console.error('be careful! Avoid use new Magix.Vframe() outside');
+            if (me.id && me.pId) {
+                var parent = Vframe_Vframes[pId];
+                if (id != Magix_Cfg.rootId && (!pId || !parent || !parent.$c[id])) {
+                    console.error('beware! Avoid use new Magix.Vframe() outside');
+                }
             }
         }, 50);
     }
@@ -251,7 +253,7 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
         var me = this;
         var id = me.id;
         var node = G_GetById(id),
-            po, sign, view;
+            po, sign, view, params /*#if(modules.viewProtoMixins){#*/ , ctors /*#}#*/ /*#if(modules.updater){#*/ , pId, parent, p, val /*#}#*/ ;
         if (!me.$a && node) { //alter
             me.$a = 1;
             me.$t = node.innerHTML; //.replace(ScriptsReg, ''); template
@@ -263,23 +265,17 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
             po = G_ParseUri(viewPath);
             view = po.path;
             sign = ++me.$s;
-            var params = po.params;
+            params = po[G_PARAMS];
             /*#if(modules.updater){#*/
-            var pId = me.pId;
+            pId = me.pId;
             /*#if(modules.mxViewAttr){#*/
             pId = node.getAttribute('mx-datafrom') || pId;
             /*#}#*/
-            var parent = Vframe_Vframes[pId],
-                p, val;
+            parent = Vframe_Vframes[pId];
             parent = parent && parent.$v;
-            parent = parent && parent.updater;
+            parent = parent && parent.$u;
             if (parent && viewPath.indexOf(G_SPLITER) > 0) {
-                for (p in params) {
-                    val = params[p];
-                    if (val.charAt(0) == G_SPLITER) {
-                        params[p] = parent.get(val);
-                    }
-                }
+                GSet_Params(parent, params, params);
             }
             /*#if(modules.mxViewAttr){#*/
             var attrs = node.attributes;
@@ -287,7 +283,7 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
                 return c.toUpperCase();
             };
             var vreg = /^[\w_\d]+$/;
-            for (var i = attrs.length - 1, attr, name, value; i >= 0; i--) {
+            for (var i = attrs.length, attr, name, value; i--;) {
                 attr = attrs[i];
                 name = attr.name;
                 value = attr.value;
@@ -296,8 +292,8 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
                     if (value.slice(0, 3) == '<%@' && value.slice(-2) == '%>') {
                         try {
                             var temp = parent.$data;
-                            Tmpl(value, temp);
-                            value = temp[G_SPLITER + '1'];
+                            var str = Tmpl(value, temp);
+                            value = temp[str];
                         } catch (ex) {
                             value = G_Trim(value.slice(3, -2));
                             if (parent && vreg.test(value)) {
@@ -318,27 +314,37 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
                     if (!TView) {
                         return Magix_Cfg.error(Error('id:' + id + ' cannot load:' + view));
                     }
-                    /*#if(!modules.loader){#*/
+                    /*#if(modules.viewProtoMixins){#*/
+                    ctors = View_Prepare(TView);
+                    /*#}else{#*/
                     View_Prepare(TView);
                     /*#}#*/
                     view = new TView({
                         owner: me,
                         id: id
-                    }, params);
+                    }, params /*#if(modules.viewProtoMixins){#*/ , ctors /*#}#*/ );
                     me.$v = view;
                     /*#if(modules.router||modules.state){#*/
                     me.$g = Vframe_UpdateTag;
                     /*#}#*/
-                    /*#if(!modules.loader){#*/
                     View_DelegateEvents(view);
+                    /*#if(modules.keepHTML){#*/
+                    try { /*#}#*/
+                        /*#if(modules.viewInit){#*/
+                        view.init(params);
+                        /*#}#*/
+                        view.render();
+                        /*#if(modules.keepHTML){#*/
+                    } catch (e) {
+                        view.setHTML(id, 'render error:' + e.message);
+                    }
                     /*#}#*/
-                    /*#if(modules.viewInit){#*/
-                    view.init(params);
-                    /*#}#*/
-                    view.render();
-                    /*#if(modules.autoEndUpdate&&!modules.loader){#*/
-                    if (!view.$t && !view.$p) {
-                        view.endUpdate();
+                    /*#if(modules.autoEndUpdate){#*/
+                    if (!view.$t) { //无模板
+                        me.$a = 0; //不会修改节点，因此销毁时不还原
+                        if (!view.$p) {
+                            view.endUpdate();
+                        }
                     }
                     /*#}#*/
                 }
@@ -351,7 +357,8 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
     unmountView: function( /*keepPreHTML*/ ) {
         var me = this;
         var view = me.$v,
-            node, reset;
+            node, reset,
+            vfId = me.id;
         /*#if(modules.linkage){#*/
         me.$il = []; //invokeList 销毁当前view时，连同调用列表一起销毁
         /*#}#*/
@@ -359,7 +366,7 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
             if (!Vframe_GlobalAlter) {
                 reset = 1;
                 Vframe_GlobalAlter = {
-                    id: me.id
+                    id: vfId
                 };
             }
             me.$d = 1; //用于标记当前vframe处于view销毁状态，在当前vframe上再调用unmountZone时不派发created事件
@@ -367,7 +374,6 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
             Vframe_NotifyAlter(me, Vframe_GlobalAlter);
 
             me.$v = 0; //unmountView时，尽可能早的删除vframe上的view对象，防止view销毁时，再调用该 vfrmae的类似unmountZone方法引起的多次created
-            /*#if(!modules.loader){#*/
             if (view.$s > 0) {
                 view.$s = 0;
                 view.fire('destroy', 0, 1, 1);
@@ -378,10 +384,11 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
             }
             view.$s--;
             view.owner = G_NULL;
-            /*#}#*/
-            node = G_GetById(me.id);
+            node = G_GetById(vfId);
             if (node && me.$a /*&&!keepPreHTML*/ ) { //如果view本身是没有模板的，也需要把节点恢复到之前的状态上：只有保留模板且view有模板的情况下，这条if才不执行，否则均需要恢复节点的html，即view安装前什么样，销毁后把节点恢复到安装前的情况
-                G_HTML(node, me.$t);
+                /*#if(!modules.keepHTML){#*/
+                G_HTML(node, me.$t, vfId);
+                /*#}#*/
             }
 
             /*if (me.$vPrimed) { //viewMounted与viewUnmounted成对出现
@@ -466,7 +473,7 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
         //me.unmountZone(zoneId, 1); 不去清理，详情见：https://github.com/thx/magix/issues/27
         /*#if(modules.collectView){#*/
         var temp = [];
-        for (i = vframes.length - 1; i >= 0; i--) {
+        for (i = vframes.length; i--;) {
             vf = vframes[i];
             temp.push(vf.getAttribute('mx-view'));
         }
@@ -488,7 +495,7 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
                 }
                 /*#if(modules.layerVframe){#*/
                 svfs = $(G_HashKey + id + ' [mx-view]');
-                for (j = svfs.length - 1; j >= 0; j--) {
+                for (j = svfs.length; j--;) {
                     subVf = svfs[j];
                     id = subVf.id || (subVf.id = G_Id());
                     subs[id] = 1;
@@ -601,7 +608,7 @@ G_Mix(G_Mix(Vframe[G_PROTOTYPE], Event), {
         } else {
             o = list[key = G_SPLITER + name];
             if (o) {
-                o.r = args == o.a; //参数一样，则忽略上次的
+                o.r = args === o.a; //参数一样，则忽略上次的
             }
             o = {
                 n: name,

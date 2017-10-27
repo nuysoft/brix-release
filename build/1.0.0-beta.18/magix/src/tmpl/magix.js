@@ -1,285 +1,3 @@
-var G_COUNTER = 0;
-var G_EMPTY = '';
-var G_EMPTY_ARRAY = [];
-var G_Slice = G_EMPTY_ARRAY.slice;
-var G_COMMA = ',';
-var G_NULL = null;
-var G_WINDOW = window;
-var G_DOCUMENT = document;
-var G_DOC = $(G_DOCUMENT);
-var G_HashKey = '#';
-/*#if(modules.service||modules.updater){#*/
-var JSONStringify = JSON.stringify;
-/*#}#*/
-var G_DOCBODY; //initilize at vframe_root
-/*
-    关于spliter
-    出于安全考虑，使用不可见字符\u0000，然而，window手机上ie11有这样的一个问题：'\u0000'+"abc",结果却是一个空字符串，好奇特。
- */
-var G_SPLITER = '\u001e';
-var Magix_StrObject = 'object';
-var G_PROTOTYPE = 'prototype';
-// var Magix_PathRelativeReg = /\/\.(?:\/|$)|\/[^\/]+?\/\.{2}(?:\/|$)|\/\/+|\.{2}\//; // ./|/x/../|(b)///
-// var Magix_PathTrimFileReg = /\/[^\/]*$/;
-// var Magix_ProtocalReg = /^(?:https?:)?\/\//i;
-var Magix_PathTrimParamsReg = /[#?].*$/;
-var Magix_ParamsReg = /([^=&?\/#]+)=?([^&#?]*)/g;
-var Magix_IsParam = /(?!^)=|&/;
-var G_Id = function(prefix) {
-    return (prefix || 'mx_') + G_COUNTER++;
-};
-/*#if(modules.defaultView){#*/
-var MxGlobalView = G_Id();
-/*#}#*/
-var Magix_Cfg = {
-    rootId: G_Id(),
-    /*#if(modules.defaultView){#*/
-    defaultView: MxGlobalView,
-    /*#}#*/
-    error: function(e) {
-        throw e;
-    }
-};
-var Magix_HasProp = Magix_Cfg.hasOwnProperty;
-
-var G_GetById = function(id) {
-    return typeof id == Magix_StrObject ? id : G_DOCUMENT.getElementById(id);
-};
-/*#if(modules.updater||modules.state){#*/
-var G_IsPrimitive = function(args) {
-    return !args || typeof args != Magix_StrObject;
-};
-var G_Set = function(newData, oldData, keys) {
-    var changed = 0,
-        now, old, p;
-    for (p in newData) {
-        now = newData[p];
-        old = oldData[p];
-        if (!G_IsPrimitive(now) || old != now) {
-            keys[p] = 1;
-            changed = 1;
-        }
-        oldData[p] = now;
-    }
-    return changed;
-};
-/*#}#*/
-var G_NodeIn = function(a, b, r) {
-    a = G_GetById(a);
-    b = G_GetById(b);
-    if (a && b) {
-        r = a == b;
-        if (!r) {
-            try {
-                r = b.contains ? b.contains(a) : b.compareDocumentPosition(a) & 16;
-            } catch (e) {}
-        }
-    }
-    return r;
-};
-var G_Mix = Object.assign || function(aim, src, p) {
-    for (p in src) {
-        aim[p] = src[p];
-    }
-    return aim;
-};
-/*#if(modules.style){#*/
-var View_ApplyStyle = function(key, css) {
-    if (css && !View_ApplyStyle[key]) {
-        View_ApplyStyle[key] = 1;
-        $('head').append('<style>' + css + '</style>');
-    }
-};
-/*#}#*/
-
-var G_ToTry = function(fns, args, context, i, r, e) {
-    args = args || G_EMPTY_ARRAY;
-    if (!G_IsArray(fns)) fns = [fns];
-    if (!G_IsArray(args)) args = [args];
-    for (i = 0; e = fns[i]; i++) {
-        try {
-            r = e && e.apply(context, args);
-        } catch (x) {
-            Magix_Cfg.error(x);
-        }
-    }
-    return r;
-};
-
-var G_Has = function(owner, prop) {
-    return owner && Magix_HasProp.call(owner, prop); //false 0 G_NULL '' undefined
-};
-var Magix_CacheSort = function(a, b) {
-    return /*#if(modules.cnum){#*/ b.n - a.n || /*#}#*/ b.f - a.f || b.t - a.t;
-};
-/**
- * Magix.Cache 类
- * @name Cache
- * @constructor
- * @param {Integer} [max] 缓存最大值，默认20
- * @param {Integer} [buffer] 缓冲区大小，默认5
- * @param {Function} [remove] 当缓存的元素被删除时调用
- * @example
- * var c = new Magix.cache(5,2);//创建一个可缓存5个，且缓存区为2个的缓存对象
- * c.set('key1',{});//缓存
- * c.get('key1');//获取
- * c.del('key1');//删除
- * c.has('key1');//判断
- * //注意：缓存通常配合其它方法使用，在Magix中，对路径的解析等使用了缓存。在使用缓存优化性能时，可以达到节省CPU和内存的双赢效果
- */
-var G_Cache = function(max, buffer, remove, me) {
-    me = this;
-    me.c = [];
-    me.b = buffer | 0 || 5; //buffer先取整，如果为0则再默认5
-    me.x = me.b + (max || 20);
-    me.r = remove;
-};
-
-G_Mix(G_Cache[G_PROTOTYPE], {
-    /**
-     * @lends Cache#
-     */
-    /**
-     * 获取缓存的值
-     * @param  {String} key
-     * @return {Object} 初始设置的缓存对象
-     */
-    get: function(key) {
-        var me = this;
-        var c = me.c;
-        var r = c[G_SPLITER + key];
-        if (r) {
-            r.f++;
-            r.t = G_COUNTER++;
-            //console.log(r.f);
-            r = r.v;
-            //console.log('hit cache:'+key);
-        }
-        return r;
-    },
-    /*#if(modules.cnum){#*/
-    /**
-     * 获取引用值，仅启动cnum模块时该方法才存在
-     * @param  {String} key 缓存key
-     * @param  {Boolean} increase 是否是增长
-     * @beta
-     * @module cnum
-     */
-    num: function(key, increase) {
-        var me = this,
-            c = me.c,
-            k = G_SPLITER + key;
-        if (increase && !c[k]) {
-            me.set(key, G_NULL);
-        }
-        var o = c[k];
-        if (o) {
-            if (increase) {
-                o.n++;
-            } else if (o.n > 0) {
-                o.n--;
-            }
-            o.f++;
-        }
-    },
-    /*#}#*/
-    /*#if(modules.ceach||modules.service){#*/
-    /**
-     * 循环缓存 需启用ceach或service模块
-     * @param  {Function} cb 回调
-     * @param  {Object} [ops] 回调时传递的额外参数
-     * @beta
-     * @module ceach|service
-     */
-    each: function(cb, ops, me, c, i) {
-        me = this;
-        c = me.c;
-        for (i = c.length - 1; i > -1; i--) {
-            cb(c[i].v, ops, me);
-        }
-    },
-    /*#}#*/
-    /**
-     * 设置缓存
-     * @param {String} key 缓存的key
-     * @param {Object} value 缓存的对象
-     */
-    set: function(okey, value) {
-        var me = this;
-        var c = me.c;
-
-        var key = G_SPLITER + okey;
-        var r = c[key];
-        var t = me.b,
-            f;
-        if (!r) {
-            if (c.length >= me.x) {
-                c.sort(Magix_CacheSort);
-                while (t--) {
-                    /*#if(modules.cnum){#*/
-                    r = c[c.length - 1]; //弹出最后一个
-                    if (r.n) { //如果有引用
-                        break; //直接跳出循环
-                    }
-                    c.pop();
-                    /*#}else{#*/
-                    r = c.pop();
-                    /*#}#*/
-                    //为什么要判断r.f>0,考虑这样的情况：用户设置a,b，主动删除了a,重新设置a,数组中的a原来指向的对象残留在列表里，当排序删除时，如果不判断则会把新设置的删除，因为key都是a
-                    //
-                    if (r.f > 0) me.del(r.o); //如果没有引用，则删除
-                    /*#if(modules.cnum){#*/
-                    f = 1; //标记无引用
-                    /*#}#*/
-                }
-                /*#if(modules.cnum){#*/
-                if (!f) { //auto increase
-                    me.x += me.b;
-                }
-                /*#}#*/
-            }
-            r = {
-                /*#if(modules.cnum){#*/
-                n: 0,
-                /*#}#*/
-                o: okey
-            };
-            c.push(r);
-            c[key] = r;
-        }
-        r.v = value;
-        r.f = 1;
-        r.t = G_COUNTER++;
-    },
-    /**
-     * 删除缓存
-     * @param  {String} key 缓存key
-     */
-    del: function(k) {
-        k = G_SPLITER + k;
-        var c = this.c;
-        var r = c[k],
-            m = this.r;
-        if (r) {
-            r.f = -1;
-            r.v = G_EMPTY;
-            delete c[k];
-            if (m) {
-                G_ToTry(m, r.o);
-            }
-        }
-    },
-    /**
-     * 检测缓存中是否有给定的key
-     * @param  {String} key 缓存key
-     * @return {Boolean}
-     */
-    has: function(k) {
-        return G_Has(this.c, G_SPLITER + k);
-    }
-});
-
-
 var Magix_PathToObjCache = new G_Cache();
 //var Magix_PathCache = new G_Cache();
 var Magix_ParamsObjectTemp;
@@ -529,13 +247,13 @@ var Magix = {
      * @return {Object}
      * @example
      * var map = Magix.toMap([1,2,3,5,6]);
-     * // => {1:1,2:1,3:1,4:1,5:1,6:1}
+     * //=> {1:1,2:1,3:1,4:1,5:1,6:1}
      *
      * var map = Magix.toMap([{id:20},{id:30},{id:40}],'id');
-     * // =>{20:{id:20},30:{id:30},40:{id:40}}
+     * //=>{20:{id:20},30:{id:30},40:{id:40}}
      *
      * console.log(map['30']);//=> {id:30}
-     * // 转成对象后不需要每次都遍历数组查询
+     * //转成对象后不需要每次都遍历数组查询
      */
     toMap: G_ToMap,
     /**
@@ -676,6 +394,7 @@ var Magix = {
     has: G_Has,
     /**
      * 获取对象的keys
+     * @param {Object} object 获取key的对象
      * @type {Array}
      * @beta
      * @module linkage|router
@@ -688,7 +407,7 @@ var Magix = {
      * var keys = Magix.keys(o);
      *
      * // keys == ['a','b','test']
-     * @return {Array[string]}
+     * @return {Array}
      */
     keys: G_Keys,
     /**
@@ -721,7 +440,7 @@ var Magix = {
      * @return {HTMLElement|Null}
      * @example
      * // html
-     * // &lt;div id="root"&gt;&lt;/div&gt;
+     * // <div id="root"></div>
      *
      * var node = Magix.node('root');
      *
@@ -756,5 +475,16 @@ var Magix = {
      * // id maybe mx-7
      */
     guid: G_Id,
-    Cache: G_Cache
+    Cache: G_Cache,
+    /**
+     * 获取模块，调用如requirejs或seajs的require的实现
+     * @function
+     */
+    use: G_Require,
+    /**
+     * 定义一个模块
+     * @param {string} moduleId 模块id
+     * @param {any} value 值
+     */
+    define: G_Define
 };
