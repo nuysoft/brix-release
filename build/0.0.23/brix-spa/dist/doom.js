@@ -1,1 +1,0 @@
-define("brix/doom",[],function(){return{manage:function(e,o){return e.on("destroy",function(){var r=" by DOOM when it's holder is destroyed";o.abort&&o.abort(o,"be canceled"+r,e),o.destroy&&o.destroy(o,"be destroyed"+r,e)}),this}}});
