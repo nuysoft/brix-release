@@ -1,1 +1,86 @@
-!function(){function e(e,s){return n?e:s}var s=!!~location.search.indexOf("local")||!!~location.host.indexOf("localhost")||!!~location.host.indexOf(".local"),n=!!~location.search.indexOf("debug"),r=function(){var e=document.getElementsByTagName("script"),r=e[e.length-1],i=r.getAttribute("src"),t=/(.+\/)(.+)/.exec(i)[1];/-debug\.js$/.test(i)&&(n=!0);var o=!!~t.indexOf("g-assets.daily.taobao.net"),a=!!~t.indexOf("g.tbcdn.cn")||!!~t.indexOf("g.alicdn.com");return(o||a)&&(s=!1,/brix-release\/$/.test(t)&&(t+="1.0.0-beta.19/")),(s||o)&&(n=!0),s&&(t+="bower_components/"),t}();require.config({waitSeconds:0,map:{"*":{css:r+"require-css/css.js"}}});var i={"brix/loader":r+"brix-loader/dist/"+e("loader-debug","loader"),"brix/base":r+"brix-base/dist/"+e("base-debug","base"),"brix/event":r+"brix-event/dist/"+e("event-debug","event"),"brix/animation":r+"brix-animation/dist/"+e("animation-debug","animation"),"brix/components":r+"brix-components/dist/components","brix/styles":r+"brix-components/dist/styles","brix/dependencies":r,"brix/deps":r};i.components=i["brix/components"],i.styles=i["brix/styles"],i.dependencies=i["brix/dependencies"],i.deps=i["brix/dependencies"],require.config({paths:i});var t={jquery:r+"jquery/dist/"+e("jquery","jquery.min"),underscore:r+"underscore/"+e("underscore","underscore-min"),moment:r+"moment/"+e("moment","min/moment.min"),handlebars:r+"handlebars/"+e("handlebars","handlebars.min"),mock:r+"mockjs/dist/"+e("mock","mock-min"),marked:r+"marked/lib/marked",highlightjs:r+"highlightjs/highlight.pack",nprogress:r+"nprogress/nprogress",parsley:r+"parsleyjs/dist/"+e("parsley","parsley.min"),accounting:r+"accountingjs/"+e("accounting","accounting.min"),progressbar:r+"progressbar.js/dist/progressbar",Sortable:r+"Sortable/Sortable",vue:r+"vue/dist/"+e("vue","vue.min")};require.config({paths:t,shim:{highlightjs:{exports:"hljs"},parsley:{exports:"Parsley"}}})}();
+/* global require, document, location */
+(function() {
+    var local = !!~location.search.indexOf('local') || !!~location.host.indexOf('localhost') || !!~location.host.indexOf('.local')
+    var debug = !!~location.search.indexOf('debug')
+    var base = function() {
+        var scripts = document.getElementsByTagName('script')
+        var portal = scripts[scripts.length - 1]
+        var path = portal.getAttribute('src')
+        var base = /(.+\/)(.+)/.exec(path)[1]
+
+        if (/-debug\.js$/.test(path)) debug = true
+        var daily = !!~base.indexOf('g-assets.daily.taobao.net')
+        var publish = !!~base.indexOf('g.tbcdn.cn') || !!~base.indexOf('g.alicdn.com')
+
+        if (daily || publish) {
+            local = false
+            if (/brix-release\/$/.test(base)) base += '1.0.0-beta.19/'
+        }
+        if (local || daily) debug = true
+
+        if (local) base += 'bower_components/'
+
+        return base
+    }()
+
+    require.config({ // http://requirejs.org/docs/api.html
+        waitSeconds: 0, // http://requirejs.org/docs/api.html#config-waitSeconds
+        // urlArgs: "bust=" + (new Date()).getTime() // http://requirejs.org/docs/api.html#config-urlArgs
+        map: { // http://requirejs.org/docs/api.html#config-map
+            '*': {
+                // RequireJS Loader 插件
+                css: base + 'require-css/css.js'
+            }
+        }
+    })
+
+    function gogogo(original, minified) {
+        return debug ? original : minified
+    }
+
+    var brix = {
+        'brix/loader':       base + 'brix-loader/dist/' + gogogo('loader-debug', 'loader'),
+        'brix/base':         base + 'brix-base/dist/' + gogogo('base-debug', 'base'),
+        'brix/event':        base + 'brix-event/dist/' + gogogo('event-debug', 'event'),
+        'brix/animation':    base + 'brix-animation/dist/' + gogogo('animation-debug', 'animation'),
+        'brix/components':   base + 'brix-components/dist/components',
+        'brix/styles':       base + 'brix-components/dist/styles',
+        'brix/dependencies': base,
+        'brix/deps':         base
+    }
+    brix.components   = brix['brix/components']
+    brix.styles       = brix['brix/styles']
+    brix.dependencies = brix['brix/dependencies']
+    brix.deps         = brix['brix/dependencies']
+    require.config({
+        paths: brix
+    })
+
+    var deps = {
+        jquery:      base + 'jquery/dist/' + gogogo('jquery', 'jquery.min'),
+        underscore:  base + 'underscore/' + gogogo('underscore', 'underscore-min'),
+        moment:      base + 'moment/' + gogogo('moment', 'min/moment.min'),
+        handlebars:  base + 'handlebars/' + gogogo('handlebars', 'handlebars.min'),
+        mock:        base + 'mockjs/dist/' + gogogo('mock', 'mock-min'),
+        marked:      base + 'marked/lib/marked',
+        highlightjs: base + 'highlightjs/highlight.pack',
+        nprogress:   base + 'nprogress/nprogress',
+        parsley:     base + 'parsleyjs/dist/' + gogogo('parsley', 'parsley.min'),
+        accounting:  base + 'accountingjs/' + gogogo('accounting', 'accounting.min'),
+        progressbar: base + 'progressbar.js/dist/progressbar',
+        Sortable:    base + 'Sortable/Sortable',
+        vue:         base + 'vue/dist/' + gogogo('vue', 'vue.min')
+    }
+    require.config({
+        paths: deps,
+        shim: { // http://requirejs.org/docs/api.html#config-shim
+            highlightjs: {
+                exports: 'hljs'
+            },
+            parsley: {
+                exports: 'Parsley'
+            }
+        }
+    })
+
+})();
